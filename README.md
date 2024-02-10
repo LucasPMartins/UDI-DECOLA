@@ -19,8 +19,6 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 ## 💻 Integrantes
 
-São seguintes desenvolvedores:
-
 - Breno Oliveira
 - Cauê Grassi
 - Lucas Martins
