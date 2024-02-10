@@ -1,5 +1,4 @@
-
- <h1 align="center" style="color: #0000FF;">UDI-DECOLA</h1>
+# <h1 align="center" style="color: #0000FF;">UDI-DECOLA</h1>
 
 <p align="center">
   <a href="https://www.notion.so/UDI-DECOLA-d09d72e9922143b69ed9c501b13a7a26">
