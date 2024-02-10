@@ -7,7 +7,7 @@
     
 <br>
 <p>   
-Trabalho de <color =  #555555>PROGRAMAÇÃO ORIENTADA A OBJETOS EM JAVA</color>, Onde implementamos um sistema de companhia aérea que permite realizar buscas e compras de passagens aéreas e diárias em hotéis
+Trabalho de <color =  #555555>PROGRAMAÇÃO ORIENTADA A OBJETOS EM JAVA</color>, onde implementamos um sistema de companhia aérea que permite realizar buscas e compras de passagens aéreas e diárias em hotéis
 </p>
 
 ## ✈️ Tecnologias
