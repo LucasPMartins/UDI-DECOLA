@@ -7,8 +7,8 @@
 </p>
     
 <br>
- <p>   
-TRABALHO DE PROGRAMAÇÃO ORIENTADA A OBJETOS EM JAVA, ONDE IMPLEMENTAMOS UM SISTEMA DE COMPANHIA AEREA QUE PERMITE REALIZAR BUSCAS E COMPRAS DE PASSAGENS AÉREAS E DIÁRIAS EM HOTÉIS
+<p>   
+Trabalho de *PROGRAMAÇÃO ORIENTADA A OBJETOS EM JAVA*, Onde implementamos um sistema de companhia aérea que permite realizar buscas e compras de passagens aéreas e diárias em hotéis
 </p>
 
 ## 🚀 Tecnologias
