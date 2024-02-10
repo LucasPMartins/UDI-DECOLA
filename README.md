@@ -2,7 +2,7 @@
 # <h1 align="center" style="color: #0000FF;">UDI-DECOLA</h1>
 
 <p align="center">
-  <a href="https://github.com/brenimcode">
+  <a href="https://www.notion.so/UDI-DECOLA-d09d72e9922143b69ed9c501b13a7a26">
   <img alt="Notion" src="https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=notion&logoColor=white">
 </p>
     
