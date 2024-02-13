@@ -13,7 +13,14 @@ public class Hotel extends Empresa {
 	private float check_in,check_out;
 	private String cidade;
 	private String msg_divulgacao;
+	private String msg_descricao;
 	
+	public String getMsg_descricao() {
+		return msg_descricao;
+	}
+	public void setMsg_descricao(String msg_descricao) {
+		this.msg_descricao = msg_descricao;
+	}
 	public String getMsg_divulgacao() {
 		return msg_divulgacao;
 	}
@@ -63,9 +70,4 @@ public class Hotel extends Empresa {
 		this.check_out = check_out;
 	}
 	
-	public String msg_descricao() {
-		String descricao;
-		descricao = "Bem-vindo ao nosso hotel!\n\n"
-				+ "  Nome:" + 
-	}
 }
