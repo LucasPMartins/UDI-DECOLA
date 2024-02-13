@@ -4,6 +4,16 @@ public abstract class Empresa {
 	private String nome_oficial;
 	private String nome_divulgacao;
 	private String data_criacao;
+	
+	
+	
+	public Empresa(String cnpj, String nome_oficial, String nome_divulgacao, String data_criacao) {
+		this.cnpj = cnpj;
+		this.nome_oficial = nome_oficial;
+		this.nome_divulgacao = nome_divulgacao;
+		this.data_criacao = data_criacao;
+	}
+	
 	public String getCnpj() {
 		return cnpj;
 	}
