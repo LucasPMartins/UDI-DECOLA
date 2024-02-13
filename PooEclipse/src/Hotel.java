@@ -12,7 +12,14 @@ public class Hotel extends Empresa {
 	private int nmr_quartos;
 	private float check_in,check_out;
 	private String cidade;
+	private String msg_divulgacao;
 	
+	public String getMsg_divulgacao() {
+		return msg_divulgacao;
+	}
+	public void setMsg_divulgacao(String msg_divulgacao) {
+		this.msg_divulgacao = msg_divulgacao;
+	}
 	public String getCidade() {
 		return cidade;
 	}
@@ -54,44 +61,6 @@ public class Hotel extends Empresa {
 	}
 	public void setCheck_out(float check_out) {
 		this.check_out = check_out;
-	}
-	
-	public String msg_divugacao() {
-		Random rand = new Random();
-        // Gerar um número inteiro aleatório entre 0 e 13
-        int aleatorio = rand.nextInt(14); 
-        switch (aleatorio) {
-        case 0:
-            return "Experimente o luxo e o conforto incomparável do nosso hotel!";
-        case 1:
-            return "Descubra uma estadia memorável em nosso hotel!";
-        case 2:
-            return "Venha se encantar com nossas vistas deslumbrantes e serviços de classe mundial.";
-        case 3:
-        	return "Relaxe, recarregue e rejuvenesça em nosso oásis de tranquilidade. Bem-vindo ao nosso hotel.";
-        case 4:
-        	return ("Sua escapada dos sonhos começa aqui! " + "Hotel: " + Float.toString(nmr_estrelas));
-        case 5:
-        	return "Celebre a vida e crie memórias inesquecíveis conosco.";
-        case 6:
-        	return "Reserve sua estadia conosco hoje mesmo!";
-        case 7:
-        	return "Descubra um mundo de elegância e sofisticação em nosso hotel.";
-        case 8:
-        	return "Sua jornada de bem-estar começa aqui.";
-        case 9:
-        	return "Acolhimento caloroso, experiências autênticas e momentos inesquecíveis";
-        case 10:
-        	return "Nossa missão é transformar sua estadia em uma experiência extraordinária.";
-        case 11:
-        	return "Venha descobrir o que nos torna únicos.";
-        case 12:
-        	return "Nosso hotel é o cenário perfeito para suas aventuras!";
-        case 13:
-        	return "Desfrute de uma hospitalidade impecável e uma experiência inesquecível.";
-        default:
-            return "";
-        }
 	}
 	
 	public String msg_descricao() {
