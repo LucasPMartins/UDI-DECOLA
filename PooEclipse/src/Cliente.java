@@ -2,11 +2,12 @@
 public class Cliente extends Pessoa{
 	
 	private String email;
-	private String dat_cadastro;
+	private String data_cadastro;
 	
-	public Cliente(String cpf, String endereco, String nome, String data_nasc) {
-		super(cpf,endereco, nome, data_nasc);
-		
+	public Cliente(String cpf, String nome) {
+		super(cpf,"", nome,"");
+		email = "";
+		data_cadastro = "";
 	}
 	
 	
