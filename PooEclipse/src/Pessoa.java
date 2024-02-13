@@ -1,5 +1,5 @@
 
-public class Pessoa {
+public abstract class  Pessoa {
 	
 	private String cpf;
 	private String endereco;
@@ -8,7 +8,6 @@ public class Pessoa {
 	
 	
 	public Pessoa(String cpf, String endereco, String nome, String data_nasc) {
-		super();
 		this.cpf = cpf;
 		this.endereco = endereco;
 		this.nome = nome;
