@@ -1,7 +1,7 @@
 
 public class Trecho_de_Voo {
-	String codigoID;
-	String origem;
-	String destino;
-	
+	private String codigoID;
+	private String origem;
+	private String destino;
+	private CompanhiaAerea companhia;
 }
