@@ -1,5 +1,5 @@
 
-public class Empresa {
+public abstract class Empresa {
 	private String cnpj;
 	private String nome_oficial;
 	private String nome_divulgacao;
