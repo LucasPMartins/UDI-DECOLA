@@ -1,4 +1,12 @@
 
-public class Funcionario_Empresa {
+public class Funcionario_Empresa extends Funcionario {
+	
+
+	public Funcionario_Empresa(String cpf, String endereco, String nome, String data_nasc) {
+		super(cpf, endereco, nome, data_nasc);
+	}
 
 }
+
+
+
