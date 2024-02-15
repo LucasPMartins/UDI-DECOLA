@@ -7,9 +7,4 @@ public class Funcionario_Empresa extends Funcionario {
 	}
 
 
-
-
-
-
-
 }
