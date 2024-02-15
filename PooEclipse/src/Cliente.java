@@ -3,6 +3,8 @@ public class Cliente extends Pessoa{
 	
 	private String email;
 	private String data_cadastro;
+	private Pesquisa_Do_Cliente registro;
+	
 	
 	public Cliente(String cpf, String nome) {
 		super(cpf,"", nome,"");
@@ -24,6 +26,14 @@ public class Cliente extends Pessoa{
 
 	public void setData_cadastro(String data_cadastro) {
 		this.data_cadastro = data_cadastro;
+	}
+
+	public Pesquisa_Do_Cliente getRegistro() {
+		return registro;
+	}
+
+	public void setRegistro(Pesquisa_Do_Cliente registro) {
+		this.registro = registro;
 	}
 	
 	
