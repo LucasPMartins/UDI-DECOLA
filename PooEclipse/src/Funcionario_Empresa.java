@@ -5,6 +5,11 @@ public class Funcionario_Empresa extends Funcionario {
 		super(cpf, endereco, nome, data_nasc, nro);
 
 	}
-
+	
+	public float calculaSalario(){
+		
+		return super.calculaSalario();
+	}
+	
 
 }

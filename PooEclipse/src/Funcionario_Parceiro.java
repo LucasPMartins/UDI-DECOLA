@@ -1,8 +1,10 @@
 
+import java.util.ArrayList;
+
 public class Funcionario_Parceiro extends Funcionario{
 	
 	
-	private Hotel hoteis_cadastro;
+	private ArrayList<Hotel> hoteis_cadastro;
 	private static float porcentagem_por_hotel;
 
 	public Funcionario_Parceiro(String cpf, String endereco, String nome, String data_nasc, String nro) {
@@ -10,13 +12,19 @@ public class Funcionario_Parceiro extends Funcionario{
 
 	}
 
-	public Hotel getHoteis_cadastro() {
+
+
+	public ArrayList<Hotel> getHoteis_cadastro() {
 		return hoteis_cadastro;
 	}
 
-	public void setHoteis_cadastro(Hotel hoteis_cadastro) {
+
+
+	public void setHoteis_cadastro(ArrayList<Hotel> hoteis_cadastro) {
 		this.hoteis_cadastro = hoteis_cadastro;
 	}
+
+
 
 	public static float getPorcentagem_por_hotel() {
 		return porcentagem_por_hotel;
@@ -26,7 +34,12 @@ public class Funcionario_Parceiro extends Funcionario{
 		Funcionario_Parceiro.porcentagem_por_hotel = porcentagem_por_hotel;
 	}
 
-
+	
+	public float calculaSalario(){
+		
+		return super.calculaSalario()* porcentagem_por_hotel;
+	}
+	
 
 	
 }

@@ -31,5 +31,10 @@ public abstract class Funcionario extends Pessoa{
 	}
 	
 	
+	public float calculaSalario(){
+		
+		return salario_func;
+	}
+	
 	
 }
