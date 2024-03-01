@@ -3,11 +3,11 @@ public abstract class Empresa {
 	private String cnpj;
 	private String nome_oficial;
 	private String nome_divulgacao;
-	private String data_criacao;
+	private Data data_criacao;
 	
 	
 	
-	public Empresa(String cnpj, String nome_oficial, String nome_divulgacao, String data_criacao) {
+	public Empresa(String cnpj, String nome_oficial, String nome_divulgacao, Data data_criacao) {
 		this.cnpj = cnpj;
 		this.nome_oficial = nome_oficial;
 		this.nome_divulgacao = nome_divulgacao;
@@ -32,12 +32,13 @@ public abstract class Empresa {
 	public void setNome_divulgacao(String nome_divulgacao) {
 		this.nome_divulgacao = nome_divulgacao;
 	}
-	public String getData_criacao() {
+	public Data getData_criacao() {
 		return data_criacao;
 	}
-	public void setData_criacao(String data_criacao) {
+	public void setData_criacao(Data data_criacao) {
 		this.data_criacao = data_criacao;
 	}
+	
 	
 	
 	
