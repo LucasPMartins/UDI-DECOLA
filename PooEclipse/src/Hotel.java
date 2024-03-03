@@ -7,29 +7,104 @@ import java.util.ArrayList;
 
 public class Hotel extends Empresa {
 	private String end_completo;
-	private float nmr_estrelas;
+	private int nmr_estrelas;
 	private boolean pets;
+	private int nmr_quartos;
 	private Tempo check_in;
 	private Tempo check_out;
 	private String cidade;
 	private String msg_divulgacao;
-	private ArrayList<Quarto> quarto;
-	
+	private boolean cancelamento;
+	private ArrayList<Quartos> quartos = new ArrayList<Quartos>();
+
 	public Hotel(String cnpj, String nome_oficial, String nome_divulgacao, Data data_criacao, String end_completo,
-			float nmr_estrelas, boolean pets, Tempo check_in, Tempo check_out, String cidade, String msg_divulgacao) {
+			int nmr_estrelas, boolean pets, Tempo check_in, Tempo check_out, String cidade, String msg_divulgacao,
+			boolean cancelamento, Quartos quartos) {
 		super(cnpj, nome_oficial, nome_divulgacao, data_criacao);
 		this.end_completo = end_completo;
-		this.nmr_estrelas = nmr_estrelas;
+		setNmr_estrelas(nmr_estrelas);
 		this.pets = pets;
+		this.nmr_quartos = quartos.totalQuartos();
 		this.check_in = check_in;
 		this.check_out = check_out;
 		this.cidade = cidade;
 		this.msg_divulgacao = msg_divulgacao;
-		this.quarto = new ArrayList<Quarto>();
+		this.cancelamento = cancelamento;
+		this.addQuartos(quartos);
+	}
+
+	public void addQuartos(Quartos quartos) { //Adiciona 355 ou 356 quartos, cada elemento representa um dia
+		for(int i = 0;i < 355;i++) {
+			this.quartos.add(quartos); //add quartos em certa data
+			quartos.setData(quartos.getData().proximoDia()); //atualiza a data para adicionar os mesmo quartos
+		}
+		
+	}
+
+	public void reservar(Data data, int dias, int tipo) {
+		int count = 0;
+		for (Quartos q : this.quartos) {
+			if (q.getData().equals(data)) { // verifica se existe quartos para esse data
+				int r = q.reservarDia(tipo);
+				if (r != 0) {
+					System.out.println("Quarto indisponivel no dia: " + data.formatarData());
+				}
+				data = data.proximoDia();
+				if(data.getAno() > q.getData().getAno())
+				{
+					System.out.println("Quarto indisponivel nesse ano: " + data.formatarData());
+					break;
+				}
+				count++;
+			}
+			if(count == dias) {
+				break;
+			}
+		}
+	}
+	
+	public void liberar(Data data, int dias, int tipo) {
+		int count = 0;
+		for (Quartos q : this.quartos) {
+			if (q.getData().equals(data)) { // verifica se existe quartos para esse data
+				int r = q.liberarDia(tipo);
+				if (r != 0) {
+					System.out.println("Quarto indisponivel no dia: " + data.formatarData());
+				}
+				data = data.proximoDia();
+				if(data.getAno() > q.getData().getAno())
+				{
+					System.out.println("Quarto indisponivel nesse ano: " + data.formatarData());
+					break;
+				}
+				count++;
+			}
+			if(count == dias) {
+				break;
+			}
+		}
+	}
+
+	public int getNmr_quartos() {
+		return nmr_quartos;
+	}
+
+	public ArrayList<Quartos> getQuartos() {
+		return quartos;
+	}
+
+	public void setNmr_quartos(int nmr_quartos) {
+		this.nmr_quartos = nmr_quartos;
+	}
+
+	public void setQuartos(ArrayList<Quartos> quartos) {
+		this.quartos = quartos;
 	}
 
 	public String msg_descricao() {
-		return ("Endereço: "+getEnd_completo()+"\tCidade: "+getCidade()+"\nPermitido PETS:"+isPets()+"\tEstrelas: "+getNmr_estrelas()+"\nCheck-in: "+getCheck_in()+"\tCheck-out: "+getCheck_out());
+		return ("Endereço: " + getEnd_completo() + "\tCidade: " + getCidade() + "\nPermitido PETS:" + isPets()
+				+ "\tEstrelas: " + getNmr_estrelas() + "\nCheck-in: " + getCheck_in().formatarTempo() + "\tCheck-out: "
+				+ getCheck_out().formatarTempo());
 	}
 
 	public String getEnd_completo() {
@@ -40,12 +115,17 @@ public class Hotel extends Empresa {
 		this.end_completo = end_completo;
 	}
 
-	public float getNmr_estrelas() {
+	public int getNmr_estrelas() {
 		return nmr_estrelas;
 	}
 
-	public void setNmr_estrelas(float nmr_estrelas) {
-		this.nmr_estrelas = nmr_estrelas;
+	public void setNmr_estrelas(int nmr_estrelas) {
+		if (nmr_estrelas < 0)
+			this.nmr_estrelas = 0;
+		else if (nmr_estrelas >= 5)
+			this.nmr_estrelas = 5;
+		else
+			this.nmr_estrelas = nmr_estrelas;
 	}
 
 	public boolean isPets() {
@@ -88,37 +168,20 @@ public class Hotel extends Empresa {
 		this.msg_divulgacao = msg_divulgacao;
 	}
 
-	public ArrayList<Quarto> getQuarto() {
-		return quarto;
+	public ArrayList<Quartos> getQuarto() {
+		return quartos;
 	}
 
-	public void setQuarto(ArrayList<Quarto> quarto) {
-		this.quarto = quarto;
-	}
-	  
-	public int total_quartos() {
-		return quarto.size();
-	}
-	
-	public int quartos_disponiveis() {
-		int count = 0;
-		for(Quarto q : quarto ) {
-			if(q.isDisponivel()) {
-				count++;
-			}
-		}
-		return count;
+	public void setQuarto(ArrayList<Quartos> quarto) {
+		this.quartos = quarto;
 	}
 
-	public int quartos_disponiveis(Data data) {
-		int count = 0;
-		for(Quarto q : quarto ) {
-			if(q.isDisponivel() && q.getData().equals(data)) {
-				count++;
-			}
-		}
-		return count;
+	public boolean isCancelamento() {
+		return cancelamento;
 	}
-	
-	
+
+	public void setCancelamento(boolean cancelamento) {
+		this.cancelamento = cancelamento;
+	}
+
 }

@@ -5,8 +5,6 @@ public abstract class Empresa {
 	private String nome_divulgacao;
 	private Data data_criacao;
 	
-	
-	
 	public Empresa(String cnpj, String nome_oficial, String nome_divulgacao, Data data_criacao) {
 		this.cnpj = cnpj;
 		this.nome_oficial = nome_oficial;

@@ -5,45 +5,45 @@ public class Data {
 	private int ano;
 
 	public Data(int dia, int mes, int ano) {
-        if (verificarData(dia, mes, ano)) {
-            this.dia = dia;
-            this.mes = mes;
-            this.ano = ano;
-        } else {
-        	this.dia = 1;
-            this.mes = 1;
-            this.ano = 2024;
-        }
-    }
+		if (verificarData(dia, mes, ano)) {
+			this.dia = dia;
+			this.mes = mes;
+			this.ano = ano;
+		} else {
+			this.dia = 1;
+			this.mes = 1;
+			this.ano = 2024;
+		}
+	}
 
-    private boolean verificarData(int dia, int mes, int ano) {
-        if (ano < 2024) {
-            return false;
-        }
-        if (mes < 1 || mes > 12) {
-            return false;
-        }
-        if (dia < 1 || dia > diasNoMes(mes, ano)) {
-            return false;
-        }
-        return true;
-    }
-    
-    private int diasNoMes(int mes, int ano) {
-    	if (mes == 1 || mes == 3 || mes == 5 || mes == 7 || mes == 8 || mes == 10 || mes == 12) {
-            return 31;
-        } else if (mes == 4 || mes == 6 || mes == 9 || mes == 11) {
-            return 30;
-        } else if (mes == 2) {
-            if (ano % 400 == 0 || (ano % 4 == 0 && ano % 100 != 0)) {
-                return 29; // Ano bissexto
-            } else {
-                return 28; // Ano não bissexto
-            }
-        } else {
-            return -1; // Mês inválido
-        }
-    }
+	private boolean verificarData(int dia, int mes, int ano) {
+		if (ano < 2024) {
+			return false;
+		}
+		if (mes < 1 || mes > 12) {
+			return false;
+		}
+		if (dia < 1 || dia > diasNoMes(mes, ano)) {
+			return false;
+		}
+		return true;
+	}
+
+	private int diasNoMes(int mes, int ano) {
+		if (mes == 1 || mes == 3 || mes == 5 || mes == 7 || mes == 8 || mes == 10 || mes == 12) {
+			return 31;
+		} else if (mes == 4 || mes == 6 || mes == 9 || mes == 11) {
+			return 30;
+		} else if (mes == 2) {
+			if (ano % 400 == 0 || (ano % 4 == 0 && ano % 100 != 0)) {
+				return 29; // Ano bissexto
+			} else {
+				return 28; // Ano não bissexto
+			}
+		} else {
+			return -1; // Mês inválido
+		}
+	}
 
 	public int getDia() {
 		return dia;
@@ -87,7 +87,28 @@ public class Data {
 	}
 
 	public String formatarData() {
-        return String.format("%02d/%02d/%02d", dia, mes, ano % 100);
-    } 
-	
+		return String.format("%02d/%02d/%02d", dia, mes, ano % 100);
+	}
+
+	public Data proximoDia() {
+		int proximoDia = this.dia + 1;
+		int proximoMes = this.mes;
+		int proximoAno = this.ano;
+
+		// Verifica se o próximo dia ultrapassa o limite do mês
+		if (proximoDia > diasNoMes(this.mes, this.ano)) {
+			proximoDia = 1;
+			proximoMes++;
+
+			// Verifica se o próximo mês ultrapassa o limite do ano
+			if (proximoMes > 12) {
+				proximoMes = 1;
+				proximoAno++;
+			}
+		}
+
+		// Retorna a próxima data
+		return new Data(proximoDia, proximoMes, proximoAno);
+	}
+
 }
