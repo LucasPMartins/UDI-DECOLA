@@ -3,14 +3,16 @@ import java.util.ArrayList;
 
 public class Funcionario_Parceiro extends Funcionario{
 	
-	
 	private ArrayList<Hotel> hoteis_cadastro;
 	private static float porcentagem_por_hotel;
 
 	public Funcionario_Parceiro(String cpf, String endereco, String nome, String data_nasc, String nro) {
 		super(cpf, endereco, nome, data_nasc, nro);
+		
 
 	}
+	
+	
 
 
 
@@ -35,11 +37,9 @@ public class Funcionario_Parceiro extends Funcionario{
 	}
 
 	
-	public float calculaSalario(){
-		
-		return super.calculaSalario()* porcentagem_por_hotel;
+	public float calculaSalario() {
+	    return super.calculaSalario() - (hoteis_cadastro.size() * porcentagem_por_hotel);
 	}
-	
 
 	
 }
