@@ -14,13 +14,31 @@ public class Compra {
 
 	private Data data_compra;
 
-	public Compra(Cliente cliente, Voo vo, Hotel hotel) {
+	
+
+	public Compra(Cliente cliente, Voo voo, Hotel hotel, int tipo_Quarto, Data inicio, Data fim,
+			Data data_compra) {
+		if(hotel != null) {
+			this.hotel = hotel;
+			this.tipo_Quarto = tipo_Quarto;
+			this.inicio = inicio;
+			this.fim = fim;
+			reservarHotel(hotel,inicio,fim,tipo_Quarto);
+		}else {
+			this.hotel = null;
+			this.tipo_Quarto = 0;
+			this.inicio = null;
+			this.fim = null;
+		}if(voo != null) {
+			//imp
+		}
 		this.cliente = cliente;
-		this.hotel = hotel;
-		this.voo = vo;
+		this.data_compra = data_compra;	
+		
 	}
 
-	public Boolean realizarCompra(Hotel hotel,Data inicio,Data fim,int tipo){
+
+	public Boolean reservarHotel(Hotel hotel,Data inicio,Data fim,int tipo){
 		setHotel(hotel);
     	setTipo_Quarto(tipo);
     	int count = 0;

@@ -69,13 +69,13 @@ public class Cliente extends Pessoa{
 	}
 
 	public static void setNro_limite(int nro_limite) {
-		ClienteVip.nro_limite = nro_limite;
+		Cliente.nro_limite = nro_limite;
 	}
 	
 	public void addCompra(Compra compra) {
 		this.historico.add(compra);
 		if(historico.size() >= nro_limite) {
-			setVip(True);
+			setVip(true);
 		}
 	}
 
