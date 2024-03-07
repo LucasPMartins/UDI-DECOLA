@@ -41,14 +41,16 @@ public class Hotel extends Empresa {
 		
 	}
 
-	public void reservar(Data data, int dias, int tipo) {
+	public ArrayList<Quartos> reservar(Data data, int dias, int tipo) {
 		int count = 0;
+		ArrayList<Quartos> temp = new ArrayList<Quartos>();
 		for (Quartos q : this.quartos) {
 			if (q.getData().equals(data)) { // verifica se existe quartos para esse data
 				int r = q.reservarDia(tipo);
 				if (r != 0) {
 					System.out.println("Quarto indisponivel no dia: " + data.formatarData());
 				}
+				temp.add(q);
 				data = data.proximoDia();
 				if(data.getAno() > q.getData().getAno())
 				{
@@ -61,6 +63,7 @@ public class Hotel extends Empresa {
 				break;
 			}
 		}
+		return temp;
 	}
 	
 	public void liberar(Data data, int dias, int tipo) {

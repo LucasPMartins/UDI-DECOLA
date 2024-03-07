@@ -3,16 +3,36 @@ public class Cliente extends Pessoa{
 	
 	private String email;
 	private Data data_cadastro;
-	private Pesquisa_Do_Cliente registro;
-	private static int certa_qtd_compras; // quantidade fixa de compras, que atingida o cliente se torna vip
+	private ArrayList<Pesquisa> registros;
+	private ArrayList<Compra> historico;
+	private boolean vip;
+	private static int nro_limite;
 	
 	
 	
 	public Cliente(String cpf, String nome,String email, Data data_cadastro, String endereco,Data nascimento, Data virou_VIP) {
 		super(cpf,endereco, nome,nascimento);
+		vip = false;
 		this.email = email;
 		this.data_cadastro = data_cadastro;
+		historico = new ArrayList<Compra>();
 	}
+	
+	public static int getNro_limite() {
+		return nro_limite;
+	}
+
+	public static void setNro_limite(int nro_limite) {
+		ClienteVip.nro_limite = nro_limite;
+	}
+	
+	public void addCompra(Compra compra) {
+		this.historico.add(compra);
+		if(historico.size() >= nro_limite) {
+			setVip(True);
+		}
+	}
+
 	
 	public Cliente(String cpf, String nome) {
 		super(cpf,"", nome,"");

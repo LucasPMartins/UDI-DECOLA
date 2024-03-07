@@ -1,45 +1,44 @@
 
-public class Compra{
+public class Compra {
 
-    private Cliente cliente;
-    private int qtdCompras; //quantidade de compras na operacao
-    private Voo voo;
-    private Hotel hotel;
-    private int qtdComprasCliente; //contador de compras feita pelo cliente
-    private float valorFinal; //valor final da compra
-    private Data data_compra;
-    
-    public Compra(Cliente cliente, int qtdCompras, Voo voo, Hotel hotel){
-        this.cliente = cliente;
-        this.hotel = hotel;
-        this.qtdCompras = qtdCompras;
-        this.voo = voo;
-    }
+	private Cliente cliente;
+	private int qtdCompras; // quantidade de compras na operacao
 
-    public Boolean realizarCompra(){
-    	
-        if(qtdCompras <= 0){
-            return false;
-        }
-        //valorFinal =
+	private float valorFinal; // valor final da compra
 
-        qtdComprasCliente++;
+	private Voo voo;
+
+	private Hotel hotel;
+	private int tipo_Quarto;
+	private ArrayList<Quartos> estadia;
+
+	private Data data_compra;
+
+	public Compra(Cliente cliente, Voo vo, Hotel hotel) {
+		this.cliente = cliente;
+		this.hotel = hotel;
+		this.voo = vo;
+	}
+
+	public Boolean realizarCompra(Hotel hotel,Data data,int dias,int tipo){
+		setHotel(hotel);
+    	setTipo_Quarto = tipo;
+    	setEstadia(this.hotel.reservar(data,dias,tipo))
+		float r = 0;
+		for (Quartos q : this.estadia) {
+			if(getTipo_Quarto() == 1) {
+				r += q.getDiariaSingle();
+			}else if (getTipo_Quarto() == 2) {
+				r += q.getDiariaDuplo();
+			}else if (getTipo_Quarto() == 3) {
+				r += q.getDiariaTriplo();
+			}else if (getTipo_Quarto() == 4) {
+				r += q.getDiariaLuxo();
+			}
+		}
+		setValorFinal(r);
         return true; 
     }
- 
-    
-    
-    public void seTornaVip() {
-        if (qtdComprasCliente == Cliente.getCertaQtdCompras()) {
-        	
-            ClienteVip clienteVip = new ClienteVip(cliente.getCpf(), cliente.getNome(), 0.1f);
-
-            
-            this.cliente = clienteVip;
-        }
-    }
-
-    
 
 	public Cliente getCliente() {
 		return cliente;
@@ -86,9 +85,10 @@ public class Compra{
 	}
 
 	public void setValorFinal(float valorFinal) {
+		if (getCliente.isVip()) {
+			this.valorFinal = 0.9 * valorFinal;
+		}
 		this.valorFinal = valorFinal;
 	}
-
-
 
 }
