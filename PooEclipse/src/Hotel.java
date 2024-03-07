@@ -15,6 +15,7 @@ public class Hotel extends Empresa {
 	private String cidade;
 	private String msg_divulgacao;
 	private boolean cancelamento;
+	private Funcionario_Parceiro funcionario;
 	private ArrayList<Quartos> quartos = new ArrayList<Quartos>();
 	private static float taxa_udi_decola = 100f; //taxa fixa que o hotel paga a udi-decola por cada diaria vendida
 
@@ -48,6 +49,16 @@ public class Hotel extends Empresa {
 			quartos.setData(quartos.getData().proximoDia()); //atualiza a data para adicionar os mesmo quartos
 		}
 		
+	}
+
+	
+	
+	public Funcionario_Parceiro getFuncionario() {
+		return funcionario;
+	}
+
+	public void setFuncionario(Funcionario_Parceiro funcionario) {
+		this.funcionario = funcionario;
 	}
 
 	public boolean reservar(Data data, int dias, int tipo) {
