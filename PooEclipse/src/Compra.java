@@ -37,7 +37,6 @@ public class Compra {
 		
 	}
 
-
 	public Boolean reservarHotel(Hotel hotel,Data inicio,Data fim,int tipo){
 		setHotel(hotel);
     	setTipo_Quarto(tipo);
