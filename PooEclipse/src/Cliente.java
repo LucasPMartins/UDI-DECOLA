@@ -12,7 +12,6 @@ public class Cliente extends Pessoa{
 	private LocalDateTime dataVip; // Para armazenar a data e hora que o Cliente virou VIP, é preciso copiar a data_hora de compra.
 	private float desconto;
 	
-	
 	public Cliente(String cpf, String nome,String email, Data data_cadastro, String endereco,Data nascimento, Data virou_VIP) {
 		super(cpf,endereco, nome,nascimento);
 		vip = false;
@@ -23,8 +22,6 @@ public class Cliente extends Pessoa{
 		historico = new ArrayList<Compra>();
 		registros = new ArrayList<Pesquisa>();
 	}
-	
-	
 	
 	public Cliente(String cpf, String nome) {
 		super(cpf,null, nome,null);
@@ -38,30 +35,21 @@ public class Cliente extends Pessoa{
 		registros = new ArrayList<Pesquisa>();
 	}
 	
-	
 	public ArrayList<Pesquisa> getRegistros() {
 		return registros;
 	}
-
-
 
 	public void setRegistros(ArrayList<Pesquisa> registros) {
 		this.registros = registros;
 	}
 
-
-
 	public ArrayList<Compra> getHistorico() {
 		return historico;
 	}
 
-
-
 	public void setHistorico(ArrayList<Compra> historico) {
 		this.historico = historico;
 	}
-
-
 
 	public boolean isVip() {
 		return vip;
@@ -122,8 +110,4 @@ public class Cliente extends Pessoa{
 		this.data_cadastro = data_cadastro;
 	}
 
-	
-
-
-	
 }
