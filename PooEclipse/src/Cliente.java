@@ -3,10 +3,11 @@ public class Cliente extends Pessoa{
 	
 	private String email;
 	private Data data_cadastro;
-	private ArrayList<Pesquisa> registros = new ArrayList<Pesquisa>();
-	private ArrayList<Compra> historico = new ArrayList<Compra>();
+	private ArrayList<Pesquisa> registros;
+	private ArrayList<Compra> historico;
 	private boolean vip;
 	private static int nro_limite;
+	
 	
 	
 	public Cliente(String cpf, String nome,String email, Data data_cadastro, String endereco,Data nascimento, Data virou_VIP) {
@@ -14,8 +15,54 @@ public class Cliente extends Pessoa{
 		vip = false;
 		this.email = email;
 		this.data_cadastro = data_cadastro;
+		historico = new ArrayList<Compra>();
+		registros = new ArrayList<Pesquisa>();
+		
 	}
 	
+	public Cliente(String cpf, String nome) {
+		super(cpf,null, nome,null);
+		email = null;
+		data_cadastro = null;
+	}
+	
+	
+	public ArrayList<Pesquisa> getRegistros() {
+		return registros;
+	}
+
+
+
+	public void setRegistros(ArrayList<Pesquisa> registros) {
+		this.registros = registros;
+	}
+
+
+
+	public ArrayList<Compra> getHistorico() {
+		return historico;
+	}
+
+
+
+	public void setHistorico(ArrayList<Compra> historico) {
+		this.historico = historico;
+	}
+
+
+
+	public boolean isVip() {
+		return vip;
+	}
+
+
+
+	public void setVip(boolean vip) {
+		this.vip = vip;
+	}
+
+
+
 	public static int getNro_limite() {
 		return nro_limite;
 	}
@@ -32,16 +79,8 @@ public class Cliente extends Pessoa{
 	}
 
 	
-	public Cliente(String cpf, String nome) {
-		super(cpf,"", nome,"");
-		email = "";
-		data_cadastro = "";
-	}
 	
 	
-    public static int getCertaQtdCompras() {
-        return certa_qtd_compras;
-    }
 	
 
 	public String getEmail() {
@@ -60,23 +99,6 @@ public class Cliente extends Pessoa{
 		this.data_cadastro = data_cadastro;
 	}
 
-	public Pesquisa_Do_Cliente getRegistro() {
-		return registro;
-	}
-
-	public void setRegistro(Pesquisa_Do_Cliente registro) {
-		this.registro = registro;
-	}
-
-
-	public static int getCerta_qtd_compras() {
-		return certa_qtd_compras;
-	}
-
-
-	public static void setCerta_qtd_compras(int certa_qtd_compras) {
-		Cliente.certa_qtd_compras = certa_qtd_compras;
-	}
 	
 
 

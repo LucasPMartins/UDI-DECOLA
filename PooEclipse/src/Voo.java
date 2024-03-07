@@ -4,13 +4,9 @@ public class Voo {
 	private Tempo hora_programada_chegada;
 	private Tempo hora_programada_partida;
 	private int nro_vagas_disponiveis;
-	private ArrayList<Trecho_de_Voo> trecho;
+	private Trecho_de_Voo trecho;
 	private float preco_da_passagem;
 	
-	public void pesquisa() {
-		
-	}
-
 
     public Data getData() {
         return data;
@@ -43,15 +39,7 @@ public class Voo {
     public void setNro_vagas_disponiveis(int nro_vagas_disponiveis) {
         this.nro_vagas_disponiveis = nro_vagas_disponiveis;
     }
-
-    public ArrayList<Trecho_de_Voo> getTrecho() {
-        return trecho;
-    }
-
-    public void setTrecho(ArrayList<Trecho_de_Voo> trecho) {
-        this.trecho = trecho;
-    }
-
+    
     public float getPreco_da_passagem() {
         return preco_da_passagem;
     }
@@ -59,4 +47,14 @@ public class Voo {
     public void setPreco_da_passagem(float preco_da_passagem) {
         this.preco_da_passagem = preco_da_passagem;
     }
+
+	public Trecho_de_Voo getTrecho() {
+		return trecho;
+	}
+
+	public void setTrecho(Trecho_de_Voo trecho) {
+		this.trecho = trecho;
+	}
+    
+    
 }
