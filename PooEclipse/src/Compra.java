@@ -30,7 +30,9 @@ public class Compra {
 			this.inicio = null;
 			this.fim = null;
 		}if(voo != null) {
-			comprarPassagemAerea(voo, qtd_passagem);
+			if(comprarPassagemAerea(voo, qtd_passagem)) {
+				//Aqui seria a companhia pagando para a UDI decola
+			}
 		}
 		this.cliente = cliente;
 		this.data_compra = data_compra;	
