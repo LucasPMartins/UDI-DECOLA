@@ -33,7 +33,7 @@ public class Hotel extends Empresa {
 		this.addQuartos(quartos);
 	}
 
-	public void addQuartos(Quartos quartos) { //Adiciona 355 ou 356 quartos, cada elemento representa um dia
+	public void addQuartos(Quartos quartos) { //Adiciona 356 quartos, cada elemento representa um dia
 		for(int i = 0;i < 355;i++) {
 			this.quartos.add(quartos); //add quartos em certa data
 			quartos.setData(quartos.getData().proximoDia()); //atualiza a data para adicionar os mesmo quartos
@@ -41,29 +41,28 @@ public class Hotel extends Empresa {
 		
 	}
 
-	public ArrayList<Quartos> reservar(Data data, int dias, int tipo) {
-		int count = 0;
-		ArrayList<Quartos> temp = new ArrayList<Quartos>();
+	public boolean reservar(Data data, int dias, int tipo) {
+		int count = 0;	
 		for (Quartos q : this.quartos) {
 			if (q.getData().equals(data)) { // verifica se existe quartos para esse data
 				int r = q.reservarDia(tipo);
 				if (r != 0) {
 					System.out.println("Quarto indisponivel no dia: " + data.formatarData());
+					return false;
 				}
-				temp.add(q);
 				data = data.proximoDia();
 				if(data.getAno() > q.getData().getAno())
 				{
 					System.out.println("Quarto indisponivel nesse ano: " + data.formatarData());
-					break;
+					return false;
 				}
 				count++;
 			}
 			if(count == dias) {
-				break;
+				return true;
 			}
 		}
-		return temp;
+		return false;
 	}
 	
 	public void liberar(Data data, int dias, int tipo) {

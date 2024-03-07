@@ -3,11 +3,10 @@ public class Cliente extends Pessoa{
 	
 	private String email;
 	private Data data_cadastro;
-	private ArrayList<Pesquisa> registros;
-	private ArrayList<Compra> historico;
+	private ArrayList<Pesquisa> registros = new ArrayList<Pesquisa>();
+	private ArrayList<Compra> historico = new ArrayList<Compra>();
 	private boolean vip;
 	private static int nro_limite;
-	
 	
 	
 	public Cliente(String cpf, String nome,String email, Data data_cadastro, String endereco,Data nascimento, Data virou_VIP) {
@@ -15,7 +14,6 @@ public class Cliente extends Pessoa{
 		vip = false;
 		this.email = email;
 		this.data_cadastro = data_cadastro;
-		historico = new ArrayList<Compra>();
 	}
 	
 	public static int getNro_limite() {
