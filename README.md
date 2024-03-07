@@ -23,3 +23,5 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 - Cauê Grassi
 - Lucas Martins
 - Lucas Jamal
+  
+![image](https://github.com/brenimcode/UDI-DECOLA/assets/127551374/7fb5bd59-c916-49f7-9a50-7f84a0c71906)
