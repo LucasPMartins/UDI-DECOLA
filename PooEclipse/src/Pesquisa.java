@@ -1,6 +1,7 @@
 
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 public class Pesquisa {
 	
@@ -13,36 +14,42 @@ public class Pesquisa {
     private ArrayList<Voo> voos;
     
     public Pesquisa(ArrayList<Hotel> hoteis, String destino, LocalDateTime dat_inicial, LocalDateTime dataFim,
-    		LocalDateTime dat_hora_pesquisa) {
-    	//HOTEL
-    	for(Hotel h : hoteis) {
-    		if(h.getCidade() == destino) {
-    			hotel.add(h);
-    		}
-    	}
-    	this.origem = "";
-    	this.destino = destino;
-    	this.dat_inicial = dat_inicial;
-    	this.dataFim = dataFim;
-    	this.dat_hora_pesquisa = LocalDateTime.now();
+            LocalDateTime dat_hora_pesquisa) {
+        // Inicializa a lista de hotéis
+        this.hotel = new ArrayList<>();
+        
+        // A pesquisa vai retornar todo hotel que tenha a mesma cidade que destino.
+        for(Hotel h : hoteis) {
+            if(h.getCidade().equals(destino)) {
+                this.hotel.add(h);
+            }
+        }
+        this.origem = null; // Origem é definida como nula ou indefinida
+        this.destino = destino;
+        this.dat_inicial = dat_inicial;
+        this.dataFim = dataFim;
+        this.dat_hora_pesquisa = LocalDateTime.now();
     }
     
-    public Pesquisa(ArrayList<Voo> voos,String origem, String destino, LocalDateTime dat_inicial, LocalDateTime dataFim,
-    		LocalDateTime dat_hora_pesquisa) {
-    	//VOO
-    	for(Voo h : voos) {
-    		h.
-    		for(Trecho_de_Voo l :h.getTrecho())
-    		if(l.getDestino() == destino) {
-    			this.voos.add(h);
-    		}
-    	}
-    	
-    	this.origem = origem;
-    	this.destino = destino;
-    	this.dat_inicial = dat_inicial;
-    	this.dataFim = dataFim;
-    	this.dat_hora_pesquisa = LocalDateTime.now();
+    public Pesquisa(ArrayList<Voo> voos, String origem, String destino, LocalDateTime dat_inicial, LocalDateTime dataFim,
+            LocalDateTime dat_hora_pesquisa) {
+        // Inicializa a lista de voos
+        this.voos = new ArrayList<>();
+        
+        // Pesquisa de voos, a função retorna todos os voos tal que o último trecho de voo é igual ao destino
+        for(Voo voo : voos) {
+            Trecho_de_Voo aux = voo.getTrecho().get(voo.getTrecho().size() - 1);
+            
+            if(aux.getDestino().equals(destino)) {
+                this.voos.add(voo);
+            }
+        }
+        
+        this.origem = origem;
+        this.destino = destino;
+        this.dat_inicial = dat_inicial;
+        this.dataFim = dataFim;
+        this.dat_hora_pesquisa = LocalDateTime.now();
     }
 
     
