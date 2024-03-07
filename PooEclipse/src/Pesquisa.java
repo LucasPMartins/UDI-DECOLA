@@ -7,13 +7,13 @@ public class Pesquisa {
 	
     private String origem;
     private String destino;
-    private LocalDateTime dat_inicial;
-    private LocalDateTime dataFim;
+    private Data dat_inicial;
+    private Data dataFim;
     private LocalDateTime dat_hora_pesquisa;
     private ArrayList<Hotel> hotel;
     private ArrayList<Voo> voos;
     
-    public Pesquisa(ArrayList<Hotel> hoteis, String destino, LocalDateTime dat_inicial, LocalDateTime dataFim,
+    public Pesquisa(ArrayList<Hotel> hoteis, String destino, Data dat_inicial, Data dataFim,
             LocalDateTime dat_hora_pesquisa) {
         // Inicializa a lista de hotéis
         this.hotel = new ArrayList<>();
@@ -31,7 +31,7 @@ public class Pesquisa {
         this.dat_hora_pesquisa = LocalDateTime.now();
     }
     
-    public Pesquisa(ArrayList<Voo> voos, String origem, String destino, LocalDateTime dat_inicial, LocalDateTime dataFim,
+    public Pesquisa(ArrayList<Voo> voos, String origem, String destino, Data dat_inicial, Data dataFim,
             LocalDateTime dat_hora_pesquisa) {
         // Inicializa a lista de voos
         this.voos = new ArrayList<>();
@@ -53,6 +53,21 @@ public class Pesquisa {
     }
 
     
+    public void mostrarPesquisaHotel() {
+        int i = 0;
+        for (Hotel hotel_aux : hotel) {
+            System.out.println("Índice: " + i++);
+            System.out.println(hotel_aux.getMsg_divulgacao());
+        }
+    }
+    
+    public Hotel selecionarDaPesquisaHotel(int escolha) {
+    	mostrarPesquisaHotel(); // esse metodo, dada uma escolha de indice ele retorna o elemento indexado.
+    	if (escolha >= 0 && escolha < hotel.size())
+    		return hotel.get(escolha);
+    	return null;
+    }
+    
     public void mostrarPesquisaVoo() {
     	int i=0;
         for (Voo voo : voos) {
@@ -68,12 +83,14 @@ public class Pesquisa {
         }
     }
 
-    public Voo selecionarDaPesquisa(int escolha) {
-    	mostrarPesquisaVoo();
+    public Voo selecionarDaPesquisaVoo(int escolha) {
+    	mostrarPesquisaVoo(); // esse metodo, dada uma escolha de indice ele retorna o elemento indexado.
     	if (escolha >= 0 && escolha < voos.size())
     		return voos.get(escolha);
     	return null;
     }
+    
+    
     
     // Gets e sets
 	public String getOrigem() {
@@ -95,26 +112,21 @@ public class Pesquisa {
 		this.destino = destino;
 	}
 
-
-	public LocalDateTime getDat_inicial() {
+	public Data getDat_inicial() {
 		return dat_inicial;
 	}
 
-
-	public void setDat_inicial(LocalDateTime dat_inicial) {
+	public void setDat_inicial(Data dat_inicial) {
 		this.dat_inicial = dat_inicial;
 	}
 
-
-	public LocalDateTime getDataFim() {
+	public Data getDataFim() {
 		return dataFim;
 	}
 
-
-	public void setDataFim(LocalDateTime dataFim) {
+	public void setDataFim(Data dataFim) {
 		this.dataFim = dataFim;
 	}
-
 
 	public LocalDateTime getDat_hora_pesquisa() {
 		return dat_hora_pesquisa;
