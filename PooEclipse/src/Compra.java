@@ -9,7 +9,7 @@ public class Compra {
 	private Voo voo; // Armazenando a passagem aérea
 	private int qtd_passagem; //Quantidade de passagem
 	private Hotel hotel; // Armazenando o hotel, a diaria
-	//private int qtd_diarias; // Quantidade de DIARIAS 
+	private int qtd_diarias; // Quantidade de DIARIAS 
 	private int tipo_Quarto;
 	private Data inicio;
 	private Data fim;
@@ -19,13 +19,14 @@ public class Compra {
     
 	public void calcularValorComissaoHotelUdiDecola() {
 	    // Somar o valor da comissão a ser paga para UDI-decola
-	    comissao += (qtd_passagem * voo.getTrecho().getCompanhia().getTaxa_da_udi_decola());
+	    comissao += (qtd_passagem * voo.getTrecho().getCompanhia().getTaxa_da_udi_decola()) + (qtd_diarias * hotel.getTaxa_udi_decola());
 	    //Aqui poderá ter qtd quartos...
 	}
 
 	public Compra(Cliente cliente, Voo voo, Hotel hotel, int tipo_Quarto, Data inicio, Data fim,
 			int qtd_passagem, String forma_pagar) {
 		if(hotel != null) {
+			this.qtd_diarias = 0;
 			this.hotel = hotel;
 			this.tipo_Quarto = tipo_Quarto;
 			this.inicio = inicio;
@@ -33,6 +34,7 @@ public class Compra {
 			reservarHotel(hotel,inicio,fim,tipo_Quarto);
 			
 		}else {
+			this.qtd_diarias = 0;
 			this.hotel = null;
 			this.tipo_Quarto = 0;
 			this.inicio = null;
@@ -67,7 +69,7 @@ public class Compra {
     	setTipo_Quarto(tipo);
     	int count = 0;
     	int dias = inicio.diferencaDeDias(fim);
-		float r = 0;
+		float r = 0; // Preço a ser pago pelo quarto
 		for (Quartos q : hotel.getQuartos()) {
 			if(getTipo_Quarto() == 1) {
 				r += q.getDiaria_single();
@@ -84,13 +86,14 @@ public class Compra {
 			}
 			if(count == dias) {
 				hotel.reservar(inicio, dias, tipo); //decrementa os quartos disponiveis do hotel
+				qtd_diarias = dias;
 				break;
 			}
 		}
 		if(count != dias) {
 			return false; //não foi possivel alugar os quartos para todos os dias
 		}
-		setValorFinal(getValorFinal()+r);// somatoria do total a pagar pelos dias no hotel
+		setValorFinal(getValorFinal()+(r*qtd_diarias));// somatoria do total a pagar pelos dias no hotel
 		return true; 
     }
 	
