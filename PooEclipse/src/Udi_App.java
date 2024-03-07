@@ -4,7 +4,8 @@ public class Udi_App {
     private ArrayList<Hotel> hoteisDisponiveis;
     private ArrayList<Voo> voosDisponiveis;
     private Pesquisa pesquisa;
-
+    
+    
     public Udi_App() {
         // Inicializa os arrays de hotéis e voos disponíveis
         hoteisDisponiveis = new ArrayList<>();
