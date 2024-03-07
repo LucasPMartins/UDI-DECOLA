@@ -6,7 +6,14 @@ public class Trecho_de_Voo {
 	private CompanhiaAerea companhia;
 	
 
-    public String getCodigoID() {
+    public Trecho_de_Voo(String codigoID, String origem, String destino, CompanhiaAerea companhia) {
+		this.codigoID = codigoID;
+		this.origem = origem;
+		this.destino = destino;
+		this.companhia = companhia;
+	}
+    
+	public String getCodigoID() {
         return codigoID;
     }
     public void setCodigoID(String codigoID) {

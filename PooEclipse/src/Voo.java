@@ -7,8 +7,18 @@ public class Voo {
 	private Trecho_de_Voo trecho;
 	private float preco_da_passagem;
 	
+	
+    public Voo(Data data, Tempo hora_programada_chegada, Tempo hora_programada_partida, int nro_vagas_disponiveis,
+			Trecho_de_Voo trecho, float preco_da_passagem) {
+		this.data = data;
+		this.hora_programada_chegada = hora_programada_chegada;
+		this.hora_programada_partida = hora_programada_partida;
+		this.nro_vagas_disponiveis = nro_vagas_disponiveis;
+		this.trecho = trecho;
+		this.preco_da_passagem = preco_da_passagem;
+	}
 
-    public Data getData() {
+	public Data getData() {
         return data;
     }
 
