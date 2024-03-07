@@ -90,7 +90,7 @@ public class Cliente extends Pessoa{
 	public void addCompra(Compra compra) {
 		this.historico.add(compra);
 		if(historico.size() >= nro_limite) {
-			if(getDataVip()==null) {
+			if(getDataVip()==null && vip == false) {
 				setDataVip(compra.getData_e_hora_compra());
 				setVip(true);
 			}
