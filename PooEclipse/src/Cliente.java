@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.time.LocalDateTime;
 
 public class Cliente extends Pessoa{
 	
@@ -8,7 +9,7 @@ public class Cliente extends Pessoa{
 	private ArrayList<Compra> historico;
 	private boolean vip;
 	private static int nro_limite;
-	private Data dataVip;
+	private LocalDateTime dataVip; // Para armazenar a data e hora que o Cliente virou VIP, é preciso copiar a data_hora de compra.
 	private float desconto;
 	
 	
@@ -90,18 +91,18 @@ public class Cliente extends Pessoa{
 		this.historico.add(compra);
 		if(historico.size() >= nro_limite) {
 			if(getDataVip()==null) {
-				setDataVip(compra.getData_compra());
+				setDataVip(compra.getData_e_hora_compra());
 				setVip(true);
 			}
 			setDesconto(0.10f*compra.getValorFinal());
 		}
 	}
 
-	public Data getDataVip() {
+	public LocalDateTime getDataVip() {
 		return dataVip;
 	}
 
-	public void setDataVip(Data dataVip) {
+	public void setDataVip(LocalDateTime dataVip) {
 		this.dataVip = dataVip;
 	}
 
