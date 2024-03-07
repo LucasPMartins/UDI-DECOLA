@@ -31,7 +31,9 @@ public class Pesquisa {
     		LocalDateTime dat_hora_pesquisa) {
     	//VOO
     	for(Voo h : voos) {
-    		if(h.getTrecho()destino == destino) {
+    		h.
+    		for(Trecho_de_Voo l :h.getTrecho())
+    		if(l.getDestino() == destino) {
     			this.voos.add(h);
     		}
     	}
