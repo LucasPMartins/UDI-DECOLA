@@ -50,8 +50,6 @@ public class Hotel extends Empresa {
 		}
 		
 	}
-
-	
 	
 	public Funcionario_Parceiro getFuncionario() {
 		return funcionario;

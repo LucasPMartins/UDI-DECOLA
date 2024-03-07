@@ -20,4 +20,8 @@ public abstract class Funcionario extends Pessoa{
 	public static void setSalario(float salario) {
 		Funcionario.salario = salario;
 	}
+	
+	public float calculaSalario() {
+		return salario;
+	}
 }
