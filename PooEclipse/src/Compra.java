@@ -1,5 +1,4 @@
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 public class Compra {
 
@@ -7,9 +6,10 @@ public class Compra {
 
 	private float valorFinal; // valor final da compra
 
-	private Voo voo;
-
-	private Hotel hotel;
+	private Voo voo; // Armazenando a passagem aérea
+	private int qtd_passagem; //Quantidade de passagem
+	private Hotel hotel; // Armazenando o hotel, a diaria
+	//private int qtd_diarias; // Quantidade de DIARIAS 
 	private int tipo_Quarto;
 	private Data inicio;
 	private Data fim;
@@ -17,7 +17,7 @@ public class Compra {
 	private LocalDateTime data_e_hora_compra;
 	private float comissao; //Isso é a Comissão que deve ser paga a udi-decola.
     
-	public void calcularValorComissaoHotelUdiDecola(int qtd_passagem) {
+	public void calcularValorComissaoHotelUdiDecola() {
 	    // Somar o valor da comissão a ser paga para UDI-decola
 	    comissao += (qtd_passagem * voo.getTrecho().getCompanhia().getTaxa_da_udi_decola());
 	    //Aqui poderá ter qtd quartos...
@@ -37,17 +37,19 @@ public class Compra {
 			this.tipo_Quarto = 0;
 			this.inicio = null;
 			this.fim = null;
-		}if(voo != null) {
-			if(!comprarPassagemAerea(voo, qtd_passagem)) {
+		}
+		this.qtd_passagem = 0;
+		if(voo != null) {
+			if(comprarPassagemAerea(voo)) {
 				//Aqui seria a companhia pagando para a UDI decola
-				qtd_passagem = 0;
+				this.qtd_passagem = qtd_passagem;
 			}
 		}
 		this.cliente = cliente;
 		this.data_e_hora_compra = LocalDateTime.now();
 		this.forma_de_pagamento = forma_pagar;
 		
-		calcularValorComissaoHotelUdiDecola(qtd_passagem);
+		calcularValorComissaoHotelUdiDecola();
 		
 	}
 
@@ -92,14 +94,14 @@ public class Compra {
 		return true; 
     }
 	
-	public Boolean comprarPassagemAerea(Voo vooSelecionado, int qtdPassagens) {
-	    if (vooSelecionado.getNro_vagas_disponiveis() >= qtdPassagens && qtdPassagens > 0) {
+	public Boolean comprarPassagemAerea(Voo vooSelecionado) {
+	    if (vooSelecionado.getNro_vagas_disponiveis() >= qtd_passagem && qtd_passagem > 0) {
 	        // Atualiza o atributo voo com o voo selecionado
 	        setVoo(vooSelecionado);
 	        // Atualiza o número de vagas disponíveis no voo
-	        vooSelecionado.setNro_vagas_disponiveis(vooSelecionado.getNro_vagas_disponiveis() - qtdPassagens);
+	        vooSelecionado.setNro_vagas_disponiveis(vooSelecionado.getNro_vagas_disponiveis() - qtd_passagem);
 	        // Atualiza o valor final da compra
-	        setValorFinal(getValorFinal() + (qtdPassagens * vooSelecionado.getPreco_da_passagem()));
+	        setValorFinal(getValorFinal() + (qtd_passagem * vooSelecionado.getPreco_da_passagem()));
 	        return true; // Compra realizada com sucesso
 	    } else {
 	        return false; // Não há vagas suficientes para a quantidade desejada de passagens
