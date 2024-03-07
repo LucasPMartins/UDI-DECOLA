@@ -149,7 +149,7 @@ public class Compra {
 
 	public void setValorFinal(float valorFinal) {
 		if (getCliente().isVip()) {
-			this.valorFinal = 0.9f * valorFinal;
+			this.valorFinal = valorFinal - cliente.getDesconto(); 
 		}
 		this.valorFinal = valorFinal;
 	}
