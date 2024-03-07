@@ -93,7 +93,7 @@ public class Compra {
 		if(count != dias) {
 			return false; //não foi possivel alugar os quartos para todos os dias
 		}
-		setValorFinal(getValorFinal()+(r*qtd_diarias));// somatoria do total a pagar pelos dias no hotel
+		setValorFinal(getValorFinal()+r);// somatoria do total a pagar pelos dias no hotel
 		return true; 
     }
 	
