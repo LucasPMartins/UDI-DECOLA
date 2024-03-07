@@ -2,12 +2,17 @@
 public class Cliente extends Pessoa{
 	
 	private String email;
-	private String data_cadastro;
+	private Data data_cadastro;
 	private Pesquisa_Do_Cliente registro;
 	private static int certa_qtd_compras; // quantidade fixa de compras, que atingida o cliente se torna vip
 	
 	
 	
+	public Cliente(String cpf, String nome,String email, Data data_cadastro, String endereco,Data nascimento, Data virou_VIP) {
+		super(cpf,endereco, nome,nascimento);
+		this.email = email;
+		this.data_cadastro = data_cadastro;
+	}
 	
 	public Cliente(String cpf, String nome) {
 		super(cpf,"", nome,"");
@@ -29,11 +34,11 @@ public class Cliente extends Pessoa{
 		this.email = email;
 	}
 
-	public String getData_cadastro() {
+	public Data getData_cadastro() {
 		return data_cadastro;
 	}
 
-	public void setData_cadastro(String data_cadastro) {
+	public void setData_cadastro(Data data_cadastro) {
 		this.data_cadastro = data_cadastro;
 	}
 

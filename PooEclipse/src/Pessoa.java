@@ -4,10 +4,10 @@ public abstract class  Pessoa {
 	private String cpf;
 	private String endereco;
 	private String nome;
-	private String data_nasc;
+	private Data data_nasc;
 	
 	
-	public Pessoa(String cpf, String endereco, String nome, String data_nasc) {
+	public Pessoa(String cpf, String endereco, String nome, Data data_nasc) {
 		this.cpf = cpf;
 		this.endereco = endereco;
 		this.nome = nome;
@@ -45,12 +45,12 @@ public abstract class  Pessoa {
 	}
 
 
-	public String getData_nasc() {
+	public Data getData_nasc() {
 		return data_nasc;
 	}
 
 
-	public void setData_nasc(String data_nasc) {
+	public void setData_nasc(Data data_nasc) {
 		this.data_nasc = data_nasc;
 	}
 	

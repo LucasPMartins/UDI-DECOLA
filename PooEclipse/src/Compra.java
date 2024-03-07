@@ -7,7 +7,8 @@ public class Compra{
     private Hotel hotel;
     private int qtdComprasCliente; //contador de compras feita pelo cliente
     private float valorFinal; //valor final da compra
-
+    private Data data_compra;
+    
     public Compra(Cliente cliente, int qtdCompras, Voo voo, Hotel hotel){
         this.cliente = cliente;
         this.hotel = hotel;
@@ -15,7 +16,7 @@ public class Compra{
         this.voo = voo;
     }
 
-    public Boolean realizarCompra(Compra compra){
+    public Boolean realizarCompra(){
     	
         if(qtdCompras <= 0){
             return false;
