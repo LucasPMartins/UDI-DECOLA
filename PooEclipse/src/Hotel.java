@@ -19,6 +19,14 @@ public class Hotel extends Empresa {
 	private ArrayList<Quartos> quartos = new ArrayList<Quartos>();
 	private static float taxa_udi_decola = 100f; //taxa fixa que o hotel paga a udi-decola por cada diaria vendida
 
+	public static float getTaxa_udi_decola() {
+		return taxa_udi_decola;
+	}
+
+	public static void setTaxa_udi_decola(float taxa_udi_decola) {
+		Hotel.taxa_udi_decola = taxa_udi_decola;
+	}
+
 	public Hotel(String cnpj, String nome_oficial, String nome_divulgacao, Data data_criacao, String end_completo,
 			int nmr_estrelas, boolean pets, Tempo check_in, Tempo check_out, String cidade, String msg_divulgacao,
 			boolean cancelamento, Quartos quartos) {

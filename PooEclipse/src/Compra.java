@@ -13,8 +13,14 @@ public class Compra {
 	private Data fim;
 
 	private Data data_compra;
+	private float comissao;
+    
+	public void calcularValorComissaoHotelUdiDecola(int qtd_passagem) {
+	    // Somar o valor da comissão a ser paga para UDI-decola
+	    comissao += (qtd_passagem * voo.getTrecho().getCompanhia().getTaxa_da_udi_decola());
+	    //Aqui poderá ter qtd quartos...
+	}
 
-	
 
 	public Compra(Cliente cliente, Voo voo, Hotel hotel, int tipo_Quarto, Data inicio, Data fim,
 			Data data_compra,int qtd_passagem) {
@@ -24,20 +30,24 @@ public class Compra {
 			this.inicio = inicio;
 			this.fim = fim;
 			reservarHotel(hotel,inicio,fim,tipo_Quarto);
+			
 		}else {
 			this.hotel = null;
 			this.tipo_Quarto = 0;
 			this.inicio = null;
 			this.fim = null;
 		}if(voo != null) {
-			if(comprarPassagemAerea(voo, qtd_passagem)) {
+			if(!comprarPassagemAerea(voo, qtd_passagem)) {
 				//Aqui seria a companhia pagando para a UDI decola
+				qtd_passagem = 0;
 			}
 		}
 		this.cliente = cliente;
 		this.data_compra = data_compra;	
+		calcularValorComissaoHotelUdiDecola(qtd_passagem);
 		
 	}
+
 
 	public Boolean reservarHotel(Hotel hotel,Data inicio,Data fim,int tipo){
 		setHotel(hotel);
@@ -85,6 +95,14 @@ public class Compra {
 	    }
 	}
 	
+
+    public float getComissao() {
+        return comissao;
+    }
+    public void setComissao(float comissao) {
+        this.comissao = comissao;
+    }
+    
 	
 	public int getTipo_Quarto() {
 		return tipo_Quarto;
