@@ -17,7 +17,7 @@ public class Data {
 	}
 
 	private boolean verificarData(int dia, int mes, int ano) {
-		if (ano < 2024) {
+		if (ano < 0) {
 			return false;
 		}
 		if (mes < 1 || mes > 12) {
@@ -110,5 +110,36 @@ public class Data {
 		// Retorna a próxima data
 		return new Data(proximoDia, proximoMes, proximoAno);
 	}
+	
+	// Método que retorna o número de dias desde uma data base (por exemplo, 01/01/1900)
+    private int converterParaDias() {
+        int totalDias = 0;
+        totalDias += (ano - 1900) * 365; // Considera os anos completos
+        totalDias += contarDiasAteMes(); // Adiciona os dias do ano atual
+        totalDias += contarDiasNoMes(); // Adiciona os dias do mês atual
+        return totalDias;
+    }
+
+    // Método privado auxiliar para contar os dias até o mês atual
+    private int contarDiasAteMes() {
+        int totalDias = 0;
+        for (int i = 1; i < mes; i++) {
+            totalDias += diasNoMes(i, ano);
+        }
+        return totalDias;
+    }
+
+    // Método privado auxiliar para contar os dias no mês atual
+    private int contarDiasNoMes() {
+        return dia;
+    }
+
+    // Método público para calcular a diferença de dias entre duas datas
+    public int diferencaDeDias(Data outraData) {
+        int diasDataAtual = converterParaDias();
+        int diasOutraData = outraData.converterParaDias();
+        return Math.abs(diasDataAtual - diasOutraData);
+    }
+
 
 }
