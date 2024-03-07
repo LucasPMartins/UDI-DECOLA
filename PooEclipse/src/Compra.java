@@ -17,7 +17,7 @@ public class Compra {
 	
 
 	public Compra(Cliente cliente, Voo voo, Hotel hotel, int tipo_Quarto, Data inicio, Data fim,
-			Data data_compra) {
+			Data data_compra,int qtd_passagem) {
 		if(hotel != null) {
 			this.hotel = hotel;
 			this.tipo_Quarto = tipo_Quarto;
@@ -30,7 +30,9 @@ public class Compra {
 			this.inicio = null;
 			this.fim = null;
 		}if(voo != null) {
-			//imp
+			if(comprarPassagemAerea(voo, qtd_passagem)) {
+				//Aqui seria a companhia pagando para a UDI decola
+			}
 		}
 		this.cliente = cliente;
 		this.data_compra = data_compra;	
@@ -68,7 +70,21 @@ public class Compra {
 		setValorFinal(getValorFinal()+r);// somatoria do total a pagar pelos dias no hotel
 		return true; 
     }
-
+	
+	public Boolean comprarPassagemAerea(Voo vooSelecionado, int qtdPassagens) {
+	    if (vooSelecionado.getNro_vagas_disponiveis() >= qtdPassagens) {
+	        // Atualiza o atributo voo com o voo selecionado
+	        setVoo(vooSelecionado);
+	        // Atualiza o número de vagas disponíveis no voo
+	        vooSelecionado.setNro_vagas_disponiveis(vooSelecionado.getNro_vagas_disponiveis() - qtdPassagens);
+	        // Atualiza o valor final da compra
+	        setValorFinal(getValorFinal() + (qtdPassagens * vooSelecionado.getPreco_da_passagem()));
+	        return true; // Compra realizada com sucesso
+	    } else {
+	        return false; // Não há vagas suficientes para a quantidade desejada de passagens
+	    }
+	}
+	
 	
 	public int getTipo_Quarto() {
 		return tipo_Quarto;
