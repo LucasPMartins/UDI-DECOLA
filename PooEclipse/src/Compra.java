@@ -1,3 +1,5 @@
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 public class Compra {
 
@@ -11,9 +13,9 @@ public class Compra {
 	private int tipo_Quarto;
 	private Data inicio;
 	private Data fim;
-
-	private Data data_compra;
-	private float comissao;
+	private String forma_de_pagamento; //Podendo ser Pix, credito,debito...
+	private LocalDateTime data_e_hora_compra;
+	private float comissao; //Isso é a Comissão que deve ser paga a udi-decola.
     
 	public void calcularValorComissaoHotelUdiDecola(int qtd_passagem) {
 	    // Somar o valor da comissão a ser paga para UDI-decola
@@ -21,9 +23,8 @@ public class Compra {
 	    //Aqui poderá ter qtd quartos...
 	}
 
-
 	public Compra(Cliente cliente, Voo voo, Hotel hotel, int tipo_Quarto, Data inicio, Data fim,
-			Data data_compra,int qtd_passagem) {
+			int qtd_passagem, String forma_pagar) {
 		if(hotel != null) {
 			this.hotel = hotel;
 			this.tipo_Quarto = tipo_Quarto;
@@ -43,11 +44,21 @@ public class Compra {
 			}
 		}
 		this.cliente = cliente;
-		this.data_compra = data_compra;	
+		this.data_e_hora_compra = LocalDateTime.now();
+		this.forma_de_pagamento = forma_pagar;
+		
 		calcularValorComissaoHotelUdiDecola(qtd_passagem);
 		
 	}
 
+
+	public LocalDateTime getData_e_hora_compra() {
+		return data_e_hora_compra;
+	}
+
+	public void setData_e_hora_compra(LocalDateTime data_e_hora_compra) {
+		this.data_e_hora_compra = data_e_hora_compra;
+	}
 
 	public Boolean reservarHotel(Hotel hotel,Data inicio,Data fim,int tipo){
 		setHotel(hotel);
@@ -82,7 +93,7 @@ public class Compra {
     }
 	
 	public Boolean comprarPassagemAerea(Voo vooSelecionado, int qtdPassagens) {
-	    if (vooSelecionado.getNro_vagas_disponiveis() >= qtdPassagens) {
+	    if (vooSelecionado.getNro_vagas_disponiveis() >= qtdPassagens && qtdPassagens > 0) {
 	        // Atualiza o atributo voo com o voo selecionado
 	        setVoo(vooSelecionado);
 	        // Atualiza o número de vagas disponíveis no voo
@@ -96,14 +107,33 @@ public class Compra {
 	}
 	
 
-    public float getComissao() {
+    public String getForma_de_pagamento() {
+		return forma_de_pagamento;
+	}
+
+	public void setForma_de_pagamento(String forma_de_pagamento) {
+		this.forma_de_pagamento = forma_de_pagamento;
+	}
+
+	public float getComissao() {
         return comissao;
     }
     public void setComissao(float comissao) {
         this.comissao = comissao;
     }
     
-	
+    public float getValorFinal() {
+		return valorFinal;
+	}
+
+	public void setValorFinal(float valorFinal) {
+		if (getCliente().isVip()) {
+			this.valorFinal = 0.9f * valorFinal;
+		}
+		this.valorFinal = valorFinal;
+	}
+
+    
 	public int getTipo_Quarto() {
 		return tipo_Quarto;
 	}
@@ -128,13 +158,6 @@ public class Compra {
 		this.fim = fim;
 	}
 
-	public Data getData_compra() {
-		return data_compra;
-	}
-
-	public void setData_compra(Data data_compra) {
-		this.data_compra = data_compra;
-	}
 
 	public Cliente getCliente() {
 		return cliente;
@@ -161,15 +184,5 @@ public class Compra {
 	}
 
 
-	public float getValorFinal() {
-		return valorFinal;
-	}
-
-	public void setValorFinal(float valorFinal) {
-		if (getCliente().isVip()) {
-			this.valorFinal = 0.9f * valorFinal;
-		}
-		this.valorFinal = valorFinal;
-	}
-
+	
 }
