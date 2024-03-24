@@ -21,6 +21,8 @@ public class Interface01 extends JFrame {
     private JButton logar; 
     private JPanel principal;
     private JButton noturno_modo;
+    private JLabel usuario_label;
+    private JLabel senha_label;
 
     /**
      * Launch the application.
@@ -30,7 +32,8 @@ public class Interface01 extends JFrame {
             public void run() {
                 try {
                     Interface01 frame = new Interface01();
-                    frame.setLocationRelativeTo(null);
+                    frame.setLocationRelativeTo(null); //A tela inicia no meio.
+                    frame.setResizable(isDefaultLookAndFeelDecorated());
                     frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -51,7 +54,7 @@ public class Interface01 extends JFrame {
         corpo.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(corpo);
         corpo.setLayout(null);
-        Color[] colors = {Color.decode("#1A1A1A"), Color.decode("#F3F3F3")};
+        Color[] colors = {Color.decode("#1A1A1A"), Color.decode("#F3F3F3")}; // Cores padrao
         corpo.setBackground(colors[1]); //COR PADRAO DE FUNDO
         
         
@@ -78,6 +81,8 @@ public class Interface01 extends JFrame {
                 campoSenha.setForeground(cor1);
                 noturno_modo.setForeground(cor1);
                 logar.setForeground(cor1);
+                usuario_label.setForeground(cor2);
+                senha_label.setForeground(cor2);
                 
                 
             }
@@ -91,6 +96,7 @@ public class Interface01 extends JFrame {
         principal.setLayout(null);
         
         campoUsuario = new JTextField();
+        campoUsuario.setToolTipText("");
         campoUsuario.setForeground(Color.WHITE);
         campoUsuario.setBounds(25, 36, 258, 26);
         principal.add(campoUsuario);
@@ -111,6 +117,11 @@ public class Interface01 extends JFrame {
         				campoSenha.getText()!=null && !campoSenha.getText().isEmpty()) {
         			//tem coisa valida dentro da caixa 
         			JOptionPane.showMessageDialog(logar, "Informaçoes corretas", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+        			
+        			 Interface02 inter = new Interface02();
+        			 inter.setLocationRelativeTo(null);
+        			 inter.setVisible(true); // Correção aqui
+        			 dispose();
         		}
         		else {
         			JOptionPane.showMessageDialog(logar, "Informaçoes incorretas", "Aviso", JOptionPane.WARNING_MESSAGE);
@@ -122,11 +133,11 @@ public class Interface01 extends JFrame {
         logar.setFont(new Font("JetBrains Mono", Font.PLAIN, 16));
         logar.setBackground(colors[0]); // DEFININDO COR PADRAO
         
-        JLabel usuario_label = new JLabel("Usuário");
+        usuario_label = new JLabel("Usuário");
         usuario_label.setBounds(25, 16, 115, 20);
         principal.add(usuario_label);
         
-        JLabel senha_label = new JLabel("Senha");
+        senha_label = new JLabel("Senha");
         senha_label.setBounds(25, 66, 69, 20);
         principal.add(senha_label);
     }
