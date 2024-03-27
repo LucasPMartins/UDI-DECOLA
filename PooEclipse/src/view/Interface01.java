@@ -118,7 +118,7 @@ public class Interface01 extends JFrame {
         			//tem coisa valida dentro da caixa 
         			JOptionPane.showMessageDialog(logar, "Informaçoes corretas", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
         			
-        			 Interface02 inter = new Interface02();
+        			 InterfaceHotel inter = new InterfaceHotel();
         			 inter.setLocationRelativeTo(null);
         			 inter.setVisible(true); // Correção aqui
         			 dispose();
