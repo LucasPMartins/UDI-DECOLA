@@ -1,8 +1,6 @@
-<<<<<<< Updated upstream:PooEclipse/src/classesPrincipais/CompanhiaAerea.java
+
 package classesPrincipais;
-=======
 import java.util.ArrayList;
->>>>>>> Stashed changes:PooEclipse/src/CompanhiaAerea.java
 
 public class CompanhiaAerea extends Empresa{
 	
