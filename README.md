@@ -16,6 +16,8 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 - Java
 - Git e Github
+- PostgreSQL
+- Notion
 
 ## 💻 Integrantes
 
