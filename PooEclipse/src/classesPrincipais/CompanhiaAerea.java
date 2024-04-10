@@ -11,6 +11,18 @@ public class CompanhiaAerea extends Empresa{
 		super(cnpj,nome_oficial,nome_divulgacao,data_criacao);
 	}
 	
+	
+	public String mostrarDados() {
+		return super.toString() + this.toString();
+	}
+	
+	@Override
+	public String toString() {
+		return "CompanhiaAerea [voos=" + voos + "]";
+	}
+
+
+
 	public void addVoo(Voo v) {
 		voos.add(v);
 	}
