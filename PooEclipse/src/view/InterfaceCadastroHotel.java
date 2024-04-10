@@ -16,7 +16,7 @@ import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
 
-public class InterfaceDadosHotel extends JFrame {
+public class InterfaceCadastroHotel extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -48,7 +48,7 @@ public class InterfaceDadosHotel extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					InterfaceDadosHotel frame = new InterfaceDadosHotel();
+					InterfaceCadastroHotel frame = new InterfaceCadastroHotel();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -60,7 +60,7 @@ public class InterfaceDadosHotel extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public InterfaceDadosHotel() {
+	public InterfaceCadastroHotel() {
 		setTitle("Dados do Hotel");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
