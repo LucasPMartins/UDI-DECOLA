@@ -19,6 +19,18 @@ public class Voo {
 		this.preco_da_passagem = preco_da_passagem;
 	}
 
+    public String mostrarDados() {
+    	return toString();
+    }
+    
+	@Override
+	public String toString() {
+		return "Voo [data=" + data + ", hora_programada_chegada=" + hora_programada_chegada
+				+ ", hora_programada_partida=" + hora_programada_partida + ", nro_vagas_disponiveis="
+				+ nro_vagas_disponiveis + ", trecho=" + trecho + ", preco_da_passagem=" + preco_da_passagem + "]";
+	}
+
+
 	public Data getData() {
         return data;
     }
