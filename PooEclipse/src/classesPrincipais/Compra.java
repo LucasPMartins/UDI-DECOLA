@@ -4,7 +4,6 @@ import java.time.LocalDateTime;
 public class Compra {
 
 	private Cliente cliente;
-
 	private float valorFinal; // valor final da compra
 
 	private Voo voo; // Armazenando a passagem aérea
@@ -17,6 +16,8 @@ public class Compra {
 	private String forma_de_pagamento; //Podendo ser Pix, credito,debito...
 	private LocalDateTime data_e_hora_compra;
 	private float comissao; //Isso é a Comissão que deve ser paga a udi-decola.
+	
+	private String ID_Compra;
     
 	public void calcularValorComissaoHotelUdiDecola() {
 	    // Somar o valor da comissão a ser paga para UDI-decola
@@ -24,14 +25,61 @@ public class Compra {
 	    //Aqui poderá ter qtd quartos...
 	}
 
+	
+	public String mostrarDados() {
+		return toString();
+	}
+	
+	
+	@Override
+	public String toString() {
+		return "Compra [cliente=" + cliente + ", valorFinal=" + valorFinal + ", voo=" + voo + ", qtd_passagem="
+				+ qtd_passagem + ", hotel=" + hotel + ", qtd_diarias=" + qtd_diarias + ", tipo_Quarto=" + tipo_Quarto
+				+ ", inicio=" + inicio + ", fim=" + fim + ", forma_de_pagamento=" + forma_de_pagamento
+				+ ", data_e_hora_compra=" + data_e_hora_compra + ", comissao=" + comissao + ", ID_Compra=" + ID_Compra
+				+ "]";
+	}
+
+
+	public int getQtd_passagem() {
+		return qtd_passagem;
+	}
+
+
+	public void setQtd_passagem(int qtd_passagem) {
+		this.qtd_passagem = qtd_passagem;
+	}
+
+
+	public int getQtd_diarias() {
+		return qtd_diarias;
+	}
+
+
+	public void setQtd_diarias(int qtd_diarias) {
+		this.qtd_diarias = qtd_diarias;
+	}
+
+
+	public String getID_Compra() {
+		return ID_Compra;
+	}
+
+
+	public void setID_Compra(String iD_Compra) {
+		ID_Compra = iD_Compra;
+	}
+
+
 	public Compra(Cliente cliente, Voo voo, Hotel hotel, int tipo_Quarto, Data inicio, Data fim,
-			int qtd_passagem, String forma_pagar) {
+			int qtd_passagem, String forma_pagar, String ID) {
 		if(hotel != null) {
 			this.qtd_diarias = 0;
 			this.hotel = hotel;
 			this.tipo_Quarto = tipo_Quarto;
 			this.inicio = inicio;
 			this.fim = fim;
+			this.ID_Compra = ID;
 			reservarHotel(hotel,inicio,fim,tipo_Quarto);
 			
 		}else {
