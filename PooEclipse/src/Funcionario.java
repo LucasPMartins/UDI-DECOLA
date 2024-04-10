@@ -13,6 +13,18 @@ public abstract class Funcionario extends Pessoa {
 		setHotel(hotel);
 		setAerea(aerea);
 	}
+	
+	
+
+	@Override
+	public String toString() {
+		return "Funcionario [nro_carteira=" + nro_carteira + ", hotel=" + hotel + ", Aerea=" + Aerea + "]";
+	}
+	
+	public String mostrarDados() {
+		return "Funcionario [nro_carteira=" + nro_carteira + ", hotel=" + hotel + ", Aerea=" + Aerea + "]";
+	}
+
 
 	public String getNro_carteira() {
 		return nro_carteira;
