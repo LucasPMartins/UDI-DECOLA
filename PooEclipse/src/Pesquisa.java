@@ -56,8 +56,12 @@ public class Pesquisa {
     public void mostrarPesquisaHotel() {
         int i = 0;
         for (Hotel hotel_aux : hotel) {
-            System.out.println("Índice: " + i++);
-            System.out.println(hotel_aux.getMsg_divulgacao());
+        	/*
+        	 * System.out.println("Índice: " + i++);
+      			System.out.println(hotel_aux.getMsg_divulgacao());
+
+        	 */
+            
         }
     }
     
@@ -70,16 +74,20 @@ public class Pesquisa {
     
     public void mostrarPesquisaVoo() {
     	int i=0;
+    	
         for (Voo voo : voos) {
-        	System.out.println("Índice: " + i++);
-            System.out.println("Origem: " + voo.getTrecho().getOrigem());
-            System.out.println("Destino: " + voo.getTrecho().getDestino());
-            System.out.println("Data: " + voo.getData());
-            System.out.println("Hora de partida: " + voo.getHora_programada_partida());
-            System.out.println("Hora de chegada: " + voo.getHora_programada_chegada());
-            System.out.println("Número de vagas disponíveis: " + voo.getNro_vagas_disponiveis());
-            System.out.println("Preço da passagem: " + voo.getPreco_da_passagem());
-            System.out.println("---------------------------------------------");
+        	
+        	/*
+	        	System.out.println("Índice: " + i++);
+	            System.out.println("Origem: " + voo.getTrecho().getOrigem());
+	            System.out.println("Destino: " + voo.getTrecho().getDestino());
+	            System.out.println("Data: " + voo.getData());
+	            System.out.println("Hora de partida: " + voo.getHora_programada_partida());
+	            System.out.println("Hora de chegada: " + voo.getHora_programada_chegada());
+	            System.out.println("Número de vagas disponíveis: " + voo.getNro_vagas_disponiveis());
+	            System.out.println("Preço da passagem: " + voo.getPreco_da_passagem());
+	            System.out.println("---------------------------------------------");
+            */
         }
     }
 

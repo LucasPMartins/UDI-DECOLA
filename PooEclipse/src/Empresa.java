@@ -12,6 +12,16 @@ public abstract class Empresa {
 		this.data_criacao = data_criacao;
 	}
 	
+	
+	
+	@Override
+	public String toString() {
+		return "Empresa [cnpj=" + cnpj + ", nome_oficial=" + nome_oficial + ", nome_divulgacao=" + nome_divulgacao
+				+ ", data_criacao=" + data_criacao + "]";
+	}
+
+
+
 	public String getCnpj() {
 		return cnpj;
 	}

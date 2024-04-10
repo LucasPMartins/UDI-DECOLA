@@ -23,6 +23,19 @@ public class Hotel extends Empresa {
 		return taxa_udi_decola;
 	}
 
+	
+	public String mostrarDados() {
+		return toString() + super.toString();
+	}
+	
+	@Override
+	public String toString() {
+		return "Hotel [end_completo=" + end_completo + ", nmr_estrelas=" + nmr_estrelas + ", pets=" + pets
+				+ ", nmr_quartos=" + nmr_quartos + ", check_in=" + check_in + ", check_out=" + check_out + ", cidade="
+				+ cidade + ", msg_divulgacao=" + msg_divulgacao + ", cancelamento=" + cancelamento + ", funcionario="
+				+ funcionario + ", quartos=" + quartos + "]";
+	}
+
 	public static void setTaxa_udi_decola(float taxa_udi_decola) {
 		Hotel.taxa_udi_decola = taxa_udi_decola;
 	}

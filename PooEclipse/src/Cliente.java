@@ -12,6 +12,16 @@ public class Cliente extends Pessoa{
 	private LocalDateTime dataVip; // Para armazenar a data e hora que o Cliente virou VIP, é preciso copiar a data_hora de compra.
 	private float desconto;
 	
+	public String mostrarDados() {
+		return toString() + super.toString();
+	}
+	
+	@Override
+	public String toString() {
+		return "Cliente [email=" + email + ", data_cadastro=" + data_cadastro + ", registros=" + registros
+				+ ", historico=" + historico + ", vip=" + vip + ", dataVip=" + dataVip + ", desconto=" + desconto + "]";
+	}
+
 	public Cliente(String cpf, String nome,String email, Data data_cadastro, String endereco,Data nascimento, Data virou_VIP) {
 		super(cpf,endereco, nome,nascimento);
 		vip = false;

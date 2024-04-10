@@ -9,8 +9,11 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JComboBox;
 
-public class InterfaceCadastro01 extends JFrame {
+public class InterfaceCadastroFuncionario extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -23,6 +26,8 @@ public class InterfaceCadastro01 extends JFrame {
 	private JTextField textField_6;
 	private JTextField textField_7;
 	private JTextField textField_8;
+	private JTextField textField_9;
+	private JTextField textField_10;
 
 	/**
 	 * Launch the application.
@@ -31,7 +36,7 @@ public class InterfaceCadastro01 extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					InterfaceCadastro01 frame = new InterfaceCadastro01();
+					InterfaceCadastroFuncionario frame = new InterfaceCadastroFuncionario();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -43,11 +48,11 @@ public class InterfaceCadastro01 extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public InterfaceCadastro01() {
+	public InterfaceCadastroFuncionario() {
 		setResizable(false);
-		setTitle("Cadastro de Cliente");
+		setTitle("Cadastro de Funcionario Parceiro");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 589, 302);
+		setBounds(100, 100, 589, 382);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -73,7 +78,7 @@ public class InterfaceCadastro01 extends JFrame {
 		contentPane.add(lblNewLabel_2);
 		
 		textField_1 = new JTextField();
-		textField_1.setBounds(84, 61, 325, 20);
+		textField_1.setBounds(81, 61, 325, 20);
 		contentPane.add(textField_1);
 		textField_1.setColumns(10);
 		
@@ -82,7 +87,7 @@ public class InterfaceCadastro01 extends JFrame {
 		contentPane.add(lblNewLabel_3);
 		
 		textField_2 = new JTextField();
-		textField_2.setBounds(76, 90, 333, 20);
+		textField_2.setBounds(68, 89, 333, 20);
 		contentPane.add(textField_2);
 		textField_2.setColumns(10);
 		
@@ -118,34 +123,64 @@ public class InterfaceCadastro01 extends JFrame {
 		contentPane.add(lblNewLabel_4);
 		
 		textField_6 = new JTextField();
-		textField_6.setBounds(76, 118, 303, 20);
+		textField_6.setBounds(67, 118, 303, 20);
 		contentPane.add(textField_6);
 		textField_6.setColumns(10);
 		
 		JLabel lblNewLabel_5 = new JLabel("Usuario:");
-		lblNewLabel_5.setBounds(20, 170, 62, 14);
+		lblNewLabel_5.setBounds(20, 220, 62, 14);
 		contentPane.add(lblNewLabel_5);
 		
 		textField_7 = new JTextField();
-		textField_7.setBounds(69, 167, 150, 20);
+		textField_7.setBounds(69, 217, 150, 20);
 		contentPane.add(textField_7);
 		textField_7.setColumns(10);
 		
 		JLabel lblNewLabel_6 = new JLabel("Senha:");
-		lblNewLabel_6.setBounds(20, 205, 62, 14);
+		lblNewLabel_6.setBounds(20, 255, 62, 14);
 		contentPane.add(lblNewLabel_6);
 		
 		textField_8 = new JTextField();
-		textField_8.setBounds(69, 202, 150, 20);
+		textField_8.setBounds(69, 252, 150, 20);
 		contentPane.add(textField_8);
 		textField_8.setColumns(10);
 		
 		JButton btnNewButton = new JButton("Confirmar");
-		btnNewButton.setBounds(459, 229, 104, 23);
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnNewButton.setBounds(459, 309, 104, 23);
 		contentPane.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Voltar");
-		btnNewButton_1.setBounds(336, 229, 104, 23);
+		btnNewButton_1.setBounds(332, 309, 104, 23);
 		contentPane.add(btnNewButton_1);
+		
+		JComboBox comboBox = new JComboBox();
+		comboBox.setBounds(132, 180, 137, 20);
+		contentPane.add(comboBox);
+		
+		JLabel lblNewLabel_7 = new JLabel("Carteira de Trabalho:");
+		lblNewLabel_7.setBounds(20, 152, 130, 14);
+		contentPane.add(lblNewLabel_7);
+		
+		textField_9 = new JTextField();
+		textField_9.setBounds(150, 149, 185, 20);
+		contentPane.add(textField_9);
+		textField_9.setColumns(10);
+		
+		JLabel lblNewLabel_8 = new JLabel("Salário:");
+		lblNewLabel_8.setBounds(345, 152, 56, 14);
+		contentPane.add(lblNewLabel_8);
+		
+		textField_10 = new JTextField();
+		textField_10.setBounds(397, 149, 86, 20);
+		contentPane.add(textField_10);
+		textField_10.setColumns(10);
+		
+		JLabel lblNewLabel_9 = new JLabel("Local de Trabalho:");
+		lblNewLabel_9.setBounds(20, 183, 115, 14);
+		contentPane.add(lblNewLabel_9);
 	}
 }

@@ -5,24 +5,14 @@ public class Funcionario_Parceiro extends Funcionario {
 
 	private ArrayList<Hotel> hoteis_cadastro;
 	private static float porcentagem_por_hotel;
-	private Cliente cliente;
 
-	public Funcionario_Parceiro(String cpf, String endereco, String nome, Data data_nasc, String nro_carteira,
-			Hotel hotel, Cliente cliente) {
-		super(cpf, endereco, nome, data_nasc, nro_carteira, hotel, null);
+	public Funcionario_Parceiro(String cpf, String endereco, String nome, Data data_nasc, String nro_carteira, Hotel hotel) {
+		super(cpf, endereco, nome, data_nasc, nro_carteira);
 		Funcionario_Parceiro.setPorcentagem_por_hotel(0.05f);
 		hoteis_cadastro = new ArrayList<Hotel>();
-		setCliente(cliente);
 		addHotel(hotel);
 	}
 	
-	public Cliente getCliente() {
-		return cliente;
-	}
-
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
-	}
 
 	public float CalculaSalario() {
 		return (super.getSalario() + (super.getSalario() * getPorcentagem_por_hotel() * getHoteis_cadastro().size()));

@@ -1,5 +1,5 @@
 
-public abstract class  Pessoa {
+public abstract class Pessoa {
 	
 	private String cpf;
 	private String endereco;
@@ -13,6 +13,15 @@ public abstract class  Pessoa {
 		this.nome = nome;
 		this.data_nasc = data_nasc;
 	}
+
+	
+	
+	@Override
+	public String toString() {
+		return "Pessoa [cpf=" + cpf + ", endereco=" + endereco + ", nome=" + nome + ", data_nasc=" + data_nasc + "]";
+	}
+
+
 
 	public String getCpf() {
 		return cpf;
