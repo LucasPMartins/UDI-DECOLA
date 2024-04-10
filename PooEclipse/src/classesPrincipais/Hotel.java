@@ -2,6 +2,7 @@
  *nome oficial, nome divulgacao, endereco completo, ano de criacao, 
  *nro de estrelas, aceita pets,nro total de quartos, horario do check-in e check-out. 
  *MÉTODOS: msg divulgacao exibida na busca e descricao(breve).*/
+package classesPrincipais;
 
 import java.util.ArrayList;
 

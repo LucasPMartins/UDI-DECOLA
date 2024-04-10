@@ -1,4 +1,6 @@
+package dados;
 import java.util.ArrayList;
+import classesPrincipais.*;
 
 public class DadosFuncionarios {
     private ArrayList<Funcionario> vetFunc = new ArrayList<Funcionario>();

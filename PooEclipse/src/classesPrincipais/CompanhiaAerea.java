@@ -1,3 +1,4 @@
+package classesPrincipais;
 
 public class CompanhiaAerea extends Empresa{
 	

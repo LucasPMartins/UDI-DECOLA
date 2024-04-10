@@ -1,3 +1,4 @@
+package classesPrincipais;
 
 public class Tempo {
 	private int hora, minuto;

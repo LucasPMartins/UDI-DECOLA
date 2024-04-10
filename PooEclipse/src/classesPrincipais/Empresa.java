@@ -1,3 +1,4 @@
+package classesPrincipais;
 
 public abstract class Empresa {
 	private String cnpj;

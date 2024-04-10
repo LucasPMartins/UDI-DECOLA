@@ -1,3 +1,5 @@
+package dados;
+import classesPrincipais.*;
 import java.util.ArrayList;
 
 public class DadosHoteis {
