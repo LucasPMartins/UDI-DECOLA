@@ -18,10 +18,10 @@ public class DadosCliente {
 
     // este método retorna o objeto Cliente caso encontrado, ou null,
     // caso não encontrado
-    public Cliente buscar(String email) {
+    public Cliente buscar(String cpf) {
         Cliente c = null;
         for (Cliente objeto : this.vetClientes) {
-            if (objeto.getEmail().equals(email)) {
+            if (objeto.getCpf().equals(cpf)) {
                 c = objeto;
                 break;
             }
@@ -30,8 +30,8 @@ public class DadosCliente {
     }
 
     // este método usa o método buscar já implementado
-    public boolean excluir(String email) {
-        Cliente c = this.buscar(email);
+    public boolean excluir(String cpf) {
+        Cliente c = this.buscar(cpf);
         if (c != null) {
             this.vetClientes.remove(c);
             return true;

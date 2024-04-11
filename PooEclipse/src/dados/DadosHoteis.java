@@ -11,7 +11,8 @@ public class DadosHoteis {
 
     public void listar() {
         for (Hotel objeto : this.vetHoteis) {
-            objeto.mostrarDados();
+        	if(objeto != null)
+        		System.out.println(objeto.mostrarDados());
             // método mostrarDados();
         }
     }

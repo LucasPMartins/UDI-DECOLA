@@ -8,52 +8,136 @@ import classesPrincipais.Cliente;
 import dados.*;
 import view.*;
 import dao.*;
+import java.awt.Color;
+import java.awt.Font;
 
 public class UdiDecola_App extends JFrame {
     private DadosCliente dadosCliente;
     private DadosFuncionarios dadosFuncionario;
+    private DadosHoteis dadosHotel;
+    private DadosVoo dadosVoo;
     
     public UdiDecola_App() {
         super("UdiDecola App");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(562, 287);
-
+        
+        //Instanciando os dados:
         dadosCliente = new DadosCliente();
         dadosFuncionario = new DadosFuncionarios();
+        dadosHotel = new DadosHoteis();
+        dadosVoo = new DadosVoo();
         
         // Crio a tabela, se nao existir
         ClienteDAO.criarTabelaCliente();
 
-        JButton abrirJanelaButton = new JButton("Abrir Interface de Cadastro de Cliente");
-        abrirJanelaButton.setBounds(92, 31, 379, 32);
+        JButton abrirJanelaButton = new JButton("Cadastro");
+        abrirJanelaButton.setBounds(98, 11, 176, 32);
         abrirJanelaButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 abrirInterfaceCadastroCliente();
             }
         });
         
-        JButton abrirJanelaFuncionarioButton = new JButton("Abrir Interface de Cadastro de Funcionário");
-        abrirJanelaFuncionarioButton.setBounds(102, 74, 363, 32); // Ajuste do posicionamento
+        JButton abrirJanelaFuncionarioButton = new JButton("Cadastro Funcionario");
+        abrirJanelaFuncionarioButton.setBounds(98, 93, 379, 32); // Ajuste do posicionamento
         abrirJanelaFuncionarioButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 abrirInterfaceCadastroFuncionario();
+            }
+        });
+        
+        JButton abrirJanelaHotel = new JButton("Cadastro Hotel");
+        abrirJanelaHotel.setBounds(98, 54, 379, 32); // Ajuste do posicionamento
+        abrirJanelaHotel.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                abrirInterfaceCadastroHotel();
             }
         });
 
 
 
         JPanel panel = new JPanel();
+        panel.setBackground(Color.LIGHT_GRAY);
         panel.setLayout(null);
         panel.add(abrirJanelaButton);
         getContentPane().add(panel);
         
-   
+        // adicionando no panel
         panel.add(abrirJanelaFuncionarioButton);
-
+        panel.add(abrirJanelaHotel);
+        
+        JLabel Cliente = new JLabel("Cliente:");
+        Cliente.setFont(new Font("JetBrains Mono", Font.BOLD, 13));
+        Cliente.setHorizontalAlignment(SwingConstants.CENTER);
+        Cliente.setBounds(10, 20, 78, 14);
+        panel.add(Cliente);
+        
+        JButton consultar = new JButton("Consultar ou Remover");
+        consultar.setBounds(284, 11, 193, 32);
+        consultar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                abrirInterfaceConsultar();
+            }
+        });
+        panel.add(consultar);
+        
+        JButton cadastroVoo = new JButton("Cadastro Voo");
+        cadastroVoo.setBounds(98, 136, 379, 32);
+        consultar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                abrirInterfaceCadastroVoo();
+            }
+        });
+        panel.add(cadastroVoo);
+        
+        
+     
         setVisible(true);
         setLocationRelativeTo(null);
     }
+    
+ // -------------------------------------Métodos ----------------------
+    
+    
+    private void abrirInterfaceCadastroVoo() {
+        InterfaceCadastroVoo interfaceCadastroVoo = new InterfaceCadastroVoo(this, dadosVoo);
+        interfaceCadastroVoo.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+                // Quando a janela de cadastro de voo for fechada, atualiza a exibição dos voos
+                atualizarExibicaoVoos();
+            }
+        });
+    }
+    
+    public void atualizarExibicaoVoos() {
+        System.out.println("Lista de Voos atualizada:");
+        dadosVoo.listar();
+    }
+    
+    
+    
+    private void abrirInterfaceCadastroHotel() {
+        InterfaceCadastroHotel interfaceCadastroHotel = new InterfaceCadastroHotel(this, dadosHotel);
+        interfaceCadastroHotel.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+                // Quando a janela de cadastro de hotel for fechada, atualiza a exibição dos hotéis
+                atualizarExibicaoHotel();
+                
+                
+            }
+        });
+    }
 
+    
+    public void atualizarExibicaoHotel() {
+        System.out.println("Lista de hoteis atualizada:");
+        dadosHotel.listar();
+    }
+    
+    
     
     private void abrirInterfaceCadastroFuncionario() {
         InterfaceCadastroFuncionario interfaceCadastroFuncionario = new InterfaceCadastroFuncionario(this,dadosFuncionario);
@@ -73,7 +157,25 @@ public class UdiDecola_App extends JFrame {
         dadosFuncionario.listar();
     }
     
-    // ------- Aplicações de CLIENTE -------
+    // ------- metodos de CLIENTE -------
+    
+    
+    
+    
+    private void abrirInterfaceConsultar() {
+        InterfaceConsultaCliente interfaceConsulta = new InterfaceConsultaCliente(this, dadosCliente);
+        interfaceConsulta.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+            	System.out.println("Lista de clientes atualizada:");
+            	atualizarExibicaoClientes();
+            	salvarBancoDados();
+                salvarArquivos();
+            }
+        });
+    }
+    
+    
     private void abrirInterfaceCadastroCliente() {
         InterfaceCadastroCliente interfaceCadastroCliente = new InterfaceCadastroCliente(this, dadosCliente);
         interfaceCadastroCliente.addWindowListener(new WindowAdapter() {

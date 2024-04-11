@@ -7,10 +7,15 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JButton;
-import dados.DadosVoo;
+
+import dados.*;
 import classesPrincipais.*;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class InterfaceCadastroVoo extends JFrame {
 
@@ -29,33 +34,20 @@ public class InterfaceCadastroVoo extends JFrame {
 	private JTextField vagasField;
 	private JLabel lblNewLabel_5;
 	private JTextField precoField;
-	private JButton adicionarTrechoVoo;
+	private JButton adicionarVoo;
 
-	int retorno; // usado na função retornaVoo, a depender do try catch da instanciação do objeto.
-	Voo voo;
+	private DadosVoo dadosVoo;
+    private UdiDecola_App udiDecolaApp;
 	
-	
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					InterfaceCadastroVoo frame = new InterfaceCadastroVoo();
-					frame.setVisible(true);
-					
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
 	 */
-	public InterfaceCadastroVoo() {
+	public InterfaceCadastroVoo(UdiDecola_App udiDecolaApp,DadosVoo dadosVoo) {
+		super("Interface de Cadastro de Voo");
+        this.udiDecolaApp = udiDecolaApp;
+        this.dadosVoo = dadosVoo;
+        
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 470, 235);
 		contentPane = new JPanel();
@@ -152,31 +144,37 @@ public class InterfaceCadastroVoo extends JFrame {
 		contentPane.add(precoField);
 		precoField.setColumns(10);
 		
-		adicionarTrechoVoo = new JButton("Adicionar Trecho de Voo");
-		adicionarTrechoVoo.setBounds(242, 162, 202, 23);
-		contentPane.add(adicionarTrechoVoo);
+		adicionarVoo = new JButton("Adicionar Voo");
+		adicionarVoo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cadastrarVoo();
+				
+				dispose();
+				
+			}
+		});
+		adicionarVoo.setBounds(242, 162, 202, 23);
+		contentPane.add(adicionarVoo);
 	}
 	
-	public Voo retornaVoo() {
-		setVisible(true);
-		// Aguarda até que o cliente seja retornado pela interface
-        while (voo == null && retorno != 3) {
-            try {
-                Thread.sleep(100); // Aguarda 100 milissegundos
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-        if(retorno == 3) {
-        	return null;
-        }
-        return voo;
-	}
 	
+	
+	private void cadastrarVoo() {
+        // Simplesmente exemplo: Criar um cliente com dados fictícios
+        
+	 	Voo voo= obterVoo();
+	 	
+        // Adicionar o cliente à lista de clientes
+	 	if(voo != null) {
+	 		dadosVoo.cadastrar(voo);
+	 		JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!");
+	 	}
+
+  }
+	
+	/*
 	public Voo obterVoo() {
-		/*
-		 
-		 
+	
 		String id = idField.getText();
 		String origem = origemField.getText();
 		String destino = destinoField.getText();
@@ -196,8 +194,8 @@ public class InterfaceCadastroVoo extends JFrame {
 		Tempo hChegada = new Tempo(h,m);
 		
         return new Voo(id,origem,destino,comp,hInicio,hChegada);
-        */
+        
     }
-	
+	*/
 	
 }

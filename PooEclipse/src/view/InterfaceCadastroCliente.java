@@ -135,7 +135,7 @@ public class InterfaceCadastroCliente extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 					cadastrarCliente();
-					JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!");
+					
 					dispose();
 			}
 		});
@@ -162,7 +162,10 @@ public class InterfaceCadastroCliente extends JFrame {
 		 	Cliente cliente = obterCliente();
 		 	
 	        // Adicionar o cliente à lista de clientes
-	        dadosCliente.cadastrar(cliente);
+		 	if(cliente != null) {
+		 		dadosCliente.cadastrar(cliente);
+		 		JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!");
+		 	}
 
 	  }
 	 

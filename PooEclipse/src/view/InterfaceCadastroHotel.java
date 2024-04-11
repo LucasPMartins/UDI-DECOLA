@@ -5,13 +5,10 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import org.eclipse.wb.swing.FocusTraversalOnArray;
+//import org.eclipse.wb.swing.FocusTraversalOnArray;
 
-import classesPrincipais.Data;
-import classesPrincipais.Funcionario_Parceiro;
-import classesPrincipais.Hotel;
-import classesPrincipais.Quartos;
-import classesPrincipais.Tempo;
+import classesPrincipais.*;
+import dados.*;
 
 import java.awt.Component;
 import javax.swing.JLabel;
@@ -57,36 +54,26 @@ public class InterfaceCadastroHotel extends JFrame {
 	private JTextField minInLabel;
 	private JTextField horaOutLabel;
 	private JTextField minOutLabel;
-	
-	public int retorno;
-	private Hotel hotel;
 	private JCheckBox permitidoPetsCheck;
 	private JComboBox comboBox;
 	private JCheckBox cancelamentoCheck;
 	private JTextArea msgDivLabel;
+	
+	private DadosHoteis dadosHotel;
+    private UdiDecola_App udiDecolaApp;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					InterfaceCadastroHotel frame = new InterfaceCadastroHotel();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
 	 */
-	public InterfaceCadastroHotel() {
-		setTitle("Dados do Hotel");
+	public InterfaceCadastroHotel(UdiDecola_App udiDecolaApp, DadosHoteis dadosHotel) {
+		super("Interface de Cadastro de Hotel");
+        this.udiDecolaApp = udiDecolaApp;
+        this.dadosHotel = dadosHotel;
+		
+        
 		setResizable(false);
+		setTitle("Dados do Hotel");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 676, 489);
 		contentPane = new JPanel();
@@ -308,28 +295,25 @@ public class InterfaceCadastroHotel extends JFrame {
 		lblNewLabel_21.setBounds(39, 212, 88, 14);
 		contentPane.add(lblNewLabel_21);
 		
+		
+		// -------- BOTAO SALVAR ---------
+		
 		JButton btnNewButton = new JButton("Salvar");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				hotel = obterHotel();
-				if (hotel != null) {
-					setHotel(hotel);
+					cadastrarHotel();
 					JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!");
-					retorno = 1;
-				} else {
-					JOptionPane.showMessageDialog(null, "Erro!");
-					retorno = 0;
-				}
-				dispose();
+					dispose();
 			}
 		});
+		
+		
 		btnNewButton.setBounds(561, 416, 89, 23);
 		contentPane.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Cancelar");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				retorno = 2;
 				dispose();
 			}
 		});
@@ -357,14 +341,16 @@ public class InterfaceCadastroHotel extends JFrame {
 		contentPane.add(minOutLabel);
 		
 		
+		setVisible(true);
 	}
 
-	public Hotel getHotel() {
-		return hotel;
-	}
-
-	public void setHotel(Hotel hotel) {
-		this.hotel = hotel;
+	
+	
+	private void cadastrarHotel() {
+		Hotel hh = obterHotel();
+	 	hh.mostrarDados();
+        // Adicionar o hotel em Hoteis
+        dadosHotel.cadastrar(hh);
 	}
 	
 	private Hotel obterHotel() {
@@ -417,23 +403,9 @@ public class InterfaceCadastroHotel extends JFrame {
 		
 		Quartos quartos = new Quartos(qtdSingle, qtdDuplo, qtdTriplo, qtdLuxo, diaSingle, diaDuplo,diaTriplo, diaLuxo, dSingle, dDuplo,dTriplo, dLuxo);
 		
-		Hotel hotel = new Hotel(cnpj,nome_oficial, nome_divulgacao, data_criacao, end_completo, nmr_estrelas,pets,check_in, check_out, cidade, msg_divulgacao, cancelamento, quartos);
-		return hotel;
+		return new Hotel(cnpj,nome_oficial, nome_divulgacao, data_criacao, end_completo, nmr_estrelas,pets,check_in, check_out, cidade, msg_divulgacao, cancelamento, quartos);
+		
 	}
 	
-	public Hotel retornaHotel() {
-		setVisible(true);
-		 // Aguarda até que o cliente seja retornado pela interface
-       while (hotel == null && retorno != 2) {
-           try {
-               Thread.sleep(100); // Aguarda 100 milissegundos
-           } catch (InterruptedException e) {
-               e.printStackTrace();
-           }
-       }
-       if(retorno == 2) {
-    	   return null;
-       }
-       return hotel;
-	}
+	
 }

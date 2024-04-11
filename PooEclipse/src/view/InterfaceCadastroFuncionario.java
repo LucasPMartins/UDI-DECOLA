@@ -37,7 +37,6 @@ public class InterfaceCadastroFuncionario extends JFrame {
 	private JTextField carteiraLabel;
 	private JTextField salario;
 
-	private Funcionario_Parceiro funcionario;
 	
 	private DadosFuncionarios dadosFuncionario;
     private UdiDecola_App udiDecolaApp;
@@ -200,18 +199,11 @@ public class InterfaceCadastroFuncionario extends JFrame {
 		setVisible(true);
 	}
 	
-	public Funcionario_Parceiro getFuncionario() {
-		return funcionario;
-	}
-
-	public void setFuncionario(Funcionario_Parceiro funcionario) {
-		this.funcionario = funcionario;
-	}
 
 	public void cadastrarFuncionario() {
 		Funcionario fp = obterFuncionario();
 	 	
-        // Adicionar o cliente à lista de clientes
+        // Adicionar o funcionario
         dadosFuncionario.cadastrar(fp);
         
 	}
