@@ -6,9 +6,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import classesPrincipais.Cliente;
-import classesPrincipais.Data;
-import classesPrincipais.Funcionario_Parceiro;
+import classesPrincipais.*;
+import dados.*;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -39,27 +38,19 @@ public class InterfaceCadastroFuncionario extends JFrame {
 	private JTextField salario;
 
 	private Funcionario_Parceiro funcionario;
-	public int retorno;
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					InterfaceCadastroFuncionario frame = new InterfaceCadastroFuncionario();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	
+	private DadosFuncionarios dadosFuncionario;
+    private UdiDecola_App udiDecolaApp;
+	
 
 	/**
 	 * Create the frame.
 	 */
-	public InterfaceCadastroFuncionario() {
+	public InterfaceCadastroFuncionario(UdiDecola_App udiDecolaApp, DadosFuncionarios dadosFuncionario) {
+		super("Interface de Cadastro de Funcionario");
+        this.udiDecolaApp = udiDecolaApp;
+        this.dadosFuncionario = dadosFuncionario;
+		
 		setResizable(false);
 		setTitle("Cadastro de Funcionario Parceiro");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -155,29 +146,24 @@ public class InterfaceCadastroFuncionario extends JFrame {
 		senhaLabel.setBounds(69, 252, 150, 20);
 		contentPane.add(senhaLabel);
 		senhaLabel.setColumns(10);
+		// -------- BOTAO CONFIRMAR -------------
 		
 		JButton btnNewButton = new JButton("Confirmar");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				funcionario = obterFuncionario();
-				if (funcionario != null) {
-					setFuncionario(funcionario);
+					cadastrarFuncionario();
 					JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!");
-					retorno = 1;
-				} else {
-					JOptionPane.showMessageDialog(null, "Erro!");
-					retorno = 0;
-				}
-				dispose();
+					dispose();
 			}
 		});
+		
+		
 		btnNewButton.setBounds(459, 309, 104, 23);
 		contentPane.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Voltar");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				retorno = 2;
 				dispose();
 			}
 		});
@@ -210,6 +196,8 @@ public class InterfaceCadastroFuncionario extends JFrame {
 		JLabel lblNewLabel_9 = new JLabel("Local de Trabalho:");
 		lblNewLabel_9.setBounds(20, 183, 115, 14);
 		contentPane.add(lblNewLabel_9);
+		
+		setVisible(true);
 	}
 	
 	public Funcionario_Parceiro getFuncionario() {
@@ -220,40 +208,28 @@ public class InterfaceCadastroFuncionario extends JFrame {
 		this.funcionario = funcionario;
 	}
 
-	public Funcionario_Parceiro retornaFuncionario() {
-		setVisible(true);
-		 // Aguarda até que o cliente seja retornado pela interface
-       while (funcionario == null && retorno != 2) {
-           try {
-               Thread.sleep(100); // Aguarda 100 milissegundos
-           } catch (InterruptedException e) {
-               e.printStackTrace();
-           }
-       }
-       if(retorno == 2) {
-    	   return null;
-       }
-       return funcionario;
+	public void cadastrarFuncionario() {
+		Funcionario fp = obterFuncionario();
+	 	
+        // Adicionar o cliente à lista de clientes
+        dadosFuncionario.cadastrar(fp);
+        
 	}
 	
+	
 	private Funcionario_Parceiro obterFuncionario() {
-		String cpf = cpfLabel.getText();
-		String usuario = userLabel.getText();
-		//String senha = SenhaLabel.getText();
-		String email = emailLabel.getText();
-		String endereco = enderecoLabel.getText();
-		String carteira = carteiraLabel.getText();
-		//Convertendo para inteiro para adicionar a DATA.
-		int dia = Integer.parseInt(diaLabel.getText());
-		int mes = Integer.parseInt(mesLabel.getText());
-		int ano = Integer.parseInt(anoLabel.getText());
-		
-		Data nascimento = new Data(dia,mes,ano);
-		// Pegando data atual para data de criacao.
-		
-		LocalDate dataAtual = LocalDate.now();
-		Data criacao = new Data(dataAtual.getDayOfMonth(),dataAtual.getMonthValue(),dataAtual.getYear());
-		Cliente c = new Cliente(cpf,usuario,email,criacao,endereco,nascimento,null);
-        return new Funcionario_Parceiro(cpf,endereco,usuario,nascimento,carteira,c);
-    }
+	    String cpf = cpfLabel.getText();
+	    String usuario = userLabel.getText();
+	    // String senha = SenhaLabel.getText();  // Não está sendo usado
+	    //String email = emailLabel.getText();
+	    String endereco = enderecoLabel.getText();
+	    String carteira = carteiraLabel.getText();
+	    int dia = Integer.parseInt(diaLabel.getText());
+	    int mes = Integer.parseInt(mesLabel.getText());
+	    int ano = Integer.parseInt(anoLabel.getText());
+	    Data nascimento = new Data(dia, mes, ano);
+	    
+	    return new Funcionario_Parceiro(cpf, endereco, usuario, nascimento, carteira);
+	}
+
 }

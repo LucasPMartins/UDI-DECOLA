@@ -6,27 +6,25 @@ public class Funcionario_Parceiro extends Funcionario {
 
 	private ArrayList<Hotel> hoteis_cadastro;
 	private static float porcentagem_por_hotel;
-	private Cliente cliente;
 
-	public Funcionario_Parceiro(String cpf, String endereco, String nome, Data data_nasc, String nro_carteira, Hotel hotel,Cliente cliente) {
+	
+	
+	@Override
+	public String toString() {
+		return "Funcionario_Parceiro [hoteis_cadastro=" + hoteis_cadastro + "]" + super.toString();
+	}
+
+
+	public Funcionario_Parceiro(String cpf, String endereco, String nome, Data data_nasc, String nro_carteira, Hotel hotel) {
 		super(cpf, endereco, nome, data_nasc, nro_carteira);
 		Funcionario_Parceiro.setPorcentagem_por_hotel(0.05f);
 		hoteis_cadastro = new ArrayList<Hotel>();
-		this.cliente = cliente;
 		addHotel(hotel);
 	}
 	
 	
-	public Funcionario_Parceiro(String cpf, String endereco, String nome, Data data_nasc, String nro_carteira,
-			Cliente cliente) {
+	public Funcionario_Parceiro(String cpf, String endereco, String nome, Data data_nasc, String nro_carteira) {
 		super(cpf, endereco, nome, data_nasc, nro_carteira);
-		this.cliente = cliente;
-	}
-
-
-	@Override
-	public String toString() {
-		return "Funcionario_Parceiro [cliente=" + cliente.toString() + "]";
 	}
 
 

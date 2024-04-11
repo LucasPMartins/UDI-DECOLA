@@ -11,7 +11,7 @@ public class DadosFuncionarios {
 
     public void listar() {
         for (Funcionario objeto : this.vetFunc) {
-            objeto.mostrarDados();
+            System.out.println(objeto.mostrarDados());
             // método mostrarDados();
         }
     }

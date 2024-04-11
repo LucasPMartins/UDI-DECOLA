@@ -5,37 +5,75 @@ import java.awt.event.*;
 import java.io.*;
 import java.util.ArrayList;
 import classesPrincipais.Cliente;
-import dados.DadosCliente;
+import dados.*;
 import view.*;
 import dao.*;
 
 public class UdiDecola_App extends JFrame {
     private DadosCliente dadosCliente;
-
+    private DadosFuncionarios dadosFuncionario;
+    
     public UdiDecola_App() {
         super("UdiDecola App");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(300, 200);
+        setSize(562, 287);
 
         dadosCliente = new DadosCliente();
+        dadosFuncionario = new DadosFuncionarios();
         
         // Crio a tabela, se nao existir
         ClienteDAO.criarTabelaCliente();
 
         JButton abrirJanelaButton = new JButton("Abrir Interface de Cadastro de Cliente");
+        abrirJanelaButton.setBounds(92, 31, 379, 32);
         abrirJanelaButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 abrirInterfaceCadastroCliente();
             }
         });
+        
+        JButton abrirJanelaFuncionarioButton = new JButton("Abrir Interface de Cadastro de Funcionário");
+        abrirJanelaFuncionarioButton.setBounds(102, 74, 363, 32); // Ajuste do posicionamento
+        abrirJanelaFuncionarioButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                abrirInterfaceCadastroFuncionario();
+            }
+        });
+
+
 
         JPanel panel = new JPanel();
+        panel.setLayout(null);
         panel.add(abrirJanelaButton);
         getContentPane().add(panel);
+        
+   
+        panel.add(abrirJanelaFuncionarioButton);
 
         setVisible(true);
+        setLocationRelativeTo(null);
     }
 
+    
+    private void abrirInterfaceCadastroFuncionario() {
+        InterfaceCadastroFuncionario interfaceCadastroFuncionario = new InterfaceCadastroFuncionario(this,dadosFuncionario);
+        interfaceCadastroFuncionario.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+                // Se chegou aqui, a janela já foi fechada.
+            	atualizarExibicaoFuncionarios(); 
+   
+
+            }
+        });
+    }
+    
+    public void atualizarExibicaoFuncionarios() {
+        System.out.println("Lista de funcionarios atualizada:");
+        dadosFuncionario.listar();
+    }
+    
+    // ------- Aplicações de CLIENTE -------
     private void abrirInterfaceCadastroCliente() {
         InterfaceCadastroCliente interfaceCadastroCliente = new InterfaceCadastroCliente(this, dadosCliente);
         interfaceCadastroCliente.addWindowListener(new WindowAdapter() {
@@ -49,7 +87,6 @@ public class UdiDecola_App extends JFrame {
             }
         });
     }
-
     
     public void salvarArquivos() {
         try {
