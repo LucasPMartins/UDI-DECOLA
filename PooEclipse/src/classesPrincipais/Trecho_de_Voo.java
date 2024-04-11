@@ -23,9 +23,6 @@ public class Trecho_de_Voo {
 		return horarioInicio;
 	}
 
-
-
-
 	public void setHorarioInicio(Tempo horarioInicio) {
 		this.horarioInicio = horarioInicio;
 	}

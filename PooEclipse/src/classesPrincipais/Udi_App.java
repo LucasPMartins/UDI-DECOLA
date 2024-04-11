@@ -3,6 +3,7 @@ package classesPrincipais;
 
 import javax.swing.JOptionPane;
 import dados.*;
+import view.InterfaceCadastroCArea;
 import view.InterfaceCadastroCliente;
 import view.InterfaceCadastroFuncionario;
 import view.InterfaceCadastroHotel;
@@ -20,6 +21,7 @@ public class Udi_App {
 	private static Cliente cliente;
 	private static Funcionario_Parceiro funcionario;
 	private static Hotel hotel;
+	private static CompanhiaAerea companhia;
 	
 	public static void main(String[] args) {
 		try {
@@ -56,7 +58,13 @@ public class Udi_App {
 		}else {
             JOptionPane.showMessageDialog(null, "O hotel não foi cadastrado ou é nulo.");
         }
-		
+		InterfaceCadastroCArea tela4 = new InterfaceCadastroCArea();
+		companhia = tela4.retornaCA();
+		if(companhia != null) {
+			JOptionPane.showMessageDialog(null,companhia.mostrarDados());
+		}else {
+            JOptionPane.showMessageDialog(null, "A companhia Aerea não foi cadastrada ou é nulo.");
+        }
 	}
 	
 
