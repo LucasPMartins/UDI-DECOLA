@@ -1,21 +1,23 @@
 package classesPrincipais;
 
+import java.util.ArrayList;
+
 public class Voo {
 	private Data data;
 	private Tempo hora_programada_chegada;
 	private Tempo hora_programada_partida;
 	private int nro_vagas_disponiveis;
-	private Trecho_de_Voo trecho;
+	private ArrayList<Trecho_de_Voo> trecho;
 	private float preco_da_passagem;
-	
-	
-    public Voo(Data data, Tempo hora_programada_chegada, Tempo hora_programada_partida, int nro_vagas_disponiveis,
-			Trecho_de_Voo trecho, float preco_da_passagem) {
+	private String destino;
+	private String origem;
+		
+    public Voo(Data data, Tempo hora_programada_chegada, Tempo hora_programada_partida, int nro_vagas_disponiveis, float preco_da_passagem) {
 		this.data = data;
 		this.hora_programada_chegada = hora_programada_chegada;
 		this.hora_programada_partida = hora_programada_partida;
 		this.nro_vagas_disponiveis = nro_vagas_disponiveis;
-		this.trecho = trecho;
+		this.trecho = new ArrayList<Trecho_de_Voo>();
 		this.preco_da_passagem = preco_da_passagem;
 	}
 
@@ -23,13 +25,18 @@ public class Voo {
     	return toString();
     }
     
-	@Override
+    public void addTrecho(Trecho_de_Voo t) {
+    	trecho.add(t);
+    	destino = trecho.get(trecho.size()-1).getDestino();
+    	origem = trecho.get(1).getOrigem();
+    }
+    
 	public String toString() {
-		return "Voo [data=" + data + ", hora_programada_chegada=" + hora_programada_chegada
-				+ ", hora_programada_partida=" + hora_programada_partida + ", nro_vagas_disponiveis="
-				+ nro_vagas_disponiveis + ", trecho=" + trecho + ", preco_da_passagem=" + preco_da_passagem + "]";
+		return "Voo [data=" + data.formatarData() + ", hora_programada_chegada=" + hora_programada_chegada.formatarTempo()
+				+ ", hora_programada_partida=" + hora_programada_partida.formatarTempo() + ", nro_vagas_disponiveis="
+				+ nro_vagas_disponiveis + "\ntrecho=" + trecho.toString() + "\npreco_da_passagem=" + preco_da_passagem
+				+ ", destino=" + destino + ", origem=" + origem + "]";
 	}
-
 
 	public Data getData() {
         return data;
@@ -77,6 +84,22 @@ public class Voo {
 
 	public void setTrecho(Trecho_de_Voo trecho) {
 		this.trecho = trecho;
+	}
+
+	public String getDestino() {
+		return destino;
+	}
+
+	public void setDestino(String destino) {
+		this.destino = destino;
+	}
+
+	public String getOrigem() {
+		return origem;
+	}
+
+	public void setOrigem(String origem) {
+		this.origem = origem;
 	}
     
     
