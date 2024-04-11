@@ -4,6 +4,9 @@ package classesPrincipais;
 import javax.swing.JOptionPane;
 import dados.*;
 import view.InterfaceCadastroCliente;
+import view.InterfaceCadastroFuncionario;
+import view.InterfaceCadastroHotel;
+
 import java.io.*;
 
 public class Udi_App {
@@ -15,6 +18,7 @@ public class Udi_App {
 	private DadosCompanhiaAerea CompAerea;
 	private DadosCompra compra;
 	private static Cliente cliente;
+	private static Funcionario_Parceiro funcionario;
 	
 	public static void main(String[] args) {
 		try {
@@ -30,13 +34,21 @@ public class Udi_App {
                 	e.printStackTrace();
                 }
                 
-                
             } else {
                 JOptionPane.showMessageDialog(null, "O cliente não foi cadastrado ou é nulo.");
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ocorreu um erro durante a execução do programa:\n" + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
+		InterfaceCadastroFuncionario tela2 = new InterfaceCadastroFuncionario();
+		funcionario = tela2.retornaFuncionario();
+		if(funcionario != null) {
+			JOptionPane.showMessageDialog(null, funcionario.toString());
+		}else {
+            JOptionPane.showMessageDialog(null, "O funcionário não foi cadastrado ou é nulo.");
+        }
+		InterfaceCadastroHotel tela3 = new InterfaceCadastroHotel();
+		
 	}
 	
 

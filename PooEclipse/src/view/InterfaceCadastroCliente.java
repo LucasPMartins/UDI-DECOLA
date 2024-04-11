@@ -33,6 +33,7 @@ public class InterfaceCadastroCliente extends JFrame {
 	private JTextField SenhaLabel;
 	
 	private Cliente cliente;
+	public int retorno;
 	
 	/**
 	 * Create the frame.
@@ -141,8 +142,10 @@ public class InterfaceCadastroCliente extends JFrame {
 				if (cliente != null) {
 					setCliente(cliente);
 					JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!");
+					retorno = 1;
 				} else {
 					JOptionPane.showMessageDialog(null, "Erro!");
+					retorno = 2;
 				}
 				dispose();
 			}
@@ -154,6 +157,7 @@ public class InterfaceCadastroCliente extends JFrame {
 		JButton btnNewButton_1 = new JButton("Voltar");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				retorno = 3;
 				dispose();
 			}
 		});
@@ -171,15 +175,17 @@ public class InterfaceCadastroCliente extends JFrame {
 	
 	public Cliente retornaCliente() {
 		setVisible(true);
-		 // Aguarda até que o cliente seja retornado pela interface
-        while (cliente == null) {
+		// Aguarda até que o cliente seja retornado pela interface
+        while (cliente == null && retorno != 3) {
             try {
                 Thread.sleep(100); // Aguarda 100 milissegundos
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
-
+        if(retorno == 3) {
+        	return null;
+        }
         return cliente;
 	}
 	
