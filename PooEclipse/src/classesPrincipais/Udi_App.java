@@ -1,18 +1,13 @@
 package classesPrincipais;
 
-import javax.swing.JOptionPane;
 
-import dados.DadosCliente;
-import dados.DadosCompanhiaAerea;
-import dados.DadosCompra;
-import dados.DadosFuncionarios;
-import dados.DadosHoteis;
-import dados.DadosTrechoVoo;
-import dados.DadosVoo;
+import javax.swing.JOptionPane;
+import dados.*;
 import view.InterfaceCadastroCliente;
+import java.io.*;
 
 public class Udi_App {
-	private static DadosCliente clientes;
+	private static DadosCliente clientes; // Dados que armazena o arraylist e suas operações
 	private DadosFuncionarios funcionarios;
 	private DadosHoteis hoteis;
 	private DadosTrechoVoo trechoVoo;
@@ -22,14 +17,28 @@ public class Udi_App {
 	private static Cliente cliente;
 	
 	public static void main(String[] args) {
-		InterfaceCadastroCliente tela1 = new InterfaceCadastroCliente();
-		cliente = tela1.retornaCliente();
-		if (cliente != null) {
-		    System.out.println(cliente.toString());
-		} else {
-		    System.out.println("O cliente não foi cadastrado ou é nulo.");
-		}
+		try {
+            InterfaceCadastroCliente tela1 = new InterfaceCadastroCliente();
+            cliente = tela1.retornaCliente();
+            if (cliente != null) {
+                JOptionPane.showMessageDialog(null, cliente.toString());
+                String path = "ArqClientes.txt";
+                try (BufferedWriter bw = new BufferedWriter(new FileWriter("arquivo.txt"))) {
+                    bw.write("k");
+                } catch (IOException e) {
+                    // Trate exceções de E/S
+                	e.printStackTrace();
+                }
+                
+                
+            } else {
+                JOptionPane.showMessageDialog(null, "O cliente não foi cadastrado ou é nulo.");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Ocorreu um erro durante a execução do programa:\n" + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        }
 	}
+	
 
 	public DadosCliente getClientes() {
 		return clientes;
