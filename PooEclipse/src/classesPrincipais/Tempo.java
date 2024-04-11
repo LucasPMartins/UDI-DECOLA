@@ -3,6 +3,9 @@ package classesPrincipais;
 public class Tempo {
 	private int hora, minuto;
 
+	
+	
+	
 	public Tempo(int hora, int minuto) {
 		if (hora < 0 || hora > 23)
 			this.hora = 0;

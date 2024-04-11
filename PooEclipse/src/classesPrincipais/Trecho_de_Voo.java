@@ -9,6 +9,16 @@ public class Trecho_de_Voo {
 	private Tempo horarioChegada;
 
 	
+	public Trecho_de_Voo(String codigoID, String origem, String destino, CompanhiaAerea companhia, Tempo horarioInicio,
+			Tempo horarioChegada) {
+		this.codigoID = codigoID;
+		this.origem = origem;
+		this.destino = destino;
+		this.companhia = companhia;
+		this.horarioInicio = horarioInicio;
+		this.horarioChegada = horarioChegada;
+	}
+	
     public Tempo getHorarioInicio() {
 		return horarioInicio;
 	}
@@ -37,15 +47,6 @@ public class Trecho_de_Voo {
 
 
 
-	public Trecho_de_Voo(String codigoID, String origem, String destino, CompanhiaAerea companhia, Tempo horarioInicio,
-			Tempo horarioChegada) {
-		this.codigoID = codigoID;
-		this.origem = origem;
-		this.destino = destino;
-		this.companhia = companhia;
-		this.horarioInicio = horarioInicio;
-		this.horarioChegada = horarioChegada;
-	}
     
 	
 	public String mostrarDados() {
