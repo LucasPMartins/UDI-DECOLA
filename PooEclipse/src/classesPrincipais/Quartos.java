@@ -18,6 +18,13 @@ public class Quartos {
 	private double desconto_duplo;
 	private double desconto_triplo;
 	private double desconto_luxo;
+	
+	
+
+	@Override
+	public String toString() {
+		return "[data=" + data.formatarData() + ", single=" + single + ", duplo=" + duplo + ", triplo=" + triplo + ", luxo="+ luxo + "\ndiaria_single=" + diaria_single + ", diaria_duplo=" + diaria_duplo + ", diaria_triplo="+ diaria_triplo + ", diaria_luxo=" + diaria_luxo + "\ndesconto_single=" + desconto_single+ ", desconto_duplo=" + desconto_duplo + ", desconto_triplo=" + desconto_triplo + ", desconto_luxo="+ desconto_luxo + "]";
+	}
 
 	public Quartos(Data data, int single, int duplo, int triplo, int luxo, double diaria_single, double diaria_duplo,
 			double diaria_triplo, double diaria_luxo, double desconto_single, double desconto_duplo,

@@ -19,6 +19,7 @@ public class Udi_App {
 	private DadosCompra compra;
 	private static Cliente cliente;
 	private static Funcionario_Parceiro funcionario;
+	private static Hotel hotel;
 	
 	public static void main(String[] args) {
 		try {
@@ -48,6 +49,13 @@ public class Udi_App {
             JOptionPane.showMessageDialog(null, "O funcionário não foi cadastrado ou é nulo.");
         }
 		InterfaceCadastroHotel tela3 = new InterfaceCadastroHotel();
+		hotel = tela3.retornaHotel();
+		if(hotel != null) {
+			JOptionPane.showMessageDialog(null,hotel.toString());
+			funcionario.addHotel(hotel);
+		}else {
+            JOptionPane.showMessageDialog(null, "O hotel não foi cadastrado ou é nulo.");
+        }
 		
 	}
 	

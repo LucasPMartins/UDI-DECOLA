@@ -6,8 +6,17 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import org.eclipse.wb.swing.FocusTraversalOnArray;
+
+import classesPrincipais.Data;
+import classesPrincipais.Funcionario_Parceiro;
+import classesPrincipais.Hotel;
+import classesPrincipais.Quartos;
+import classesPrincipais.Tempo;
+
 import java.awt.Component;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JCheckBox;
@@ -15,35 +24,46 @@ import javax.swing.JComboBox;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
+import javax.swing.AbstractButton;
+import javax.swing.DefaultComboBoxModel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class InterfaceCadastroHotel extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField enderecoLabel;
-	private JTextField textField_1;
-	private JTextField txtStandard;
+	private JTextField cidadeLabel;
+	private JTextField qtdSingleLabel;
 	private JTextField nomeOficialLabel;
 	private JTextField nomeDivLabel;
 	private JTextField cnpjLabel;
-	private JTextField textField_5;
-	private JTextField textField_6;
-	private JTextField textField_7;
-	private JTextField textField_8;
-	private JTextField textField_9;
-	private JTextField textField_10;
-	private JTextField textField_11;
-	private JTextField textField_12;
-	private JTextField textField_13;
-	private JTextField textField_14;
-	private JTextField textField_15;
-	private JTextField textField_16;
-	private JTextField textField_17;
-	private JTextField textField_18;
-	private JTextField textField;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
+	private JTextField diaLabel;
+	private JTextField mesLabel;
+	private JTextField anoLabel;
+	private JTextField qtdDuploLabel;
+	private JTextField qtdTriploLabel;
+	private JTextField qtdLuxoLabel;
+	private JTextField diaSingleLabel;
+	private JTextField diaDuploLabel;
+	private JTextField diaTriploLabel;
+	private JTextField diaLuxoLabel;
+	private JTextField dSingleLabel;
+	private JTextField dDuploLabel;
+	private JTextField dTriploLabel;
+	private JTextField dLuxoLabel;
+	private JTextField horaInLabel;
+	private JTextField minInLabel;
+	private JTextField horaOutLabel;
+	private JTextField minOutLabel;
+	
+	public int retorno;
+	private Hotel hotel;
+	private JCheckBox permitidoPetsCheck;
+	private JComboBox comboBox;
+	private JCheckBox cancelamentoCheck;
+	private JTextArea msgDivLabel;
 
 	/**
 	 * Launch the application.
@@ -89,15 +109,16 @@ public class InterfaceCadastroHotel extends JFrame {
 		contentPane.add(enderecoLabel);
 		enderecoLabel.setColumns(10);
 		
-		JCheckBox chckbxNewCheckBox = new JCheckBox("Permitido Pets");
-		chckbxNewCheckBox.setBounds(16, 140, 111, 23);
-		contentPane.add(chckbxNewCheckBox);
+		permitidoPetsCheck = new JCheckBox("Permitido Pets");
+		permitidoPetsCheck.setBounds(16, 140, 111, 23);
+		contentPane.add(permitidoPetsCheck);
 		
 		JLabel lblNewLabel_2 = new JLabel("Número de Estrelas:");
 		lblNewLabel_2.setBounds(139, 144, 116, 14);
 		contentPane.add(lblNewLabel_2);
 		
-		JComboBox comboBox = new JComboBox();
+		comboBox = new JComboBox();
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4", "5"}));
 		comboBox.setBounds(265, 140, 40, 22);
 		contentPane.add(comboBox);
 		
@@ -110,41 +131,41 @@ public class InterfaceCadastroHotel extends JFrame {
 		contentPane.add(lblNewLabel_4);
 		
 		JLabel lblNewLabel_5 = new JLabel("Cidade:");
-		lblNewLabel_5.setBounds(431, 144, 46, 14);
+		lblNewLabel_5.setBounds(431, 144, 57, 14);
 		contentPane.add(lblNewLabel_5);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(477, 141, 152, 20);
-		contentPane.add(textField_1);
-		textField_1.setColumns(10);
+		cidadeLabel = new JTextField();
+		cidadeLabel.setBounds(477, 141, 152, 20);
+		contentPane.add(cidadeLabel);
+		cidadeLabel.setColumns(10);
 		
 		JLabel lblNewLabel_6 = new JLabel("Mensagem de \r\n");
 		lblNewLabel_6.setBounds(39, 187, 111, 23);
 		contentPane.add(lblNewLabel_6);
 		
-		JTextArea textArea = new JTextArea();
-		textArea.setBounds(155, 186, 474, 63);
-		contentPane.add(textArea);
+		msgDivLabel = new JTextArea();
+		msgDivLabel.setBounds(155, 186, 474, 63);
+		contentPane.add(msgDivLabel);
 		
 		JLabel lblNewLabel_7 = new JLabel("Informações sobre os Quartos:");
 		lblNewLabel_7.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblNewLabel_7.setBounds(10, 257, 241, 14);
 		contentPane.add(lblNewLabel_7);
 		
-		txtStandard = new JTextField();
-		txtStandard.setToolTipText("");
-		txtStandard.setBounds(77, 309, 86, 20);
-		contentPane.add(txtStandard);
-		txtStandard.setColumns(10);
+		qtdSingleLabel = new JTextField();
+		qtdSingleLabel.setToolTipText("");
+		qtdSingleLabel.setBounds(77, 309, 86, 20);
+		contentPane.add(qtdSingleLabel);
+		qtdSingleLabel.setColumns(10);
 		
 		JLabel lblNewLabel_8 = new JLabel("SINGLE");
 		lblNewLabel_8.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblNewLabel_8.setBounds(21, 312, 46, 14);
 		contentPane.add(lblNewLabel_8);
 		
-		JCheckBox chckbxNewCheckBox_1 = new JCheckBox("Cancelamentos");
-		chckbxNewCheckBox_1.setBounds(311, 140, 128, 23);
-		contentPane.add(chckbxNewCheckBox_1);
+		cancelamentoCheck = new JCheckBox("Cancelamentos");
+		cancelamentoCheck.setBounds(311, 140, 128, 23);
+		contentPane.add(cancelamentoCheck);
 		
 		JLabel lblNewLabel_9 = new JLabel(" Nome Oficial:");
 		lblNewLabel_9.setBounds(13, 78, 85, 14);
@@ -177,20 +198,20 @@ public class InterfaceCadastroHotel extends JFrame {
 		lblNewLabel_12.setBounds(410, 112, 95, 14);
 		contentPane.add(lblNewLabel_12);
 		
-		textField_5 = new JTextField();
-		textField_5.setBounds(509, 109, 33, 20);
-		contentPane.add(textField_5);
-		textField_5.setColumns(10);
+		diaLabel = new JTextField();
+		diaLabel.setBounds(509, 109, 33, 20);
+		contentPane.add(diaLabel);
+		diaLabel.setColumns(10);
 		
-		textField_6 = new JTextField();
-		textField_6.setBounds(552, 109, 33, 20);
-		contentPane.add(textField_6);
-		textField_6.setColumns(10);
+		mesLabel = new JTextField();
+		mesLabel.setBounds(552, 109, 33, 20);
+		contentPane.add(mesLabel);
+		mesLabel.setColumns(10);
 		
-		textField_7 = new JTextField();
-		textField_7.setBounds(595, 109, 33, 20);
-		contentPane.add(textField_7);
-		textField_7.setColumns(10);
+		anoLabel = new JTextField();
+		anoLabel.setBounds(595, 109, 33, 20);
+		contentPane.add(anoLabel);
+		anoLabel.setColumns(10);
 		
 		JLabel lblNewLabel_13 = new JLabel("/");
 		lblNewLabel_13.setBounds(546, 112, 21, 14);
@@ -215,69 +236,69 @@ public class InterfaceCadastroHotel extends JFrame {
 		lblNewLabel_17.setBounds(21, 381, 46, 14);
 		contentPane.add(lblNewLabel_17);
 		
-		textField_8 = new JTextField();
-		textField_8.setBounds(77, 332, 86, 20);
-		contentPane.add(textField_8);
-		textField_8.setColumns(10);
+		qtdDuploLabel = new JTextField();
+		qtdDuploLabel.setBounds(77, 332, 86, 20);
+		contentPane.add(qtdDuploLabel);
+		qtdDuploLabel.setColumns(10);
 		
-		textField_9 = new JTextField();
-		textField_9.setBounds(77, 355, 86, 20);
-		contentPane.add(textField_9);
-		textField_9.setColumns(10);
+		qtdTriploLabel = new JTextField();
+		qtdTriploLabel.setBounds(77, 355, 86, 20);
+		contentPane.add(qtdTriploLabel);
+		qtdTriploLabel.setColumns(10);
 		
-		textField_10 = new JTextField();
-		textField_10.setBounds(77, 378, 86, 20);
-		contentPane.add(textField_10);
-		textField_10.setColumns(10);
+		qtdLuxoLabel = new JTextField();
+		qtdLuxoLabel.setBounds(77, 378, 86, 20);
+		contentPane.add(qtdLuxoLabel);
+		qtdLuxoLabel.setColumns(10);
 		
 		JLabel lblNewLabel_18 = new JLabel("Quantidade");
 		lblNewLabel_18.setBounds(87, 284, 70, 14);
 		contentPane.add(lblNewLabel_18);
 		
-		textField_11 = new JTextField();
-		textField_11.setToolTipText("");
-		textField_11.setColumns(10);
-		textField_11.setBounds(182, 309, 86, 20);
-		contentPane.add(textField_11);
+		diaSingleLabel = new JTextField();
+		diaSingleLabel.setToolTipText("");
+		diaSingleLabel.setColumns(10);
+		diaSingleLabel.setBounds(182, 309, 86, 20);
+		contentPane.add(diaSingleLabel);
 		
-		textField_12 = new JTextField();
-		textField_12.setBounds(182, 332, 86, 20);
-		contentPane.add(textField_12);
-		textField_12.setColumns(10);
+		diaDuploLabel = new JTextField();
+		diaDuploLabel.setBounds(182, 332, 86, 20);
+		contentPane.add(diaDuploLabel);
+		diaDuploLabel.setColumns(10);
 		
-		textField_13 = new JTextField();
-		textField_13.setBounds(182, 355, 86, 20);
-		contentPane.add(textField_13);
-		textField_13.setColumns(10);
+		diaTriploLabel = new JTextField();
+		diaTriploLabel.setBounds(182, 355, 86, 20);
+		contentPane.add(diaTriploLabel);
+		diaTriploLabel.setColumns(10);
 		
-		textField_14 = new JTextField();
-		textField_14.setBounds(182, 378, 86, 20);
-		contentPane.add(textField_14);
-		textField_14.setColumns(10);
+		diaLuxoLabel = new JTextField();
+		diaLuxoLabel.setBounds(182, 378, 86, 20);
+		contentPane.add(diaLuxoLabel);
+		diaLuxoLabel.setColumns(10);
 		
 		JLabel lblNewLabel_19 = new JLabel("Diária");
 		lblNewLabel_19.setBounds(203, 284, 65, 14);
 		contentPane.add(lblNewLabel_19);
 		
-		textField_15 = new JTextField();
-		textField_15.setBounds(287, 309, 86, 20);
-		contentPane.add(textField_15);
-		textField_15.setColumns(10);
+		dSingleLabel = new JTextField();
+		dSingleLabel.setBounds(287, 309, 86, 20);
+		contentPane.add(dSingleLabel);
+		dSingleLabel.setColumns(10);
 		
-		textField_16 = new JTextField();
-		textField_16.setBounds(287, 332, 86, 20);
-		contentPane.add(textField_16);
-		textField_16.setColumns(10);
+		dDuploLabel = new JTextField();
+		dDuploLabel.setBounds(287, 332, 86, 20);
+		contentPane.add(dDuploLabel);
+		dDuploLabel.setColumns(10);
 		
-		textField_17 = new JTextField();
-		textField_17.setBounds(287, 355, 86, 20);
-		contentPane.add(textField_17);
-		textField_17.setColumns(10);
+		dTriploLabel = new JTextField();
+		dTriploLabel.setBounds(287, 355, 86, 20);
+		contentPane.add(dTriploLabel);
+		dTriploLabel.setColumns(10);
 		
-		textField_18 = new JTextField();
-		textField_18.setBounds(287, 378, 86, 20);
-		contentPane.add(textField_18);
-		textField_18.setColumns(10);
+		dLuxoLabel = new JTextField();
+		dLuxoLabel.setBounds(287, 378, 86, 20);
+		contentPane.add(dLuxoLabel);
+		dLuxoLabel.setColumns(10);
 		
 		JLabel lblNewLabel_20 = new JLabel("Desconto");
 		lblNewLabel_20.setBounds(299, 284, 86, 14);
@@ -288,31 +309,131 @@ public class InterfaceCadastroHotel extends JFrame {
 		contentPane.add(lblNewLabel_21);
 		
 		JButton btnNewButton = new JButton("Salvar");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				hotel = obterHotel();
+				if (hotel != null) {
+					setHotel(hotel);
+					JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!");
+					retorno = 1;
+				} else {
+					JOptionPane.showMessageDialog(null, "Erro!");
+					retorno = 0;
+				}
+				dispose();
+			}
+		});
 		btnNewButton.setBounds(561, 416, 89, 23);
 		contentPane.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Cancelar");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				retorno = 2;
+				dispose();
+			}
+		});
 		btnNewButton_1.setBounds(462, 416, 89, 23);
 		contentPane.add(btnNewButton_1);
 		
-		textField = new JTextField();
-		textField.setColumns(10);
-		textField.setBounds(135, 110, 33, 20);
-		contentPane.add(textField);
+		horaInLabel = new JTextField();
+		horaInLabel.setColumns(10);
+		horaInLabel.setBounds(135, 110, 33, 20);
+		contentPane.add(horaInLabel);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(172, 110, 33, 20);
-		contentPane.add(textField_2);
+		minInLabel = new JTextField();
+		minInLabel.setColumns(10);
+		minInLabel.setBounds(172, 110, 33, 20);
+		contentPane.add(minInLabel);
 		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(330, 110, 33, 20);
-		contentPane.add(textField_3);
+		horaOutLabel = new JTextField();
+		horaOutLabel.setColumns(10);
+		horaOutLabel.setBounds(330, 110, 33, 20);
+		contentPane.add(horaOutLabel);
 		
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
-		textField_4.setBounds(367, 110, 33, 20);
-		contentPane.add(textField_4);
+		minOutLabel = new JTextField();
+		minOutLabel.setColumns(10);
+		minOutLabel.setBounds(367, 110, 33, 20);
+		contentPane.add(minOutLabel);
+		
+		
+	}
+
+	public Hotel getHotel() {
+		return hotel;
+	}
+
+	public void setHotel(Hotel hotel) {
+		this.hotel = hotel;
+	}
+	
+	private Hotel obterHotel() {
+		String end_completo = enderecoLabel.getText();
+		String cnpj = cnpjLabel.getText();
+		String nome_oficial = nomeOficialLabel.getText();
+		String nome_divulgacao = nomeDivLabel.getText();
+		String cidade = cidadeLabel.getText();
+		
+		int hrCheckIn = Integer.parseInt(horaInLabel.getText());
+		int minCheckIn = Integer.parseInt(minInLabel.getText());
+		int hrCheckOut = Integer.parseInt(horaOutLabel.getText());
+		int minCheckOut = Integer.parseInt(minOutLabel.getText());
+		Tempo check_in = new Tempo(hrCheckIn,minCheckIn);
+		Tempo check_out = new Tempo(hrCheckOut,minCheckOut);
+		
+		int dia = Integer.parseInt(diaLabel.getText());
+		int mes = Integer.parseInt(mesLabel.getText());
+		int ano = Integer.parseInt(anoLabel.getText());
+		Data data_criacao = new Data(dia,mes,ano);
+		boolean pets;
+		boolean cancelamento;
+		int nmr_estrelas;
+		if(permitidoPetsCheck != null || cancelamentoCheck != null || comboBox != null) {
+			pets = permitidoPetsCheck.isSelected();
+			cancelamento = cancelamentoCheck.isSelected();
+			nmr_estrelas = Integer.parseInt((String) comboBox.getSelectedItem());
+		}
+		else {
+			pets = false;
+			cancelamento = false;
+			nmr_estrelas = 1;
+		}
+		String  msg_divulgacao = msgDivLabel.getText();
+		
+		int qtdSingle = Integer.parseInt(qtdSingleLabel.getText());
+		int qtdDuplo = Integer.parseInt(qtdDuploLabel.getText());
+		int qtdTriplo = Integer.parseInt(qtdTriploLabel.getText());
+		int qtdLuxo = Integer.parseInt(qtdLuxoLabel.getText());
+		
+		int diaSingle = Integer.parseInt(diaSingleLabel.getText());
+		int diaDuplo = Integer.parseInt(diaDuploLabel.getText());
+		int diaTriplo = Integer.parseInt(diaTriploLabel.getText());
+		int diaLuxo = Integer.parseInt(diaLuxoLabel.getText());
+		
+		int dSingle = Integer.parseInt(dSingleLabel.getText());
+		int dDuplo = Integer.parseInt(dDuploLabel.getText());
+		int dTriplo = Integer.parseInt(dTriploLabel.getText());
+		int dLuxo = Integer.parseInt(dLuxoLabel.getText());
+		
+		Quartos quartos = new Quartos(qtdSingle, qtdDuplo, qtdTriplo, qtdLuxo, diaSingle, diaDuplo,diaTriplo, diaLuxo, dSingle, dDuplo,dTriplo, dLuxo);
+		
+		Hotel hotel = new Hotel(cnpj,nome_oficial, nome_divulgacao, data_criacao, end_completo, nmr_estrelas,pets,check_in, check_out, cidade, msg_divulgacao, cancelamento, quartos);
+		return hotel;
+	}
+	
+	public Hotel retornaHotel() {
+		setVisible(true);
+		 // Aguarda até que o cliente seja retornado pela interface
+       while (hotel == null && retorno != 2) {
+           try {
+               Thread.sleep(100); // Aguarda 100 milissegundos
+           } catch (InterruptedException e) {
+               e.printStackTrace();
+           }
+       }
+       if(retorno == 2) {
+    	   return null;
+       }
+       return hotel;
 	}
 }

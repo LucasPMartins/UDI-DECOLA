@@ -31,10 +31,7 @@ public class Hotel extends Empresa {
 	
 	@Override
 	public String toString() {
-		return "Hotel [end_completo=" + end_completo + ", nmr_estrelas=" + nmr_estrelas + ", pets=" + pets
-				+ ", nmr_quartos=" + nmr_quartos + ", check_in=" + check_in + ", check_out=" + check_out + ", cidade="
-				+ cidade + ", msg_divulgacao=" + msg_divulgacao + ", cancelamento=" + cancelamento + ", funcionario="
-				+ funcionario + ", quartos=" + quartos + "]";
+		return "Hotel [end_completo=" + end_completo + ", nmr_estrelas=" + nmr_estrelas + ", pets=" + pets + ", nmr_quartos=" + nmr_quartos + ", check_in=" + check_in.formatarTempo() + ", check_out=" + check_out.formatarTempo() + ", cidade="+ cidade + "\n msg_divulgacao=" + msg_divulgacao + "\n cancelamento=" + cancelamento + ", funcionario="+ funcionario + "\n quartos=" + quartos.toString() + "]";
 	}
 
 	public static void setTaxa_udi_decola(float taxa_udi_decola) {
