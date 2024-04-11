@@ -9,6 +9,8 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JButton;
+import dados.DadosVoo;
+import classesPrincipais.*;
 
 public class InterfaceCadastroVoo extends JFrame {
 
@@ -29,6 +31,10 @@ public class InterfaceCadastroVoo extends JFrame {
 	private JTextField precoField;
 	private JButton adicionarTrechoVoo;
 
+	int retorno; // usado na função retornaVoo, a depender do try catch da instanciação do objeto.
+	Voo voo;
+	
+	
 	/**
 	 * Launch the application.
 	 */
@@ -38,6 +44,7 @@ public class InterfaceCadastroVoo extends JFrame {
 				try {
 					InterfaceCadastroVoo frame = new InterfaceCadastroVoo();
 					frame.setVisible(true);
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -149,4 +156,48 @@ public class InterfaceCadastroVoo extends JFrame {
 		adicionarTrechoVoo.setBounds(242, 162, 202, 23);
 		contentPane.add(adicionarTrechoVoo);
 	}
+	
+	public Voo retornaVoo() {
+		setVisible(true);
+		// Aguarda até que o cliente seja retornado pela interface
+        while (voo == null && retorno != 3) {
+            try {
+                Thread.sleep(100); // Aguarda 100 milissegundos
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        if(retorno == 3) {
+        	return null;
+        }
+        return voo;
+	}
+	
+	public Voo obterVoo() {
+		/*
+		 
+		 
+		String id = idField.getText();
+		String origem = origemField.getText();
+		String destino = destinoField.getText();
+		
+		CompanhiaAerea comp = new CompanhiaAerea();
+		
+		
+		int dia,mes,ano;
+		
+		Data d = new Data(dia,mes,ano);
+		int h = Integer.parseInt(hpartidaField.getText());
+		int m = Integer.parseInt(mpartidaField.getText());
+		Tempo hInicio = new Tempo(h,m);
+		
+		h = Integer.parseInt(hchegadaField.getText());
+		m = Integer.parseInt(mchegadaField.getText());
+		Tempo hChegada = new Tempo(h,m);
+		
+        return new Voo(id,origem,destino,comp,hInicio,hChegada);
+        */
+    }
+	
+	
 }
