@@ -29,7 +29,6 @@ public class InterfaceCadastroCliente extends JFrame {
 	private JTextField dataMes;
 	private JTextField dataAno;
 	private JTextField EmailLabel;
-	private JTextField usuarioLabel;
 	private JTextField SenhaLabel;
 	
 	private Cliente cliente;
@@ -117,21 +116,12 @@ public class InterfaceCadastroCliente extends JFrame {
 		contentPane.add(EmailLabel);
 		EmailLabel.setColumns(10);
 		
-		JLabel lblNewLabel_5 = new JLabel("Usuario:");
-		lblNewLabel_5.setBounds(20, 170, 62, 14);
-		contentPane.add(lblNewLabel_5);
-		
-		usuarioLabel = new JTextField();
-		usuarioLabel.setBounds(69, 167, 150, 20);
-		contentPane.add(usuarioLabel);
-		usuarioLabel.setColumns(10);
-		
 		JLabel lblNewLabel_6 = new JLabel("Senha:");
-		lblNewLabel_6.setBounds(20, 205, 62, 14);
+		lblNewLabel_6.setBounds(20, 166, 62, 14);
 		contentPane.add(lblNewLabel_6);
 		
 		SenhaLabel = new JTextField();
-		SenhaLabel.setBounds(69, 202, 150, 20);
+		SenhaLabel.setBounds(69, 163, 150, 20);
 		contentPane.add(SenhaLabel);
 		SenhaLabel.setColumns(10);
 		
