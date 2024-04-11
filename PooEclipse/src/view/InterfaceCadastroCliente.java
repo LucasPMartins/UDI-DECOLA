@@ -181,7 +181,7 @@ public class InterfaceCadastroCliente extends JFrame {
 	
 	private Cliente obterCliente() {
 		String cpf = CPFlabel.getText();
-		String usuario = usuarioLabel.getText();
+		String usuario = NsomeLabel.getText();
 		//String senha = SenhaLabel.getText();
 		String email = EmailLabel.getText();
 		String endereco = EnderecoLabel.getText();
