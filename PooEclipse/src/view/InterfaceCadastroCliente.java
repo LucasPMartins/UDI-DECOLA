@@ -1,18 +1,20 @@
 package view;
-import classesPrincipais.*;
-import dados.*;
-
 import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
 import java.awt.Font;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.time.LocalDate;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
+
+import classesPrincipais.Cliente;
+import classesPrincipais.Data;
+import dados.DadosCliente;
 
 public class InterfaceCadastroCliente extends JFrame {
 
@@ -21,9 +23,9 @@ public class InterfaceCadastroCliente extends JFrame {
 	private JTextField CPFlabel;
 	private JTextField EnderecoLabel;
 	private JTextField NomeLabel;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
+	private JTextField dataDia;
+	private JTextField dataMes;
+	private JTextField dataAno;
 	private JTextField EmailLabel;
 	private JTextField usuarioLabel;
 	private JTextField SenhaLabel;
@@ -96,24 +98,24 @@ public class InterfaceCadastroCliente extends JFrame {
 		lblNewLabel_12.setBounds(299, 33, 137, 14);
 		contentPane.add(lblNewLabel_12);
 		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(422, 30, 33, 20);
-		contentPane.add(textField_3);
+		dataDia = new JTextField();
+		dataDia.setColumns(10);
+		dataDia.setBounds(422, 30, 33, 20);
+		contentPane.add(dataDia);
 		
 		JLabel lblNewLabel_13 = new JLabel("/");
 		lblNewLabel_13.setBounds(459, 33, 21, 14);
 		contentPane.add(lblNewLabel_13);
 		
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
-		textField_4.setBounds(465, 30, 33, 20);
-		contentPane.add(textField_4);
+		dataMes = new JTextField();
+		dataMes.setColumns(10);
+		dataMes.setBounds(465, 30, 33, 20);
+		contentPane.add(dataMes);
 		
-		textField_5 = new JTextField();
-		textField_5.setColumns(10);
-		textField_5.setBounds(508, 30, 33, 20);
-		contentPane.add(textField_5);
+		dataAno = new JTextField();
+		dataAno.setColumns(10);
+		dataAno.setBounds(508, 30, 33, 20);
+		contentPane.add(dataAno);
 		
 		JLabel lblNewLabel_14 = new JLabel("/");
 		lblNewLabel_14.setBounds(502, 33, 21, 14);
@@ -149,25 +151,7 @@ public class InterfaceCadastroCliente extends JFrame {
 		JButton btnNewButton = new JButton("Confirmar");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// -- Salvar o cliente --
-				String cpf = CPFlabel.getText();
-				String usuario = usuarioLabel.getText();
-				//String senha = SenhaLabel.getText();
-				String email = EmailLabel.getText();
-				String endereco = EnderecoLabel.getText();
-				
-				// Data tem que implementar.
-				Data d = new Data(01,01,10);
-				
-				try(Cliente c = new Cliente(cpf,usuario,email,d,endereco,d,d)){
-					clientes.cadastrar(c); //Cadastro o cliente.
-					clientes.listar();
-				}
-				catch() {
-					System.out.println("Error: ");
-				}
-				
-				
+				// Cadastrar Cliente no meu Clientes lista.
 				
 				
 			}
@@ -180,4 +164,27 @@ public class InterfaceCadastroCliente extends JFrame {
 		btnNewButton_1.setBounds(336, 229, 104, 23);
 		contentPane.add(btnNewButton_1);
 	}
+	
+	public Cliente retornarCliente() {
+		String cpf = CPFlabel.getText();
+		String usuario = usuarioLabel.getText();
+		//String senha = SenhaLabel.getText();
+		String email = EmailLabel.getText();
+		String endereco = EnderecoLabel.getText();
+		
+		//Convertendo para inteiro para adicionar a DATA.
+		int dia = Integer.parseInt(dataDia.getText());
+		int mes = Integer.parseInt(dataMes.getText());
+		int ano = Integer.parseInt(dataAno.getText());
+		
+		Data nascimento = new Data(dia,mes,ano);
+		// Pegando data atual para data de criacao.
+		
+		LocalDate dataAtual = LocalDate.now();
+		Data criacao = new Data(dataAtual.getDayOfMonth(),dataAtual.getMonthValue(),dataAtual.getYear());
+		
+		Cliente c = new Cliente(cpf,usuario,email,criacao,endereco,nascimento,null);
+		return c;
+	}
+	
 }
