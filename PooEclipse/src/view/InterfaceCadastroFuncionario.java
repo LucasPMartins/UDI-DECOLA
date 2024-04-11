@@ -5,30 +5,41 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import classesPrincipais.Cliente;
+import classesPrincipais.Data;
+import classesPrincipais.Funcionario_Parceiro;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
 
 public class InterfaceCadastroFuncionario extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
-	private JTextField textField_7;
-	private JTextField textField_8;
-	private JTextField textField_9;
-	private JTextField textField_10;
+	private JTextField cpfLabel;
+	private JTextField enderecoLabel;
+	private JTextField nomeLabel;
+	private JTextField diaLabel;
+	private JTextField mesLabel;
+	private JTextField anoLabel;
+	private JTextField emailLabel;
+	private JTextField userLabel;
+	private JTextField senhaLabel;
+	private JTextField carteiraLabel;
+	private JTextField salario;
 
+	private Funcionario_Parceiro funcionario;
+	public int retorno;
 	/**
 	 * Launch the application.
 	 */
@@ -68,51 +79,51 @@ public class InterfaceCadastroFuncionario extends JFrame {
 		lblNewLabel_1.setBounds(20, 36, 46, 14);
 		contentPane.add(lblNewLabel_1);
 		
-		textField = new JTextField();
-		textField.setBounds(53, 33, 193, 20);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		cpfLabel = new JTextField();
+		cpfLabel.setBounds(53, 33, 193, 20);
+		contentPane.add(cpfLabel);
+		cpfLabel.setColumns(10);
 		
 		JLabel lblNewLabel_2 = new JLabel("Endereço:");
 		lblNewLabel_2.setBounds(20, 64, 62, 14);
 		contentPane.add(lblNewLabel_2);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(81, 61, 325, 20);
-		contentPane.add(textField_1);
-		textField_1.setColumns(10);
+		enderecoLabel = new JTextField();
+		enderecoLabel.setBounds(81, 61, 325, 20);
+		contentPane.add(enderecoLabel);
+		enderecoLabel.setColumns(10);
 		
 		JLabel lblNewLabel_3 = new JLabel("Nome:");
 		lblNewLabel_3.setBounds(20, 93, 46, 14);
 		contentPane.add(lblNewLabel_3);
 		
-		textField_2 = new JTextField();
-		textField_2.setBounds(68, 89, 333, 20);
-		contentPane.add(textField_2);
-		textField_2.setColumns(10);
+		nomeLabel = new JTextField();
+		nomeLabel.setBounds(68, 89, 333, 20);
+		contentPane.add(nomeLabel);
+		nomeLabel.setColumns(10);
 		
 		JLabel lblNewLabel_12 = new JLabel("Data de Nascimento:");
 		lblNewLabel_12.setBounds(299, 33, 137, 14);
 		contentPane.add(lblNewLabel_12);
 		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(422, 30, 33, 20);
-		contentPane.add(textField_3);
+		diaLabel = new JTextField();
+		diaLabel.setColumns(10);
+		diaLabel.setBounds(422, 30, 33, 20);
+		contentPane.add(diaLabel);
 		
 		JLabel lblNewLabel_13 = new JLabel("/");
 		lblNewLabel_13.setBounds(459, 33, 21, 14);
 		contentPane.add(lblNewLabel_13);
 		
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
-		textField_4.setBounds(465, 30, 33, 20);
-		contentPane.add(textField_4);
+		mesLabel = new JTextField();
+		mesLabel.setColumns(10);
+		mesLabel.setBounds(465, 30, 33, 20);
+		contentPane.add(mesLabel);
 		
-		textField_5 = new JTextField();
-		textField_5.setColumns(10);
-		textField_5.setBounds(508, 30, 33, 20);
-		contentPane.add(textField_5);
+		anoLabel = new JTextField();
+		anoLabel.setColumns(10);
+		anoLabel.setBounds(508, 30, 33, 20);
+		contentPane.add(anoLabel);
 		
 		JLabel lblNewLabel_14 = new JLabel("/");
 		lblNewLabel_14.setBounds(502, 33, 21, 14);
@@ -122,42 +133,59 @@ public class InterfaceCadastroFuncionario extends JFrame {
 		lblNewLabel_4.setBounds(20, 121, 46, 14);
 		contentPane.add(lblNewLabel_4);
 		
-		textField_6 = new JTextField();
-		textField_6.setBounds(67, 118, 303, 20);
-		contentPane.add(textField_6);
-		textField_6.setColumns(10);
+		emailLabel = new JTextField();
+		emailLabel.setBounds(67, 118, 303, 20);
+		contentPane.add(emailLabel);
+		emailLabel.setColumns(10);
 		
 		JLabel lblNewLabel_5 = new JLabel("Usuario:");
 		lblNewLabel_5.setBounds(20, 220, 62, 14);
 		contentPane.add(lblNewLabel_5);
 		
-		textField_7 = new JTextField();
-		textField_7.setBounds(69, 217, 150, 20);
-		contentPane.add(textField_7);
-		textField_7.setColumns(10);
+		userLabel = new JTextField();
+		userLabel.setBounds(69, 217, 150, 20);
+		contentPane.add(userLabel);
+		userLabel.setColumns(10);
 		
 		JLabel lblNewLabel_6 = new JLabel("Senha:");
 		lblNewLabel_6.setBounds(20, 255, 62, 14);
 		contentPane.add(lblNewLabel_6);
 		
-		textField_8 = new JTextField();
-		textField_8.setBounds(69, 252, 150, 20);
-		contentPane.add(textField_8);
-		textField_8.setColumns(10);
+		senhaLabel = new JTextField();
+		senhaLabel.setBounds(69, 252, 150, 20);
+		contentPane.add(senhaLabel);
+		senhaLabel.setColumns(10);
 		
 		JButton btnNewButton = new JButton("Confirmar");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				funcionario = obterFuncionario();
+				if (funcionario != null) {
+					setFuncionario(funcionario);
+					JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!");
+					retorno = 1;
+				} else {
+					JOptionPane.showMessageDialog(null, "Erro!");
+					retorno = 0;
+				}
+				dispose();
 			}
 		});
 		btnNewButton.setBounds(459, 309, 104, 23);
 		contentPane.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Voltar");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				retorno = 2;
+				dispose();
+			}
+		});
 		btnNewButton_1.setBounds(332, 309, 104, 23);
 		contentPane.add(btnNewButton_1);
 		
 		JComboBox comboBox = new JComboBox();
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Hotel", "Companinha Aerea"}));
 		comboBox.setBounds(132, 180, 137, 20);
 		contentPane.add(comboBox);
 		
@@ -165,22 +193,67 @@ public class InterfaceCadastroFuncionario extends JFrame {
 		lblNewLabel_7.setBounds(20, 152, 130, 14);
 		contentPane.add(lblNewLabel_7);
 		
-		textField_9 = new JTextField();
-		textField_9.setBounds(150, 149, 185, 20);
-		contentPane.add(textField_9);
-		textField_9.setColumns(10);
+		carteiraLabel = new JTextField();
+		carteiraLabel.setBounds(150, 149, 185, 20);
+		contentPane.add(carteiraLabel);
+		carteiraLabel.setColumns(10);
 		
 		JLabel lblNewLabel_8 = new JLabel("Salário:");
 		lblNewLabel_8.setBounds(345, 152, 56, 14);
 		contentPane.add(lblNewLabel_8);
 		
-		textField_10 = new JTextField();
-		textField_10.setBounds(397, 149, 86, 20);
-		contentPane.add(textField_10);
-		textField_10.setColumns(10);
+		salario = new JTextField();
+		salario.setBounds(397, 149, 86, 20);
+		contentPane.add(salario);
+		salario.setColumns(10);
 		
 		JLabel lblNewLabel_9 = new JLabel("Local de Trabalho:");
 		lblNewLabel_9.setBounds(20, 183, 115, 14);
 		contentPane.add(lblNewLabel_9);
 	}
+	
+	public Funcionario_Parceiro getFuncionario() {
+		return funcionario;
+	}
+
+	public void setFuncionario(Funcionario_Parceiro funcionario) {
+		this.funcionario = funcionario;
+	}
+
+	public Funcionario_Parceiro retornaFuncionario() {
+		setVisible(true);
+		 // Aguarda até que o cliente seja retornado pela interface
+       while (funcionario == null && retorno != 2) {
+           try {
+               Thread.sleep(100); // Aguarda 100 milissegundos
+           } catch (InterruptedException e) {
+               e.printStackTrace();
+           }
+       }
+       if(retorno == 2) {
+    	   return null;
+       }
+       return funcionario;
+	}
+	
+	private Funcionario_Parceiro obterFuncionario() {
+		String cpf = cpfLabel.getText();
+		String usuario = userLabel.getText();
+		//String senha = SenhaLabel.getText();
+		String email = emailLabel.getText();
+		String endereco = enderecoLabel.getText();
+		String carteira = carteiraLabel.getText();
+		//Convertendo para inteiro para adicionar a DATA.
+		int dia = Integer.parseInt(diaLabel.getText());
+		int mes = Integer.parseInt(mesLabel.getText());
+		int ano = Integer.parseInt(anoLabel.getText());
+		
+		Data nascimento = new Data(dia,mes,ano);
+		// Pegando data atual para data de criacao.
+		
+		LocalDate dataAtual = LocalDate.now();
+		Data criacao = new Data(dataAtual.getDayOfMonth(),dataAtual.getMonthValue(),dataAtual.getYear());
+		Cliente c = new Cliente(cpf,usuario,email,criacao,endereco,nascimento,null);
+        return new Funcionario_Parceiro(cpf,endereco,usuario,nascimento,carteira,c);
+    }
 }

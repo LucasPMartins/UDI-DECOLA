@@ -20,12 +20,12 @@ public class InterfaceCadastroHotel extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField textField;
+	private JTextField enderecoLabel;
 	private JTextField textField_1;
 	private JTextField txtStandard;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
+	private JTextField nomeOficialLabel;
+	private JTextField nomeDivLabel;
+	private JTextField cnpjLabel;
 	private JTextField textField_5;
 	private JTextField textField_6;
 	private JTextField textField_7;
@@ -40,6 +40,10 @@ public class InterfaceCadastroHotel extends JFrame {
 	private JTextField textField_16;
 	private JTextField textField_17;
 	private JTextField textField_18;
+	private JTextField textField;
+	private JTextField textField_2;
+	private JTextField textField_3;
+	private JTextField textField_4;
 
 	/**
 	 * Launch the application.
@@ -80,10 +84,10 @@ public class InterfaceCadastroHotel extends JFrame {
 		lblNewLabel_1.setBounds(16, 48, 70, 14);
 		contentPane.add(lblNewLabel_1);
 		
-		textField = new JTextField();
-		textField.setBounds(77, 45, 344, 20);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		enderecoLabel = new JTextField();
+		enderecoLabel.setBounds(77, 45, 344, 20);
+		contentPane.add(enderecoLabel);
+		enderecoLabel.setColumns(10);
 		
 		JCheckBox chckbxNewCheckBox = new JCheckBox("Permitido Pets");
 		chckbxNewCheckBox.setBounds(16, 140, 111, 23);
@@ -104,22 +108,6 @@ public class InterfaceCadastroHotel extends JFrame {
 		JLabel lblNewLabel_4 = new JLabel("Horário do Check-out:");
 		lblNewLabel_4.setBounds(205, 113, 128, 14);
 		contentPane.add(lblNewLabel_4);
-		
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setBounds(129, 109, 40, 22);
-		contentPane.add(comboBox_1);
-		
-		JComboBox comboBox_2 = new JComboBox();
-		comboBox_2.setBounds(364, 109, 40, 22);
-		contentPane.add(comboBox_2);
-		
-		JComboBox comboBox_3 = new JComboBox();
-		comboBox_3.setBounds(326, 109, 40, 22);
-		contentPane.add(comboBox_3);
-		
-		JComboBox comboBox_4 = new JComboBox();
-		comboBox_4.setBounds(165, 109, 40, 22);
-		contentPane.add(comboBox_4);
 		
 		JLabel lblNewLabel_5 = new JLabel("Cidade:");
 		lblNewLabel_5.setBounds(431, 144, 46, 14);
@@ -162,28 +150,28 @@ public class InterfaceCadastroHotel extends JFrame {
 		lblNewLabel_9.setBounds(13, 78, 85, 14);
 		contentPane.add(lblNewLabel_9);
 		
-		textField_2 = new JTextField();
-		textField_2.setBounds(108, 76, 136, 20);
-		contentPane.add(textField_2);
-		textField_2.setColumns(10);
+		nomeOficialLabel = new JTextField();
+		nomeOficialLabel.setBounds(108, 76, 136, 20);
+		contentPane.add(nomeOficialLabel);
+		nomeOficialLabel.setColumns(10);
 		
 		JLabel lblNewLabel_10 = new JLabel("Nome Divulgação:");
 		lblNewLabel_10.setBounds(262, 78, 111, 14);
 		contentPane.add(lblNewLabel_10);
 		
-		textField_3 = new JTextField();
-		textField_3.setBounds(383, 76, 141, 20);
-		contentPane.add(textField_3);
-		textField_3.setColumns(10);
+		nomeDivLabel = new JTextField();
+		nomeDivLabel.setBounds(383, 76, 141, 20);
+		contentPane.add(nomeDivLabel);
+		nomeDivLabel.setColumns(10);
 		
 		JLabel lblNewLabel_11 = new JLabel("CNPJ:");
 		lblNewLabel_11.setBounds(431, 48, 46, 14);
 		contentPane.add(lblNewLabel_11);
 		
-		textField_4 = new JTextField();
-		textField_4.setBounds(469, 45, 160, 20);
-		contentPane.add(textField_4);
-		textField_4.setColumns(10);
+		cnpjLabel = new JTextField();
+		cnpjLabel.setBounds(469, 45, 160, 20);
+		contentPane.add(cnpjLabel);
+		cnpjLabel.setColumns(10);
 		
 		JLabel lblNewLabel_12 = new JLabel("Data de Criação:");
 		lblNewLabel_12.setBounds(410, 112, 95, 14);
@@ -306,5 +294,25 @@ public class InterfaceCadastroHotel extends JFrame {
 		JButton btnNewButton_1 = new JButton("Cancelar");
 		btnNewButton_1.setBounds(462, 416, 89, 23);
 		contentPane.add(btnNewButton_1);
+		
+		textField = new JTextField();
+		textField.setColumns(10);
+		textField.setBounds(135, 110, 33, 20);
+		contentPane.add(textField);
+		
+		textField_2 = new JTextField();
+		textField_2.setColumns(10);
+		textField_2.setBounds(172, 110, 33, 20);
+		contentPane.add(textField_2);
+		
+		textField_3 = new JTextField();
+		textField_3.setColumns(10);
+		textField_3.setBounds(330, 110, 33, 20);
+		contentPane.add(textField_3);
+		
+		textField_4 = new JTextField();
+		textField_4.setColumns(10);
+		textField_4.setBounds(367, 110, 33, 20);
+		contentPane.add(textField_4);
 	}
 }
