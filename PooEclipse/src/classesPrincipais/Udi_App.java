@@ -23,8 +23,8 @@ public class Udi_App {
             if (cliente != null) {
                 JOptionPane.showMessageDialog(null, cliente.toString());
                 String path = "ArqClientes.txt";
-                try (BufferedWriter bw = new BufferedWriter(new FileWriter("arquivo.txt"))) {
-                    bw.write("k");
+                try (BufferedWriter bw = new BufferedWriter(new FileWriter(path))) {
+                    bw.write(cliente.mostrarDados());
                 } catch (IOException e) {
                     // Trate exceções de E/S
                 	e.printStackTrace();
