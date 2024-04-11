@@ -1,0 +1,2 @@
+Cliente [email=Chavin@ufu.br, data_cadastro=11/04/24, registros=[], historico=[], vip=false, dataVip=null, desconto=0.0]
+Pessoa [cpf=123.123.34-53, endereco=Rua Chaves, nome=Chavo, data_nasc=01/11/02]Pessoa [cpf=123.123.34-53, endereco=Rua Chaves, nome=Chavo, data_nasc=01/11/02]
