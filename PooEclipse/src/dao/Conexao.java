@@ -1,37 +1,56 @@
 package dao;
 
-
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-
+import java.sql.*;
 
 public class Conexao {
-	
-    private static final String URL = "jdbc:postgresql://localhost:5432/banco_cliente";
-    private static final String USER = "1";
-    private static final String PASSWORD = "1";
-
-    public static Connection conectar() throws SQLException {
-        return DriverManager.getConnection(URL, USER, PASSWORD);
+    private String url;
+    private String usuario;
+    private String senha;
+    private Connection con;
+    
+    public Conexao(String url, String usuario, String senha) {
+        this.url = url;
+        this.usuario = usuario;
+        this.senha = senha;
+        
+        try {
+            
+            Class.forName("org.postgresql.Driver");
+            con = DriverManager.getConnection(url,usuario,senha);
+            
+            System.out.println("Conexao SUCESSO");
+        }
+        catch(Exception e){
+            System.out.println("Error: " + e.getMessage());
+            e.printStackTrace();
+        }
+        
+        
     }
-
-    public static void fechar(Connection conn) {
-        if (conn != null) {
-            try {
-                conn.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
+    
+    public int executaSQL(String sql) {
+        try {
+            Statement stm = con.createStatement();
+            int res = stm.executeUpdate(sql);
+            return res;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 0;
+        } finally {
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
-
-	
-	/*
-	public Connection getConnection() throws SQLException{
-		Connection conexao = DriverManager.getConnection("jdbc:postgresql://localhost:5432/banco_cliente", "postgres", "1");
-		return conexao;
-	}
-	*/
+    
+    
+    public static Connection conectar(String url, String usuario, String senha) throws SQLException {
+        return DriverManager.getConnection(url, usuario, senha);
+    }
+    
+    
 }
