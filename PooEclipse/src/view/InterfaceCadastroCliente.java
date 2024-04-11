@@ -1,6 +1,7 @@
 package view;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
@@ -8,6 +9,7 @@ import java.time.LocalDate;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
@@ -30,24 +32,8 @@ public class InterfaceCadastroCliente extends JFrame {
 	private JTextField usuarioLabel;
 	private JTextField SenhaLabel;
 	
-	private DadosCliente clientes;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					InterfaceCadastroCliente frame = new InterfaceCadastroCliente();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
+	private Cliente cliente;
+	
 	/**
 	 * Create the frame.
 	 */
@@ -151,9 +137,14 @@ public class InterfaceCadastroCliente extends JFrame {
 		JButton btnNewButton = new JButton("Confirmar");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// Cadastrar Cliente no meu Clientes lista.
-				
-				
+				cliente = obterCliente();
+				if (cliente != null) {
+					setCliente(cliente);
+					JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!");
+				} else {
+					JOptionPane.showMessageDialog(null, "Erro!");
+				}
+				dispose();
 			}
 		});
 		
@@ -161,11 +152,38 @@ public class InterfaceCadastroCliente extends JFrame {
 		contentPane.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Voltar");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
 		btnNewButton_1.setBounds(336, 229, 104, 23);
 		contentPane.add(btnNewButton_1);
 	}
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
 	
-	public Cliente retornarCliente() {
+	public Cliente retornaCliente() {
+		setVisible(true);
+		 // Aguarda até que o cliente seja retornado pela interface
+        while (cliente == null) {
+            try {
+                Thread.sleep(100); // Aguarda 100 milissegundos
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return cliente;
+	}
+	
+	private Cliente obterCliente() {
 		String cpf = CPFlabel.getText();
 		String usuario = usuarioLabel.getText();
 		//String senha = SenhaLabel.getText();
@@ -183,8 +201,6 @@ public class InterfaceCadastroCliente extends JFrame {
 		LocalDate dataAtual = LocalDate.now();
 		Data criacao = new Data(dataAtual.getDayOfMonth(),dataAtual.getMonthValue(),dataAtual.getYear());
 		
-		Cliente c = new Cliente(cpf,usuario,email,criacao,endereco,nascimento,null);
-		return c;
-	}
-	
+        return new Cliente(cpf,usuario,email,criacao,endereco,nascimento,null);
+    }
 }

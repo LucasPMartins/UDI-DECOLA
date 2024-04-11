@@ -19,7 +19,7 @@ public abstract class Pessoa {
 	
 	@Override
 	public String toString() {
-		return "Pessoa [cpf=" + cpf + ", endereco=" + endereco + ", nome=" + nome + ", data_nasc=" + data_nasc + "]";
+		return "Pessoa [cpf=" + cpf + ", endereco=" + endereco + ", nome=" + nome + ", data_nasc=" + data_nasc.formatarData() + "]";
 	}
 
 

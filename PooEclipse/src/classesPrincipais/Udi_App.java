@@ -1,54 +1,98 @@
 package classesPrincipais;
-import java.util.ArrayList;
-import java.time.LocalDateTime;
+
+import javax.swing.JOptionPane;
+
+import dados.DadosCliente;
+import dados.DadosCompanhiaAerea;
+import dados.DadosCompra;
+import dados.DadosFuncionarios;
+import dados.DadosHoteis;
+import dados.DadosTrechoVoo;
+import dados.DadosVoo;
+import view.InterfaceCadastroCliente;
 
 public class Udi_App {
-    private ArrayList<Hotel> hoteisDisponiveis;
-    private ArrayList<Voo> voosDisponiveis;
-    private Pesquisa pesquisa;
-    
-    
-    public Udi_App() {
-        // Inicializa os arrays de hotéis e voos disponíveis
-        hoteisDisponiveis = new ArrayList<>();
-        voosDisponiveis = new ArrayList<>();
-        // Adiciona os hotéis e voos disponíveis ao inicializar a aplicação
-        inicializarHoteis();
-        inicializarVoos();
-    }
+	private static DadosCliente clientes;
+	private DadosFuncionarios funcionarios;
+	private DadosHoteis hoteis;
+	private DadosTrechoVoo trechoVoo;
+	private DadosVoo voo;
+	private DadosCompanhiaAerea CompAerea;
+	private DadosCompra compra;
+	private static Cliente cliente;
+	
+	public static void main(String[] args) {
+		InterfaceCadastroCliente tela1 = new InterfaceCadastroCliente();
+		cliente = tela1.retornaCliente();
+		if (cliente != null) {
+		    System.out.println(cliente.toString());
+		} else {
+		    System.out.println("O cliente não foi cadastrado ou é nulo.");
+		}
+	}
 
-    private void inicializarHoteis() {
-        // Adiciona os hotéis disponíveis ao array de hoteisDisponiveis
-        // Implemente conforme necessário
-    }
+	public DadosCliente getClientes() {
+		return clientes;
+	}
 
-    private void inicializarVoos() {
-        // Adiciona os voos disponíveis ao array de voosDisponiveis
-        // Implemente conforme necessário
-    }
+	public void setClientes(DadosCliente clientes) {
+		Udi_App.clientes = clientes;
+	}
 
-    public ArrayList<Voo> realizarPesquisaVoo(String origem, String destino, LocalDateTime dataInicial, LocalDateTime dataFinal) {
-        // Realiza a pesquisa de hotéis e voos com base nos parâmetros fornecidos
-        // Implemente conforme necessário
-    	return pesquisa.getVoos();
-    }
-    
-    public ArrayList<Hotel> realizarPesquisaHotel(String origem, String destino, LocalDateTime dataInicial, LocalDateTime dataFinal) {
-        // Realiza a pesquisa de hotéis e voos com base nos parâmetros fornecidos
-        // Implemente conforme necessário
-    	return pesquisa.getHotel();
-    }
+	public DadosFuncionarios getFuncionarios() {
+		return funcionarios;
+	}
 
+	public void setFuncionarios(DadosFuncionarios funcionarios) {
+		this.funcionarios = funcionarios;
+	}
 
-    public void fazerReservaHotel(Hotel hotel, int tipoQuarto, LocalDateTime dataInicial, LocalDateTime dataFinal) {
-        // Faz a reserva de um hotel com base no hotel selecionado, tipo de quarto e datas
-        // Implemente conforme necessário
-    }
+	public DadosHoteis getHoteis() {
+		return hoteis;
+	}
 
-    public void fazerReservaVoo(Voo voo, LocalDateTime dataPartida) {
-        // Faz a reserva de um voo com base no voo selecionado e na data de partida
-        // Implemente conforme necessário
-    }
+	public void setHoteis(DadosHoteis hoteis) {
+		this.hoteis = hoteis;
+	}
 
-    // Outros métodos necessários para gerenciar o fluxo do programa
+	public DadosTrechoVoo getTrechoVoo() {
+		return trechoVoo;
+	}
+
+	public void setTrechoVoo(DadosTrechoVoo trechoVoo) {
+		this.trechoVoo = trechoVoo;
+	}
+
+	public DadosVoo getVoo() {
+		return voo;
+	}
+
+	public void setVoo(DadosVoo voo) {
+		this.voo = voo;
+	}
+
+	public DadosCompanhiaAerea getCompAerea() {
+		return CompAerea;
+	}
+
+	public void setCompAerea(DadosCompanhiaAerea compAerea) {
+		CompAerea = compAerea;
+	}
+
+	public DadosCompra getCompra() {
+		return compra;
+	}
+
+	public void setCompra(DadosCompra compra) {
+		this.compra = compra;
+	}
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		Udi_App.cliente = cliente;
+	}
+
 }

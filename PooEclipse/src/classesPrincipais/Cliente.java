@@ -19,8 +19,8 @@ public class Cliente extends Pessoa{
 	
 	@Override
 	public String toString() {
-		return "Cliente [email=" + email + ", data_cadastro=" + data_cadastro + ", registros=" + registros
-				+ ", historico=" + historico + ", vip=" + vip + ", dataVip=" + dataVip + ", desconto=" + desconto + "]";
+		return "Cliente [email=" + email + ", data_cadastro=" + data_cadastro.formatarData() + ", registros=" + registros
+				+ ", historico=" + historico + ", vip=" + vip + ", dataVip=" + dataVip + ", desconto=" + desconto + "]\n" + super.toString();
 	}
 
 	public Cliente(String cpf, String nome,String email, Data data_cadastro, String endereco,Data nascimento, Data virou_VIP) {
