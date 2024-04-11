@@ -14,8 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import classesPrincipais.Cliente;
-import classesPrincipais.Data;
+import classesPrincipais.*;
 import dados.DadosCliente;
 
 public class InterfaceCadastroCliente extends JFrame {
@@ -31,13 +30,17 @@ public class InterfaceCadastroCliente extends JFrame {
 	private JTextField EmailLabel;
 	private JTextField SenhaLabel;
 	
-	private Cliente cliente;
-	public int retorno;
+	private DadosCliente dadosCliente;
+    private UdiDecola_App udiDecolaApp;
 	
 	/**
 	 * Create the frame.
 	 */
-	public InterfaceCadastroCliente() {
+	public InterfaceCadastroCliente(UdiDecola_App udiDecolaApp, DadosCliente dadosCliente) {
+		super("Interface de Cadastro de Cliente");
+        this.udiDecolaApp = udiDecolaApp;
+        this.dadosCliente = dadosCliente;
+		
 		setResizable(false);
 		setTitle("Cadastro de Cliente");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -125,19 +128,15 @@ public class InterfaceCadastroCliente extends JFrame {
 		contentPane.add(SenhaLabel);
 		SenhaLabel.setColumns(10);
 		
+		
+		// -------- BOTAO CONFIRMAR -------------
+		
 		JButton btnNewButton = new JButton("Confirmar");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				cliente = obterCliente();
-				if (cliente != null) {
-					setCliente(cliente);
+					cadastrarCliente();
 					JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!");
-					retorno = 1;
-				} else {
-					JOptionPane.showMessageDialog(null, "Erro!");
-					retorno = 2;
-				}
-				dispose();
+					dispose();
 			}
 		});
 		
@@ -147,41 +146,30 @@ public class InterfaceCadastroCliente extends JFrame {
 		JButton btnNewButton_1 = new JButton("Voltar");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				retorno = 3;
 				dispose();
 			}
 		});
 		btnNewButton_1.setBounds(336, 229, 104, 23);
 		contentPane.add(btnNewButton_1);
-	}
-
-	public Cliente getCliente() {
-		return cliente;
-	}
-
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
-	}
-	
-	public Cliente retornaCliente() {
 		setVisible(true);
-		// Aguarda até que o cliente seja retornado pela interface
-        while (cliente == null && retorno != 3) {
-            try {
-                Thread.sleep(100); // Aguarda 100 milissegundos
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-        if(retorno == 3) {
-        	return null;
-        }
-        return cliente;
+		
 	}
+
+	
+	 private void cadastrarCliente() {
+	        // Simplesmente exemplo: Criar um cliente com dados fictícios
+	        
+		 	Cliente cliente = obterCliente();
+		 	
+	        // Adicionar o cliente à lista de clientes
+	        dadosCliente.cadastrar(cliente);
+
+	  }
+	 
 	
 	private Cliente obterCliente() {
 		String cpf = CPFlabel.getText();
-		String usuario = NsomeLabel.getText();
+		String usuario = NomeLabel.getText();
 		//String senha = SenhaLabel.getText();
 		String email = EmailLabel.getText();
 		String endereco = EnderecoLabel.getText();
@@ -199,4 +187,5 @@ public class InterfaceCadastroCliente extends JFrame {
 		
         return new Cliente(cpf,usuario,email,criacao,endereco,nascimento,null);
     }
+	
 }

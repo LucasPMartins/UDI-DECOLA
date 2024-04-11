@@ -1,12 +1,9 @@
 package classesPrincipais;
 
 
-import javax.swing.JOptionPane;
+import javax.swing.*;
 import dados.*;
-import view.InterfaceCadastroCArea;
-import view.InterfaceCadastroCliente;
-import view.InterfaceCadastroFuncionario;
-import view.InterfaceCadastroHotel;
+import view.*;
 
 import java.io.*;
 
@@ -24,6 +21,51 @@ public class Udi_App {
 	private static CompanhiaAerea companhia;
 	
 	public static void main(String[] args) {
+		
+		inicializarObjetosDeTela();
+		
+		SwingUtilities.invokeLater(() -> {
+            // Criar o menu
+            JMenuBar menuBar = new JMenuBar();
+            JMenu menu = new JMenu("Telas");
+
+            // Adicionar itens de menu para cada tela
+            JMenuItem tela1Item = new JMenuItem("Abrir Tela 1");
+            JMenuItem tela2Item = new JMenuItem("Abrir Tela 2");
+
+            // Adicionar ações aos itens de menu
+            InterfaceCadastroCliente tela1 = new InterfaceCadastroCliente(clientes);
+            InterfaceCadastroFuncionario tela2 = new InterfaceCadastroFuncionario();
+            tela1Item.addActionListener(e -> abrirTela(tela1));
+            tela2Item.addActionListener(e -> abrirTela(tela2));
+            
+            // Quando eu clicar em confirmar em tela1 faça:
+            System.out.println("Clientes: ");
+            
+            
+            
+            // Adicionar os itens de menu ao menu
+            menu.add(tela1Item);
+            menu.add(tela2Item);
+            
+            // Adicionar o menu à barra de menu
+            menuBar.add(menu);
+
+            // Criar o frame principal
+            JFrame frame = new JFrame("UDI App");
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setSize(400, 300);
+
+            // Adicionar a barra de menu ao frame
+            frame.setJMenuBar(menuBar);
+
+            // Exibir o frame
+            frame.setVisible(true);
+            
+            System.out.println(clientes.getVetClientes()); 
+        });
+		
+		/*
 		try {
             InterfaceCadastroCliente tela1 = new InterfaceCadastroCliente();
             cliente = tela1.retornaCliente();
@@ -43,6 +85,9 @@ public class Udi_App {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ocorreu um erro durante a execução do programa:\n" + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
+		
+		----
+		
 		InterfaceCadastroFuncionario tela2 = new InterfaceCadastroFuncionario();
 		funcionario = tela2.retornaFuncionario();
 		if(funcionario != null) {
@@ -65,7 +110,18 @@ public class Udi_App {
 		}else {
             JOptionPane.showMessageDialog(null, "A companhia Aerea não foi cadastrada ou é nulo.");
         }
+		
+		*/
 	}
+	
+	private static void inicializarObjetosDeTela() {
+	    clientes = new DadosCliente();
+	    // Inicialize outros objetos de tela aqui, se necessário
+	}
+	
+	private static void abrirTela(JFrame tela) {
+        tela.setVisible(true);
+    }
 	
 
 	public DadosCliente getClientes() {

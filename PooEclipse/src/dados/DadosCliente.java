@@ -11,7 +11,7 @@ public class DadosCliente {
 
     public void listar() {
         for (Cliente objeto : this.vetClientes) {
-            objeto.mostrarDados();
+            System.out.println(objeto.mostrarDados()); 
             // método mostrarDados();
         }
     }
@@ -39,4 +39,15 @@ public class DadosCliente {
             return false;
         }
     }
+
+	public ArrayList<Cliente> getVetClientes() {
+		return vetClientes;
+	}
+
+	public void setVetClientes(ArrayList<Cliente> vetClientes) {
+		this.vetClientes = vetClientes;
+	}
+    
+    
+    
 }

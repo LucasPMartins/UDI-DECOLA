@@ -47,7 +47,11 @@ public class Data {
 			return -1; // Mês inválido
 		}
 	}
-
+	
+	public String dataEmString() {
+		return getDia() + "/" + getMes() + "/" + getAno();
+	}
+	
 	public int getDia() {
 		return dia;
 	}

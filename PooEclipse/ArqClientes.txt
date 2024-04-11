@@ -1,2 +1,4 @@
-Cliente [email=1, data_cadastro=11/04/24, registros=[], historico=[], vip=false, dataVip=null, desconto=0.0]
-Pessoa [cpf=1, endereco=1, nome=1, data_nasc=01/01/01]Pessoa [cpf=1, endereco=1, nome=1, data_nasc=01/01/01]
+Cliente:  CPF = 192.872.135-54, NOME = Sauro, EMAIL = mineiro@gmail.com, ENDERECO = Rua NLogonia, DATA NASCIMENTO =  classesPrincipais.Data@31560c75
+Cliente:  CPF = 9921, NOME = Joao, EMAIL = Joao@ufu.br, ENDERECO = 9921, DATA NASCIMENTO =  14/11/2005
+Cliente:  CPF = 1, NOME = 1, EMAIL = 1, ENDERECO = 1, DATA NASCIMENTO =  2/2/2002
+Cliente:  CPF = 11, NOME = 1, EMAIL = 1, ENDERECO = 1, DATA NASCIMENTO =  1/1/2001
