@@ -3,8 +3,6 @@ package classesPrincipais;
 import javax.swing.*;
 import java.awt.event.*;
 import java.io.*;
-import java.util.ArrayList;
-import classesPrincipais.Cliente;
 import dados.*;
 import view.*;
 import dao.*;
@@ -12,12 +10,15 @@ import java.awt.Color;
 import java.awt.Font;
 
 public class UdiDecola_App extends JFrame {
-    private DadosCliente dadosCliente;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private DadosCliente dadosCliente;
     private DadosFuncionarios dadosFuncionario;
     private DadosHoteis dadosHotel;
     private DadosVoo dadosVoo;
     private DadosCompanhiaAerea dadosCompanhiaAerea;
-    private DadosTrechoVoo dadosTrechoVoo;
     
     public UdiDecola_App() {
         super("UdiDecola App");
@@ -30,7 +31,6 @@ public class UdiDecola_App extends JFrame {
         dadosHotel = new DadosHoteis();
         dadosVoo = new DadosVoo();
         dadosCompanhiaAerea = new DadosCompanhiaAerea();
-        dadosTrechoVoo = new DadosTrechoVoo();
         
         
         // Crio a tabela, se nao existir
@@ -113,16 +113,20 @@ public class UdiDecola_App extends JFrame {
     
  // -------------------------------------Métodos ----------------------
     
-    
     private void abrirInterfaceCadastroCompanhiaAerea() {
         InterfaceCadastroCArea interfaceCadastroCompanhiaAerea = new InterfaceCadastroCArea(this, dadosCompanhiaAerea);
         interfaceCadastroCompanhiaAerea.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosed(WindowEvent e) {
                 // Quando a janela de cadastro de voo for fechada, atualiza a exibição dos voos
-                
+            	atualizarExibicaoCompanhia();
             }
         });
+    }
+    
+    public void atualizarExibicaoCompanhia() {
+        System.out.println("Lista de Voos atualizada:");
+        dadosVoo.listar();
     }
     
     private void abrirInterfaceCadastroVoo() {

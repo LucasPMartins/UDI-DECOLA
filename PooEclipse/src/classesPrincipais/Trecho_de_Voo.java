@@ -54,7 +54,9 @@ public class Trecho_de_Voo {
 
 	@Override
 	public String toString() {
-		return "Trecho_de_Voo [codigoID=" + codigoID + ", origem=" + origem + ", destino=" + destino + ", horarioInicio=" + horarioInicio + ", horarioChegada=" + horarioChegada + "]";
+		return "Trecho_de_Voo [codigoID=" + codigoID + ", origem=" + origem +
+				", destino=" + destino + ", horarioInicio=" + horarioInicio.formatarTempo() + 
+				", horarioChegada=" + horarioChegada.formatarTempo() + "]";
 	}
 
 

@@ -39,7 +39,7 @@ public class Pesquisa {
         
         // Pesquisa de voos, a função retorna todos os voos tal que o último trecho de voo é igual ao destino
         for(Voo voo : voos) {
-            Trecho_de_Voo aux = voo.getTrecho();
+            Trecho_de_Voo aux = voo.getTrecho().get(0);
             
             if(aux.getDestino().equals(destino)) {
                 this.voos.add(voo);

@@ -19,11 +19,14 @@ public class Compra {
 	
 	private String ID_Compra;
     
+	
+	/*
 	public void calcularValorComissaoHotelUdiDecola() {
 	    // Somar o valor da comissão a ser paga para UDI-decola
 	    comissao += (qtd_passagem * voo.getTrecho().getCompanhia().getTaxa_da_udi_decola()) + (qtd_diarias * hotel.getTaxa_udi_decola());
 	    //Aqui poderá ter qtd quartos...
 	}
+	*/
 
 	
 	public String mostrarDados() {
@@ -100,7 +103,7 @@ public class Compra {
 		this.data_e_hora_compra = LocalDateTime.now();
 		this.forma_de_pagamento = forma_pagar;
 		
-		calcularValorComissaoHotelUdiDecola();
+		//calcularValorComissaoHotelUdiDecola();
 		
 	}
 
@@ -180,11 +183,11 @@ public class Compra {
 		return valorFinal;
 	}
 
-	public void setValorFinal(float valorFinal) {
+	public void setValorFinal(double d) {
 		if (getCliente().isVip()) {
-			this.valorFinal = 0.9f * valorFinal;
+			this.valorFinal = (float) (0.9 * d);
 		}
-		this.valorFinal = valorFinal;
+		this.valorFinal += d;
 	}
 
     

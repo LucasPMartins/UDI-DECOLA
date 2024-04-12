@@ -15,15 +15,43 @@ public class Voo {
 	
 	
 	
-    public Voo(Data data,int nro_vagas_disponiveis,double preco_da_passagem, ArrayList<Trecho_de_Voo> trecho) {
+    public ArrayList<Trecho_de_Voo> getTrecho() {
+		return trecho;
+	}
+
+	public void setTrecho(ArrayList<Trecho_de_Voo> trecho) {
+		this.trecho = trecho;
+	}
+
+	public void setPreco_da_passagem(double preco_da_passagem) {
+		this.preco_da_passagem = preco_da_passagem;
+	}
+
+	public Voo(Data data,int nro_vagas_disponiveis,double preco_da_passagem, ArrayList<Trecho_de_Voo> trecho) {
 		super();
 		this.data = data;
 		this.nro_vagas_disponiveis = nro_vagas_disponiveis;
 		this.trecho = trecho;
 		this.preco_da_passagem = preco_da_passagem;
+		hora_programada_chegada = new Tempo(0,0);
+		hora_programada_partida = new Tempo(trecho.get(0).getHorarioInicio().getHora(),trecho.get(0).getHorarioInicio().getMinuto());
+		destino = trecho.get(trecho.size()-1).getDestino();
+    	origem = trecho.get(0).getOrigem();
+    	
+		calculaHoraProgramada();		
 	}
 
-
+    public void calculaHoraProgramada() {
+    		int sum = 0,sum2 = 0;
+    		for(Trecho_de_Voo t : trecho) {
+    			sum += t.getHorarioChegada().getHora() - t.getHorarioInicio().getHora();
+    			sum2+= t.getHorarioChegada().getMinuto() - t.getHorarioInicio().getMinuto();
+    		}
+    		
+    		this.hora_programada_chegada.setHora(sum);
+    		this.hora_programada_chegada.setMinuto(sum2);
+    		
+    }
 
 	public Voo(Data data,int nro_vagas_disponiveis,
     		float preco_da_passagem) {
@@ -39,19 +67,14 @@ public class Voo {
     	return toString();
     }
     
-    public void addTrecho(Trecho_de_Voo t) {
-    	trecho.add(t);
-    	destino = trecho.get(trecho.size()-1).getDestino();
-    	origem = trecho.get(1).getOrigem();
-    }
-    
-	
+ 
+
 
 	@Override
 	public String toString() {
 		return "Voo [data=" + data.formatarData() + ", hora_programada_chegada=" + hora_programada_chegada.formatarTempo()
 				+ ", hora_programada_partida=" + hora_programada_partida.formatarTempo() + ", nro_vagas_disponiveis="
-				+ nro_vagas_disponiveis + ", trecho=" + trecho.toString() + ", preco_da_passagem=" + preco_da_passagem
+				+ nro_vagas_disponiveis + "\n trecho=" + trecho.toString() + "\npreco_da_passagem=" + preco_da_passagem
 				+ ", destino=" + destino + ", origem=" + origem + "]";
 	}
 
