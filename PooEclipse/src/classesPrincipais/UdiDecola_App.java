@@ -105,8 +105,6 @@ public class UdiDecola_App extends JFrame {
         });
         panel.add(cadastroVoo);
         
-        
-     
         setVisible(true);
         setLocationRelativeTo(null);
     }
