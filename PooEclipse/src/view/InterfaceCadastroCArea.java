@@ -1,6 +1,5 @@
 package view;
 
-import java.awt.EventQueue;
 import java.awt.Font;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -11,6 +10,8 @@ import javax.swing.border.EmptyBorder;
 
 import classesPrincipais.CompanhiaAerea;
 import classesPrincipais.Data;
+import classesPrincipais.UdiDecola_App;
+import dados.DadosCompanhiaAerea;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -28,30 +29,17 @@ public class InterfaceCadastroCArea extends JFrame {
 	private JTextField mesLabel;
 	private JTextField anoLabel;
 
-	int retorno;
-	private CompanhiaAerea ca;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					InterfaceCadastroCArea frame = new InterfaceCadastroCArea();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
-	public InterfaceCadastroCArea() {
-		setTitle("Dados do Hotel");
+	private UdiDecola_App udiDecolaApp;
+	private DadosCompanhiaAerea dadosCompanhiaAerea;
+	
+	
+	public InterfaceCadastroCArea(UdiDecola_App udiDecolaApp, DadosCompanhiaAerea dadosCompanhiaAerea) {
+		super("Interface de Cadastro de Companhia Aerea");
+		this.setUdiDecolaApp(udiDecolaApp);
+        this.dadosCompanhiaAerea = dadosCompanhiaAerea;
+        
+        
+		setTitle("Dados da Compania Area ");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 671, 231);
@@ -132,15 +120,8 @@ public class InterfaceCadastroCArea extends JFrame {
 		JButton btnNewButton = new JButton("Continuar");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ca = obterCA();
-				if (ca != null) {
-					setCA(ca);
-					JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!");
-					retorno = 1;
-				} else {
-					JOptionPane.showMessageDialog(null, "Erro!");
-					retorno = 2;
-				}
+				cadastrarCompanhiaAerea();
+				JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!");
 				dispose();
 			}
 		});
@@ -150,39 +131,23 @@ public class InterfaceCadastroCArea extends JFrame {
 		JButton btnNewButton_1 = new JButton("Cancelar");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				retorno = 3;
 				dispose();
 			}
 		});
 		btnNewButton_1.setBounds(445, 158, 89, 23);
 		contentPane.add(btnNewButton_1);
-	}
-
-	public CompanhiaAerea retornaCA() {
-		setVisible(true);
 		
-		while (ca == null && retorno != 3) {
-			try {
-				Thread.sleep(100); // Aguarda 100 milissegundos
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
-		if (retorno == 3) {
-			return null;
-		}
-		return ca;
+		setVisible(true);
 	}
 
-	public CompanhiaAerea getCA() {
-		return ca;
+	public void cadastrarCompanhiaAerea() {
+		CompanhiaAerea ca = obterCompanhiaAerea();
+        // Adicionar o Companhia Aerea
+        dadosCompanhiaAerea.cadastrar(ca);
+        
 	}
-
-	public void setCA(CompanhiaAerea ca) {
-		this.ca = ca;
-	}
-
-	private CompanhiaAerea obterCA() {
+	
+	private CompanhiaAerea obterCompanhiaAerea() {
 		String endereco = enderecoLabel.getText();
 		String cnpj = cnpjLabel.getText();
 		String nome_oficial = nomeOfcLabel.getText();
@@ -194,8 +159,15 @@ public class InterfaceCadastroCArea extends JFrame {
 		int ano = Integer.parseInt(anoLabel.getText());
 
 		Data data_criacao = new Data(dia, mes, ano);
+		
+		return new CompanhiaAerea(cnpj,nome_oficial,nome_divulgacao,data_criacao,endereco);
+	}
 
-		CompanhiaAerea ca = new CompanhiaAerea(cnpj,nome_oficial,nome_divulgacao,data_criacao,endereco);
-		return ca;
+	public UdiDecola_App getUdiDecolaApp() {
+		return udiDecolaApp;
+	}
+
+	public void setUdiDecolaApp(UdiDecola_App udiDecolaApp) {
+		this.udiDecolaApp = udiDecolaApp;
 	}
 }

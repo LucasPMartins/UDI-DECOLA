@@ -1,5 +1,7 @@
 package view;
 
+import java.awt.Component;
+import java.awt.Container;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -25,19 +27,25 @@ public class InterfaceCadastroVoo extends JFrame {
 	private JTextField mesField;
 	private JTextField anoField;
 	private JTextField hpartidaField;
-	private JLabel lblNewLabel_3;
 	private JTextField mpartidaField;
 	private JTextField mchegadaField;
 	private JTextField hchegadaField;
-	private JLabel lblNewLabel_3_1;
-	private JLabel lblNewLabel_4;
 	private JTextField vagasField;
-	private JLabel lblNewLabel_5;
 	private JTextField precoField;
-	private JButton adicionarVoo;
 
 	private DadosVoo dadosVoo;
     private UdiDecola_App udiDecolaApp;
+    private JTextField origemField;
+    private JTextField destinoField;
+    private JTextField idField;
+	private JLabel lblNewLabel_3;
+	private Container lblNewLabel_3_1;
+	private Component lblNewLabel_4;
+	private JLabel lblNewLabel_5;
+	private JLabel lblNewLabel_6;
+	private Component lblNewLabel_7;
+	private Component lblNewLabel_8;
+	private JLabel lblNewLabel_9;
 	
 
 	/**
@@ -49,7 +57,7 @@ public class InterfaceCadastroVoo extends JFrame {
         this.dadosVoo = dadosVoo;
         
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 470, 235);
+		setBounds(100, 100, 470, 251);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -127,34 +135,71 @@ public class InterfaceCadastroVoo extends JFrame {
 		contentPane.add(lblNewLabel_3_1);
 		
 		lblNewLabel_4 = new JLabel("Vagas:");
-		lblNewLabel_4.setBounds(256, 45, 46, 14);
+		lblNewLabel_4.setBounds(20, 139, 46, 14);
 		contentPane.add(lblNewLabel_4);
 		
 		vagasField = new JTextField();
-		vagasField.setBounds(300, 42, 46, 20);
+		vagasField.setBounds(64, 136, 46, 20);
 		contentPane.add(vagasField);
 		vagasField.setColumns(10);
 		
 		lblNewLabel_5 = new JLabel("Preço:");
-		lblNewLabel_5.setBounds(256, 73, 46, 14);
+		lblNewLabel_5.setBounds(133, 139, 46, 14);
 		contentPane.add(lblNewLabel_5);
 		
 		precoField = new JTextField();
-		precoField.setBounds(300, 70, 86, 20);
+		precoField.setBounds(182, 136, 86, 20);
 		contentPane.add(precoField);
 		precoField.setColumns(10);
 		
-		adicionarVoo = new JButton("Adicionar Voo");
-		adicionarVoo.addActionListener(new ActionListener() {
+		JButton Finalizar = new JButton("Finalizar");
+		Finalizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				cadastrarVoo();
-				
-				dispose();
-				
 			}
 		});
-		adicionarVoo.setBounds(242, 162, 202, 23);
-		contentPane.add(adicionarVoo);
+		Finalizar.setBounds(358, 181, 89, 23);
+		contentPane.add(Finalizar);
+		
+		JButton btnNewButton = new JButton("Voltar");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		btnNewButton.setBounds(259, 181, 89, 23);
+		contentPane.add(btnNewButton);
+		
+		lblNewLabel_6 = new JLabel("Dados do Trecho de Voo:");
+		lblNewLabel_6.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNewLabel_6.setBounds(236, 11, 201, 23);
+		contentPane.add(lblNewLabel_6);
+		
+		lblNewLabel_7 = new JLabel("Origem:");
+		lblNewLabel_7.setBounds(246, 45, 59, 14);
+		contentPane.add(lblNewLabel_7);
+		
+		origemField = new JTextField();
+		origemField.setColumns(10);
+		origemField.setBounds(296, 42, 151, 20);
+		contentPane.add(origemField);
+		
+		lblNewLabel_8 = new JLabel("Destino:");
+		lblNewLabel_8.setBounds(246, 75, 59, 14);
+		contentPane.add(lblNewLabel_8);
+		
+		destinoField = new JTextField();
+		destinoField.setColumns(10);
+		destinoField.setBounds(296, 72, 151, 20);
+		contentPane.add(destinoField);
+		
+		lblNewLabel_9 = new JLabel("ID:");
+		lblNewLabel_9.setBounds(246, 105, 46, 14);
+		contentPane.add(lblNewLabel_9);
+		
+		idField = new JTextField();
+		idField.setColumns(10);
+		idField.setBounds(270, 102, 151, 20);
+		contentPane.add(idField);
 	}
 	
 	
@@ -172,14 +217,12 @@ public class InterfaceCadastroVoo extends JFrame {
 
   }
 	
-	/*
+	
 	public Voo obterVoo() {
 	
 		String id = idField.getText();
 		String origem = origemField.getText();
 		String destino = destinoField.getText();
-		
-		CompanhiaAerea comp = new CompanhiaAerea();
 		
 		
 		int dia,mes,ano;
@@ -196,6 +239,4 @@ public class InterfaceCadastroVoo extends JFrame {
         return new Voo(id,origem,destino,comp,hInicio,hChegada);
         
     }
-	*/
-	
 }

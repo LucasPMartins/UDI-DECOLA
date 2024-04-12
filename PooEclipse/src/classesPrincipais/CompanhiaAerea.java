@@ -9,13 +9,20 @@ public class CompanhiaAerea extends Empresa{
 	private String endereco;
 
 	
-	
-	
 	public CompanhiaAerea(String cnpj, String nome_oficial, String nome_divulgacao, Data data_criacao, String endereco) {
 		super(cnpj, nome_oficial, nome_divulgacao, data_criacao);
 		this.endereco = endereco;
 	}
 
+
+	
+	public String getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(String endereco) {
+		this.endereco = endereco;
+	}
 
 	public String mostrarDados() {
 		return super.toString() + this.toString();

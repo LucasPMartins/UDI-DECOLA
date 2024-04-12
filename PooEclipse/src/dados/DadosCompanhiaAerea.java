@@ -4,7 +4,8 @@ import classesPrincipais.*;
 
 public class DadosCompanhiaAerea {
 	private ArrayList<CompanhiaAerea> vetFunc = new ArrayList<CompanhiaAerea>();
-
+	
+	
     public void cadastrar(CompanhiaAerea f) {
         this.vetFunc.add(f); // ADICIONA O Funcionário NO ARRAY
     }

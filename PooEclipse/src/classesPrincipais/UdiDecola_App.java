@@ -16,6 +16,8 @@ public class UdiDecola_App extends JFrame {
     private DadosFuncionarios dadosFuncionario;
     private DadosHoteis dadosHotel;
     private DadosVoo dadosVoo;
+    private DadosCompanhiaAerea dadosCompanhiaAerea;
+    private DadosTrechoVoo dadosTrechoVoo;
     
     public UdiDecola_App() {
         super("UdiDecola App");
@@ -27,6 +29,7 @@ public class UdiDecola_App extends JFrame {
         dadosFuncionario = new DadosFuncionarios();
         dadosHotel = new DadosHoteis();
         dadosVoo = new DadosVoo();
+        dadosCompanhiaAerea = new DadosCompanhiaAerea();
         
         // Crio a tabela, se nao existir
         ClienteDAO.criarTabelaCliente();
@@ -82,14 +85,23 @@ public class UdiDecola_App extends JFrame {
         });
         panel.add(consultar);
         
-        JButton cadastroVoo = new JButton("Cadastro Voo");
+        JButton cadastroVoo = new JButton("Cadastro Companhia Aerea");
         cadastroVoo.setBounds(98, 136, 379, 32);
         consultar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                abrirInterfaceCadastroVoo();
+            	abrirInterfaceCadastroCompanhiaAerea();
             }
         });
         panel.add(cadastroVoo);
+        
+        JButton abrirJanelaButton_1 = new JButton("Cadastro Voo");
+        abrirJanelaButton_1.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		abrirInterfaceCadastroVoo();
+        	}
+        });
+        abrirJanelaButton_1.setBounds(98, 179, 379, 32);
+        panel.add(abrirJanelaButton_1);
         
         
      
@@ -99,6 +111,17 @@ public class UdiDecola_App extends JFrame {
     
  // -------------------------------------Métodos ----------------------
     
+    
+    private void abrirInterfaceCadastroCompanhiaAerea() {
+        InterfaceCadastroCArea interfaceCadastroCompanhiaAerea = new InterfaceCadastroCArea(this, dadosCompanhiaAerea);
+        interfaceCadastroCompanhiaAerea.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+                // Quando a janela de cadastro de voo for fechada, atualiza a exibição dos voos
+                
+            }
+        });
+    }
     
     private void abrirInterfaceCadastroVoo() {
         InterfaceCadastroVoo interfaceCadastroVoo = new InterfaceCadastroVoo(this, dadosVoo);
@@ -116,8 +139,6 @@ public class UdiDecola_App extends JFrame {
         dadosVoo.listar();
     }
     
-    
-    
     private void abrirInterfaceCadastroHotel() {
         InterfaceCadastroHotel interfaceCadastroHotel = new InterfaceCadastroHotel(this, dadosHotel);
         interfaceCadastroHotel.addWindowListener(new WindowAdapter() {
@@ -125,7 +146,6 @@ public class UdiDecola_App extends JFrame {
             public void windowClosed(WindowEvent e) {
                 // Quando a janela de cadastro de hotel for fechada, atualiza a exibição dos hotéis
                 atualizarExibicaoHotel();
-                
                 
             }
         });
