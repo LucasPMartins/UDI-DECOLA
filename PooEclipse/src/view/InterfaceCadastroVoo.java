@@ -17,6 +17,7 @@ import javax.swing.JButton;
 import dados.*;
 import classesPrincipais.*;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 public class InterfaceCadastroVoo extends JFrame {
@@ -47,6 +48,8 @@ public class InterfaceCadastroVoo extends JFrame {
 	private Component lblNewLabel_8;
 	private JLabel lblNewLabel_9;
 	
+	private ArrayList<Trecho_de_Voo> Trechos = new ArrayList<Trecho_de_Voo>();
+	
 
 	/**
 	 * Create the frame.
@@ -55,6 +58,9 @@ public class InterfaceCadastroVoo extends JFrame {
 		super("Interface de Cadastro de Voo");
         this.udiDecolaApp = udiDecolaApp;
         this.dadosVoo = dadosVoo;
+        // Definindo.
+        //Trechos = 
+        
         
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 470, 251);
@@ -144,17 +150,22 @@ public class InterfaceCadastroVoo extends JFrame {
 		vagasField.setColumns(10);
 		
 		lblNewLabel_5 = new JLabel("Preço:");
-		lblNewLabel_5.setBounds(133, 139, 46, 14);
+		lblNewLabel_5.setBounds(20, 164, 46, 14);
 		contentPane.add(lblNewLabel_5);
 		
 		precoField = new JTextField();
-		precoField.setBounds(182, 136, 86, 20);
+		precoField.setBounds(65, 164, 46, 20);
 		contentPane.add(precoField);
 		precoField.setColumns(10);
 		
 		JButton Finalizar = new JButton("Finalizar");
 		Finalizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+					
+					cadastrarVoo();		
+					dispose();
+					
+				
 			}
 		});
 		Finalizar.setBounds(358, 181, 89, 23);
@@ -171,7 +182,7 @@ public class InterfaceCadastroVoo extends JFrame {
 		
 		lblNewLabel_6 = new JLabel("Dados do Trecho de Voo:");
 		lblNewLabel_6.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblNewLabel_6.setBounds(236, 11, 201, 23);
+		lblNewLabel_6.setBounds(222, 11, 182, 20);
 		contentPane.add(lblNewLabel_6);
 		
 		lblNewLabel_7 = new JLabel("Origem:");
@@ -198,8 +209,23 @@ public class InterfaceCadastroVoo extends JFrame {
 		
 		idField = new JTextField();
 		idField.setColumns(10);
-		idField.setBounds(270, 102, 151, 20);
+		idField.setBounds(296, 102, 151, 20);
 		contentPane.add(idField);
+		
+		JButton adicionarTrecho = new JButton("Adicionar Trecho");
+		adicionarTrecho.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				// =====  adicionando trechos Voo    =====
+				
+				Trechos.add(obterTrecho());
+				
+			}
+		});
+		adicionarTrecho.setBounds(296, 135, 141, 23);
+		contentPane.add(adicionarTrecho);
+		
+		setVisible(true);
 	}
 	
 	
@@ -220,14 +246,22 @@ public class InterfaceCadastroVoo extends JFrame {
 	
 	public Voo obterVoo() {
 	
+		
+		
+		
+		
 		String id = idField.getText();
 		String origem = origemField.getText();
 		String destino = destinoField.getText();
 		
-		
 		int dia,mes,ano;
 		
+		dia = Integer.parseInt(diaField.getText());
+		mes = Integer.parseInt(mesField.getText());
+		ano = Integer.parseInt(anoField.getText());
+		
 		Data d = new Data(dia,mes,ano);
+		
 		int h = Integer.parseInt(hpartidaField.getText());
 		int m = Integer.parseInt(mpartidaField.getText());
 		Tempo hInicio = new Tempo(h,m);
@@ -235,8 +269,24 @@ public class InterfaceCadastroVoo extends JFrame {
 		h = Integer.parseInt(hchegadaField.getText());
 		m = Integer.parseInt(mchegadaField.getText());
 		Tempo hChegada = new Tempo(h,m);
+		int vagas = Integer.parseInt(vagasField.getText());		
+		double preco = Double.parseDouble(precoField.getText());
 		
-        return new Voo(id,origem,destino,comp,hInicio,hChegada);
+		
+        return new Voo(d,vagas,preco,Trechos);
         
     }
+	
+	public Trecho_de_Voo obterTrecho() {
+		String ID,  origem,  destino;// CompanhiaAerea companhia, Tempo horarioInicio,
+		//Tempo horarioChegada;
+		ID = idField.getText();
+		origem = origemField.getText();
+		destino = destinoField.getText();
+		Tempo horaInicio = new Tempo(Integer.parseInt(hpartidaField.getText()),Integer.parseInt(mpartidaField.getText()));
+		Tempo horaChegada = new Tempo(Integer.parseInt(hchegadaField.getText()),Integer.parseInt(mchegadaField.getText()));
+		
+		return new Trecho_de_Voo(ID,origem,destino,horaInicio,horaChegada);
+	}
+	
 }

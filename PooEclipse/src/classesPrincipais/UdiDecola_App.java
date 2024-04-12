@@ -30,6 +30,8 @@ public class UdiDecola_App extends JFrame {
         dadosHotel = new DadosHoteis();
         dadosVoo = new DadosVoo();
         dadosCompanhiaAerea = new DadosCompanhiaAerea();
+        dadosTrechoVoo = new DadosTrechoVoo();
+        
         
         // Crio a tabela, se nao existir
         ClienteDAO.criarTabelaCliente();
@@ -85,23 +87,23 @@ public class UdiDecola_App extends JFrame {
         });
         panel.add(consultar);
         
-        JButton cadastroVoo = new JButton("Cadastro Companhia Aerea");
-        cadastroVoo.setBounds(98, 136, 379, 32);
-        consultar.addActionListener(new ActionListener() {
+        JButton cadastroCompanhia = new JButton("Cadastro Companhia Aerea");
+        cadastroCompanhia.setBounds(98, 136, 379, 32);
+        cadastroCompanhia.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             	abrirInterfaceCadastroCompanhiaAerea();
             }
         });
-        panel.add(cadastroVoo);
+        panel.add(cadastroCompanhia);
         
-        JButton abrirJanelaButton_1 = new JButton("Cadastro Voo");
-        abrirJanelaButton_1.addActionListener(new ActionListener() {
+        JButton cadastroVoo = new JButton("Cadastro Voo");
+        cadastroVoo.setBounds(98, 179, 379, 32);
+        cadastroVoo.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		abrirInterfaceCadastroVoo();
         	}
         });
-        abrirJanelaButton_1.setBounds(98, 179, 379, 32);
-        panel.add(abrirJanelaButton_1);
+        panel.add(cadastroVoo);
         
         
      

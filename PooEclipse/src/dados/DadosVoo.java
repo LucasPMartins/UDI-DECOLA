@@ -11,18 +11,18 @@ public class DadosVoo {
 
     public void listar() {
         for (Voo objeto : this.vetVoos) {
-            objeto.mostrarDados();
+            System.out.println(objeto.mostrarDados()); 
             // método mostrarDados();
         }
     }
 
     // Este método retorna o objeto Voo caso encontrado, ou null,
     // caso não encontrado
-    public Voo buscar(String codigoID) {
+    public Voo buscar(String dest) {
         Voo v = null;
         for (Voo objeto : this.vetVoos) {
         	
-            if (objeto.getTrecho().getCodigoID().equals(codigoID)) {
+            if (objeto.getDestino().equals(dest)) {
                 v = objeto;
                 break;
             }
