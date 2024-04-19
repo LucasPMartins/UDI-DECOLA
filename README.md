@@ -26,6 +26,7 @@ The program registers Hotels, Airlines and their Flight Sections, Customers, and
 [![brenimcode](https://github.com/brenimcode.png?size=60)](https://github.com/brenimcode "Breno Oliveira Cavalcante on GitHub")
 [![devlucasA](https://github.com/devlucasA.png?size=60)](https://github.com/devlucasA "Lucas Araújo de Oliveira on GitHub")
 [![LucasPMartins](https://github.com/LucasPMartins.png?size=60)](https://github.com/LucasPMartins "LucasPMartins on GitHub")
+[![CaueGrassi7](https://github.com/CaueGrassi7.png?size=60)](https://github.com/CaueGrassi7 "CaueGrassi7 on GitHub")
 
 ## 🛠 Tools:
 ![Eclipse](https://img.shields.io/badge/Eclipse-0D1117.svg?style=for-the-badge&logo=Eclipse&logoColor=ebc034)
