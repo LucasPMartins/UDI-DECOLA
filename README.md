@@ -4,7 +4,7 @@
 
 ## ❔ About
 
-**UDI-DECOLA** is an e-commerce system, programmed in **JAVA** language for a graduation project (Object-Oriented Programming 1).
+**UDI-DECOLA** is an e-commerce system, programmed in **JAVA** language for a course completion project (Object-Oriented Programming 1).
 
 In this project, we used the concepts learned in class about object-oriented programming, such as:
 - Classes, Attributes, and Methods
