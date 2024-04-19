@@ -4,11 +4,23 @@
 
 ## ❔ About
 
-**Powerful Machine** is an e-commerce system, programmed in the C language or a course completion work (Algorithm and Data Structure 1). 
+**UDI-DECOLA** is an e-commerce system, programmed in **JAVA** language for a graduation project (Object-Oriented Programming 1).
 
-In this project, we used the concepts learned in class about data structure and algorithms, such as linked lists, queues and stacks, dynamic memory allocation, abstract data types, among many others.
+In this project, we used the concepts learned in class about object-oriented programming, such as:
+- Classes, Attributes, and Methods
+- Encapsulation
+- Constructors
+- Inheritance
+- Polymorphism (overloading and overriding)
+- Graphical User Interface (GUI)
+- Abstract Classes
+- Collections
+- Persistence
+- Exception Handling
 
-The program registers sellers and products to be sold. Each product has a category, a name, description, unit value, quantity in stock, and appraisal note. Customers are also previously registered, and can access the program (by means of a username/password) to make their purchases. The system stores all orders placed, in order to know which products customers have purchased, and in order to provide reports with sales statistics.
+**UDI-DECOLA** is a company that allows searching and purchasing airline tickets and hotel stays.
+The program registers Hotels, Airlines and their Flight Sections, Customers, and Partner Collaborators. Its goal is to organize and complete the management of Udi-Decola's operations, from registering essential elements to processing purchases and payments.
+
 
 ## 🤝 Contributors
 [![brenimcode](https://github.com/brenimcode.png?size=60)](https://github.com/brenimcode "Breno Oliveira Cavalcante on GitHub")
