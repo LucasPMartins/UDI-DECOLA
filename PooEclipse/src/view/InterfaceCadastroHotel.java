@@ -7,8 +7,9 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 //import org.eclipse.wb.swing.FocusTraversalOnArray;
 
-import classesPrincipais.*;
-import dados.*;
+import app.UdiDecola_App;
+import data.*;
+import model.*;
 
 import java.awt.Component;
 import javax.swing.JLabel;

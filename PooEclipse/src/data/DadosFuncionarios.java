@@ -1,6 +1,7 @@
-package dados;
+package data;
 import java.util.ArrayList;
-import classesPrincipais.*;
+
+import model.*;
 
 public class DadosFuncionarios {
     private ArrayList<Funcionario> vetFunc = new ArrayList<Funcionario>();

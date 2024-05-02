@@ -1,4 +1,4 @@
-package classesPrincipais;
+package model;
 
 public class Data {
 	private int dia;

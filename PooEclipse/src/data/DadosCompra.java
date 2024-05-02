@@ -1,17 +1,17 @@
-package dados;
+package data;
 import java.util.ArrayList;
-import classesPrincipais.*;
 
-public class DadosCompanhiaAerea {
-	private ArrayList<CompanhiaAerea> vetFunc = new ArrayList<CompanhiaAerea>();
-	
-	
-    public void cadastrar(CompanhiaAerea f) {
+import model.*;
+
+public class DadosCompra {
+	private ArrayList<Compra> vetFunc = new ArrayList<Compra>();
+
+    public void cadastrar(Compra f) {
         this.vetFunc.add(f); // ADICIONA O Funcionário NO ARRAY
     }
 
     public void listar() {
-        for (CompanhiaAerea objeto : this.vetFunc) {
+        for (Compra objeto : this.vetFunc) {
         	objeto.mostrarDados();
             // método mostrarDados();
         }
@@ -19,10 +19,10 @@ public class DadosCompanhiaAerea {
 
     // este método retorna o objeto Funcionario caso encontrado, ou null,
     // caso não encontrado
-    public CompanhiaAerea buscar(String nome) {
-        CompanhiaAerea f = null;
-        for (CompanhiaAerea objeto : this.vetFunc) {
-            if (objeto.getNome_oficial().equals(nome)) {
+    public Compra buscar(String ID) {
+        Compra f = null;
+        for (Compra objeto : this.vetFunc) {
+            if (objeto.getID_Compra().equals(ID)) {
                 f = objeto;
                 break;
             }
@@ -31,8 +31,8 @@ public class DadosCompanhiaAerea {
     }
 
     // este método usa o método buscar já implementado
-    public boolean excluir(String nome) {
-        CompanhiaAerea f = this.buscar(nome);
+    public boolean excluir(String ID) {
+        Compra f = this.buscar(ID);
         if (f != null) {
             this.vetFunc.remove(f);
             return true;

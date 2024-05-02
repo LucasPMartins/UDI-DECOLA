@@ -8,10 +8,10 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import classesPrincipais.CompanhiaAerea;
-import classesPrincipais.Data;
-import classesPrincipais.UdiDecola_App;
-import dados.DadosCompanhiaAerea;
+import app.UdiDecola_App;
+import data.DadosCompanhiaAerea;
+import model.CompanhiaAerea;
+import model.Data;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;

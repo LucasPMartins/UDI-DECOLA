@@ -14,8 +14,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import classesPrincipais.*;
-import dados.DadosCliente;
+import app.UdiDecola_App;
+import data.DadosCliente;
+import model.*;
 
 public class InterfaceCadastroCliente extends JFrame {
 

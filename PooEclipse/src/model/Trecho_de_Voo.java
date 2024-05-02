@@ -1,4 +1,4 @@
-package classesPrincipais;
+package model;
 
 public class Trecho_de_Voo {
 	private String codigoID;

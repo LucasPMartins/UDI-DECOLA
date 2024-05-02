@@ -1,6 +1,7 @@
-package dados;
-import classesPrincipais.*;
+package data;
 import java.util.ArrayList;
+
+import model.*;
 
 public class DadosHoteis {
     private ArrayList<Hotel> vetHoteis = new ArrayList<Hotel>();

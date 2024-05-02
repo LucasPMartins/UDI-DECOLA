@@ -1,6 +1,7 @@
-package dados;
+package data;
 import java.util.ArrayList;
-import classesPrincipais.*; //Puxa todas classes de classesPrincipais
+
+import model.*;
 
 public class DadosTrechoVoo {
     private ArrayList<Trecho_de_Voo> vetTrechos = new ArrayList<Trecho_de_Voo>();

@@ -3,7 +3,8 @@ package dao;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
-import classesPrincipais.Cliente;
+
+import model.Cliente;
 
 
 public class ClienteDAO {

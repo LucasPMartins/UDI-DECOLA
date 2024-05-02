@@ -1,4 +1,4 @@
-package classesPrincipais;
+package model;
 
 public class Tempo {
 	private int hora, minuto;

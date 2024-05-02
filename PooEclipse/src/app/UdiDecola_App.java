@@ -1,13 +1,31 @@
-package classesPrincipais;
+package app;
 
-import javax.swing.*;
-import java.awt.event.*;
-import java.io.*;
-import dados.*;
-import view.*;
-import dao.*;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
+
+import dao.*;
+import data.*;
+import model.*;
+import view.InterfaceCadastroCArea;
+import view.InterfaceCadastroCliente;
+import view.InterfaceCadastroFuncionario;
+import view.InterfaceCadastroHotel;
+import view.InterfaceCadastroVoo;
+import view.InterfaceConsultaCliente;
 
 public class UdiDecola_App extends JFrame {
     /**

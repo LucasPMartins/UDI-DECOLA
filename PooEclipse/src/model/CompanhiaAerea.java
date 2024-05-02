@@ -1,5 +1,5 @@
 
-package classesPrincipais;
+package model;
 import java.util.ArrayList;
 
 public class CompanhiaAerea extends Empresa{

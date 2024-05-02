@@ -6,8 +6,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import classesPrincipais.*;
-import dados.*;
+import app.UdiDecola_App;
+import data.*;
+import model.*;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
