@@ -1,2 +1,21 @@
-/.metadata/
-/PooEclipse/.metadata
+# Arquivos temporários #
+*.log
+*.tmp
+*.bak
+*.swp
+
+# Arquivos de compilação #
+bin/
+target/
+
+# Arquivos de configuração específicos da IDE #
+.idea/
+.metadata/
+.settings/
+.classpath
+.project
+
+# Dependências geradas pelo Maven #
+maven-dependency-plugin.log
+mvnDebug
+release.properties
